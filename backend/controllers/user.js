@@ -15,7 +15,7 @@ exports.signup = (req, res) => {
                     if(error) {
                         return res.status(400).json({error});
                     } 
-                    return res.status(200).json(result);
+                    return res.status(201).json({message: 'Utilisateur crée !'});
                 });
             })
             .catch(err => res.status(500).json({err}));
@@ -56,4 +56,4 @@ exports.login = (req, res) => {
             return res.status(401).json({error: "Utilisateur non trouvé"});
         }
     });
-}
+};
