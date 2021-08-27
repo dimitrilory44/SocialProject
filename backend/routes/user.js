@@ -3,7 +3,10 @@ const router = express.Router();
 
 const userCtrl = require('../controllers/user');
 
-router.post('/', userCtrl.newUser);
-router.get('/', userCtrl.getAllUsers);
+// signup d'un utilisateur
+router.post('/signup', userCtrl.signup);
+
+// login d'un utilisateur
+router.post('/login', userCtrl.login);
 
 module.exports = router;

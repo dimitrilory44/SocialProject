@@ -89,7 +89,7 @@ CREATE TABLE `user` (
   `password` varchar(120) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
-  `image` varchar(120) NOT NULL,
+  `image` varchar(120) NOT NULL DEFAULT 'http://localhost:3000/images/guest.png',
   `description` text,
   `isAdmin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`iduser`)
