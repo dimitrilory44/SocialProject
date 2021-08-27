@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: groupomania
+-- Host: 127.0.0.1    Database: groupomania
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `idcomment` int(11) NOT NULL AUTO_INCREMENT,
   `contenu` text NOT NULL,
-  `isLike` tinyint(4) NOT NULL DEFAULT '0',
   `createdAt` datetime NOT NULL,
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -47,6 +46,34 @@ LOCK TABLES `comment` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `like_post`
+--
+
+DROP TABLE IF EXISTS `like_post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `like_post` (
+  `idlike_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  PRIMARY KEY (`idlike_post`),
+  KEY `fk_post_like_idx` (`id_post`),
+  KEY `fk_user_like_idx` (`id_user`),
+  CONSTRAINT `fk_post_like` FOREIGN KEY (`id_post`) REFERENCES `post` (`idpost`),
+  CONSTRAINT `fk_user_like` FOREIGN KEY (`id_user`) REFERENCES `user` (`iduser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `like_post`
+--
+
+LOCK TABLES `like_post` WRITE;
+/*!40000 ALTER TABLE `like_post` DISABLE KEYS */;
+/*!40000 ALTER TABLE `like_post` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `post`
 --
 
@@ -59,11 +86,10 @@ CREATE TABLE `post` (
   `image` varchar(120) DEFAULT NULL,
   `contenu` text NOT NULL,
   `createdAt` datetime NOT NULL,
-  `isLike` tinyint(4) NOT NULL DEFAULT '0',
-  `id_users` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   PRIMARY KEY (`idpost`),
-  KEY `id_users_idx` (`id_users`),
-  CONSTRAINT `id_users` FOREIGN KEY (`id_users`) REFERENCES `user` (`iduser`)
+  KEY `id_users_idx` (`id_user`),
+  CONSTRAINT `id_users` FOREIGN KEY (`id_user`) REFERENCES `user` (`iduser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -122,4 +148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-27  9:39:08
+-- Dump completed on 2021-08-27 19:19:19
