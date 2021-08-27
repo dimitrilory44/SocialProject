@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: groupomania
+-- Host: localhost    Database: groupomania
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -24,14 +24,16 @@ DROP TABLE IF EXISTS `comment`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `comment` (
   `idcomment` int(11) NOT NULL AUTO_INCREMENT,
-  `auteur` varchar(120) NOT NULL,
-  `content` text NOT NULL,
-  `createdAt` date NOT NULL,
-  `likes` int(11) NOT NULL DEFAULT '0',
+  `contenu` text NOT NULL,
+  `isLike` tinyint(4) NOT NULL DEFAULT '0',
+  `createdAt` datetime NOT NULL,
   `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   PRIMARY KEY (`idcomment`),
   KEY `id_post_idx` (`id_post`),
-  CONSTRAINT `id_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`idpost`)
+  KEY `id_user_idx` (`id_user`),
+  CONSTRAINT `id_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`idpost`),
+  CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`iduser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,9 +56,10 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `idpost` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(50) NOT NULL,
+  `image` varchar(120) DEFAULT NULL,
   `contenu` text NOT NULL,
-  `image` varchar(120) NOT NULL,
-  `likes` int(11) NOT NULL DEFAULT '0',
+  `createdAt` datetime NOT NULL,
+  `isLike` tinyint(4) NOT NULL DEFAULT '0',
   `id_users` int(11) NOT NULL,
   PRIMARY KEY (`idpost`),
   KEY `id_users_idx` (`id_users`),
@@ -119,4 +122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-26 11:13:20
+-- Dump completed on 2021-08-27  9:39:08
