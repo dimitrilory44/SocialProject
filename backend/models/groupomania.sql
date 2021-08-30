@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `idcomment` int(11) NOT NULL AUTO_INCREMENT,
   `contenu` text NOT NULL,
-  `createdAt` datetime NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`idcomment`),
@@ -85,7 +85,8 @@ CREATE TABLE `post` (
   `titre` varchar(50) NOT NULL,
   `image` varchar(120) DEFAULT NULL,
   `contenu` text NOT NULL,
-  `createdAt` datetime NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `isLike` tinyint(4) NOT NULL DEFAULT '0',
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`idpost`),
   KEY `id_users_idx` (`id_user`),

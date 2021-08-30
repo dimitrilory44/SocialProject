@@ -6,7 +6,7 @@ exports.signup = (req, res) => {
     // Verification email disponible et unique
     db.query(`SELECT * FROM user WHERE email='${req.body.email}'`, (error, result, field) => {
         if(result.length > 0) {
-            res.status(400).json({message : 'Email déjà utilisé'})
+            res.status(400).json({message : 'Email déjà utilisé !'})
         } else {
             // cryptage password et ajout utilisateur
             bcrypt.hash(req.body.password, 10)
@@ -53,7 +53,7 @@ exports.login = (req, res) => {
             })
             .catch(error => res.status(500).json({error}))
         } else {
-            return res.status(401).json({error: "Utilisateur non trouvé"});
+            return res.status(400).json({error: "Utilisateur non trouvé !"});
         }
     });
 };
