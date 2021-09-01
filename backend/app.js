@@ -15,8 +15,6 @@ app.use((req, res, next) => {
     next();
 });
 
-console.log('je change de branche');
-
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
