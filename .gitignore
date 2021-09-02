@@ -1,5 +1,6 @@
-# cache config backend
+# cache backend
 /backend/config
+/backend/images
 
 # Logs
 logs
