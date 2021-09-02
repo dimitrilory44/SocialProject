@@ -1,3 +1,6 @@
+# cache config backend
+/backend/config
+
 # Logs
 logs
 *.log
