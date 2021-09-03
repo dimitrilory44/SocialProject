@@ -1,12 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const routes = express.Router();
 
 const userCtrl = require('../controllers/user');
 
-// signup d'un utilisateur
-router.post('/signup', userCtrl.signup);
+// Information tous les utilisateurs
+routes.get('/', userCtrl.getAllUser);
 
-// login d'un utilisateur
-router.post('/login', userCtrl.login);
+// Information 1 utilisateur
+routes.get('/:id', userCtrl.getOneUser);
 
-module.exports = router;
+module.exports = routes;

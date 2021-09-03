@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const { sequelize } = require('./models/index');
 const path = require('path');
 
 const helmet = require('helmet');
 
-const routeAdmin = require('./routes/admin');
+const routeAuth = require('./routes/auth');
 const routeUser = require('./routes/user');
 const routePost = require('./routes/post');
 
@@ -22,15 +23,26 @@ app.use(helmet());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
+const testConnectionDB = async () => {
+    try {
+      await sequelize.authenticate();
+      console.log('Connection with mySQL has been established successfully.');
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    }
+  };
+
+testConnectionDB();
+
 app.get('/api', (req, res) => {
     res.json({title: 'Bienvenue sur mon API REST Groupomania'});
 });
 
 // Authentification de l'utilisateur
-app.use('/api/auth', routeUser);
+app.use('/api/auth', routeAuth);
 
 // Recupération des users pour l'administration
-app.use('/api/users', routeAdmin);
+app.use('/api/users', routeUser);
 
 // Recupération des posts
 app.use('/api/posts', routePost);
