@@ -7,6 +7,7 @@ const helmet = require('helmet');
 
 const routeAuth = require('./routes/auth');
 const routeUser = require('./routes/user');
+const routePost = require('./routes/post');
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'),
@@ -44,6 +45,6 @@ app.use('/api/auth', routeAuth);
 app.use('/api/users', routeUser);
 
 // Recupération des posts
-// app.use('/api/posts', routePost);
+app.use('/api/posts', routePost);
 
 module.exports = app;

@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.Post.hasMany(models.Like_post);
       models.Post.hasMany(models.Comment);
-
       models.Post.belongsTo(models.User, {
         foreignKey: {
           allowNull: false
@@ -22,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Post.init({
-    idUSERS: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
     titre: DataTypes.STRING,
     image: DataTypes.STRING,
     contenu: DataTypes.STRING,
