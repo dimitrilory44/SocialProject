@@ -1,5 +1,6 @@
 const db = require('../models');
 const { User, Post, Comment, Like_post } = db.sequelize.models;
+const fs = require('fs');
 
 /*********************** POST ********************************/
 
@@ -7,6 +8,7 @@ exports.createPost = (req, res) => {
     const newPost = {
         titre: req.body.titre,
         contenu: req.body.contenu,
+        image: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`,
         UserId: req.body.userId
     }
     Post.create(newPost)
@@ -54,10 +56,12 @@ exports.getAllPost = (req, res) => {
 // };
 
 exports.updatePost = (req, res) => {
-    Post.update({
+    const postObject = req.file ? {
         titre: req.body.titre,
-        contenu: req.body.contenu
-    }, {
+        contenu: req.body.contenu,
+        image: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`
+    } : {...req.body};
+    Post.update(postObject, {
         where: {
             id: req.params.id,
             UserId: req.body.userId
@@ -68,8 +72,15 @@ exports.updatePost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-    Post.destroy({where: {id: req.params.id}})
-    .then(() => res.status(200).json({message: "Post supprimé !"}))
+    Post.findOne({id: req.params.id})
+    .then(my_post => {
+        const filename = my_post.imageUrl.split('/images/posts/')[1];
+        fs.unlink(`images/${filename}`, () => {
+            Post.destroy({where: {id: req.params.id}})
+            .then(() => res.status(200).json({message: "Post supprimé !"}))
+            .catch(error => res.status(400).json(error));
+        });
+    })
     .catch(error => res.status(400).json(error));
 };
 

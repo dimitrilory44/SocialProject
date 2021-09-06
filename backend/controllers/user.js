@@ -27,6 +27,35 @@ exports.getOneUser = (req, res) => {
     }).catch(error => res.status(400).json(error));
 };
 
+exports.updateUser = (req, res) => {
+    const userObject = req.file ? {
+        email: req.body.email,
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        image: `${req.protocol}://${req.get('host')}/images/users/${req.file.filename}`
+    } : {...req.body};
+    User.update(userObject, {
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(() => res.status(201).json({message: 'Utilisateur modifié !'}))
+    .catch(error => res.status(400).json(error));
+};
+
+exports.deleteUser = (req, res) => {
+    User.findOne({id: req.params.id})
+    .then(my_user => {
+        const filename = my_user.imageUrl.split('/images/users/')[1];
+        fs.unlink(`images/${filename}`, () => {
+            User.destroy({where: {id: req.params.id}})
+            .then(() => res.status(200).json({message: "Utilisateur supprimé !"}))
+            .catch(error => res.status(400).json(error));
+        });
+    })
+    .catch(error => res.status(400).json(error));
+};
+
 exports.getPostByUser = (req, res) => {
     User.findAll({
         include: [
@@ -48,10 +77,4 @@ exports.getPostByUser = (req, res) => {
     })
     .then(posts => res.status(201).json(posts))
     .catch(error => res.status(400).json(error));
-}
-
-exports.deleteUser = (req, res) => {
-    User.destroy({where: {id: req.params.id}})
-    .then(() => res.status(200).json({message: "Utilisateur supprimé !"}))
-    .catch(error => res.status(400).json(error));
-}
+};

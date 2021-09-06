@@ -9,6 +9,8 @@ const routeAuth = require('./routes/auth');
 const routeUser = require('./routes/user');
 const routePost = require('./routes/post');
 
+require('dotenv').config();
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'),
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'),

@@ -2,11 +2,12 @@ const express = require('express');
 const routes = express.Router();
 
 const postCtrl = require('../controllers/post');
+const multer = require('../middleware/multer-config');
 
 /**************** POST ************************/
 
 // création d'un post
-routes.post('/', postCtrl.createPost);
+routes.post('/', multer, postCtrl.createPost);
 
 // Affichage de tous les posts
 routes.get('/', postCtrl.getAllPost);
@@ -15,7 +16,7 @@ routes.get('/', postCtrl.getAllPost);
 // routes.get('/:id', postCtrl.getOnePost);
 
 // Modification d'un post
-routes.put('/:id', postCtrl.updatePost);
+routes.put('/:id', multer, postCtrl.updatePost);
 
 // Suppression d'un post
 routes.delete('/:id', postCtrl.deletePost);
