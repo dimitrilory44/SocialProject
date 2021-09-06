@@ -3,6 +3,8 @@ const routes = express.Router();
 
 const postCtrl = require('../controllers/post');
 
+/**************** POST ************************/
+
 // création d'un post
 routes.post('/', postCtrl.createPost);
 
@@ -10,7 +12,7 @@ routes.post('/', postCtrl.createPost);
 routes.get('/', postCtrl.getAllPost);
 
 // Affichage d'un post
-routes.get('/:id', postCtrl.getOnePost);
+// routes.get('/:id', postCtrl.getOnePost);
 
 // Modification d'un post
 routes.put('/:id', postCtrl.updatePost);
@@ -18,7 +20,24 @@ routes.put('/:id', postCtrl.updatePost);
 // Suppression d'un post
 routes.delete('/:id', postCtrl.deletePost);
 
+// liker un post
+routes.post('/:id/likes', postCtrl.likeOrNot);
+
+// Recupérer les likes d'un post
+routes.get('/:id/likes', postCtrl.getLikesPost);
+
+/**************** COMMENT *********************/
+
 // creation d'un commentaire
 routes.post('/:id/comments', postCtrl.createComment);
+
+// Avoir tous les commentaires
+routes.get('/:id/comments', postCtrl.getAllComment);
+
+// Modifier un commentaire
+routes.put('/:idPost/comments/:idComment', postCtrl.updateComment);
+
+// Supprimer un commentaire
+routes.delete('/:idPost/comments/:idComment', postCtrl.deleteComment);
 
 module.exports = routes;
