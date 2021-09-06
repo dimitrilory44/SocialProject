@@ -4,7 +4,7 @@ Le back-end a été développé avec express JS, sequelize(ORM) et mySQL(base de
 
 Cloner ce projet avec la commande suivante :
 
-    git clone https://github.com/dimitrilory44/DimitriLory_6_16082021.git
+    git clone https://github.com/dimitrilory44/DimitriLory_7_26082021.git
     cd backend
 
 Installer les dépendances avec npm install.
