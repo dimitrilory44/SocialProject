@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { PagesRoutingModule } from './page-routing.module';
@@ -13,8 +12,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,

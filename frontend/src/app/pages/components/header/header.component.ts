@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { Subscription } from 'rxjs';
-// import { ApiService } from 'src/app/shared/api.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   // Subscription Home
-  // subscription$ ?:Subscription;
+  subscription$ ?:Subscription;
 
-  // constructor(private _apiService: ApiService) { }
+  constructor(private _apiService: ApiService, private _router: Router,) { }
 
   ngOnInit(): void {
-    // this.subscription$ = this._apiService.testApi().subscribe(res => {
-    //   console.log(res);
-    // })
+    this.subscription$ = this._apiService.testApi().subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  logout() {
+    this._router.navigate(['/login']);
   }
 }
