@@ -11,12 +11,14 @@ export class HomeComponent implements OnInit {
 
   // Subscription Home
   subscription$ ?:Subscription;
+  posts ?:any[]; 
 
   constructor(private _apiService: ApiService){}
 
   ngOnInit() {
     this.subscription$ = this._apiService.getPosts().subscribe(res => {
-      console.log(res);
+      this.posts = res;
+      console.log(this.posts?.length);
     })
   }
 
