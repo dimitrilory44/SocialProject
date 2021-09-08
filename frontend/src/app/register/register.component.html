@@ -1,0 +1,58 @@
+<div style="margin: 0 auto; display:flex; flex-direction: column" class="container">
+    <div style="display: flex; flex-direction: column; justify-content:center; align-items: center">
+        <img src="../../assets/icon.png" alt="" width="200" height="200">
+        <h1 style="color: red; font-weight: bold">GROUPOMANIA</h1>
+        <h2>Votre nouveau réseau d'entreprise</h2>
+    </div>
+    <div class="register container">
+        <h2 style="margin-top: 20px;">Inscription</h2>
+        <form class="form-auth">
+            <mat-form-field class="field-form" appearance="outline">
+                <mat-label for="nom">
+                    <mat-icon>person</mat-icon>
+                    Saisir votre nom
+                </mat-label>
+                <input type="text" name="nom" matInput formControlName="nom"> 
+            </mat-form-field>
+            <mat-form-field class="field-form" appearance="outline">
+                <mat-label for="prenom">
+                    <mat-icon>person</mat-icon>
+                    Saisir votre prenom
+                </mat-label>
+                <input type="text" name="prenom" matInput formControlName="prenom"> 
+            </mat-form-field>
+            <mat-form-field class="field-form" appearance="outline">
+                <mat-label for="email">
+                    <mat-icon>email</mat-icon>
+                   Saisir votre email
+                </mat-label>
+                <input type="text" name="email" matInput formControlName="email"> 
+            </mat-form-field>    
+            <mat-form-field class="field-form" appearance="outline">
+                <mat-label for="password">
+                    <mat-icon>lock</mat-icon>
+                    Saisir un mot de passe
+                </mat-label>
+                <input type="password" name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="field-form" appearance="outline">
+                <mat-label for="password">
+                    <mat-icon>lock</mat-icon>
+                    Saisir à nouveau votre mot de passe
+                </mat-label>
+                <input type="password" name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="action_auth">
+                <button mat-raised-button class="button" type="submit" routerLink="/">S'INSCRIRE</button>
+                <mat-divider></mat-divider>
+                <p>Vous avez un compte ? <strong><a routerLink="/login">Connectez-vous</a></strong></p>
+            </div>
+        </form>
+    </div>
+</div>

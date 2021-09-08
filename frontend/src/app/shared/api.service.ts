@@ -22,5 +22,11 @@ export class ApiService {
     return this.http.get<apiResponse>(Constants.BASE_URL + '/posts').pipe(map(result => {
       return result;
     }));
+  };
+
+  deletePost(postId :number) :Observable<any> {
+    return this.http.delete<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}`).pipe(map(result => {
+      return result;
+    }));
   }
 }

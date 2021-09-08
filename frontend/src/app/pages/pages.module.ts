@@ -7,7 +7,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PagesRoutingModule } from './page-routing.module';
 import { AppMaterialModule } from '../app-material.module';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     HttpClientModule,
     AppMaterialModule
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }
-  ]
+  providers: []
 })
 export class PagesModule {}

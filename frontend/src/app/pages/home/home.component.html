@@ -40,7 +40,7 @@
                   <mat-icon>edit</mat-icon>
                   <span>Modifier post</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="deletePost(post.id)">
                   <mat-icon style="color:red">delete</mat-icon>
                   <span>Supprimer post</span>
                 </button>

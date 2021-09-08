@@ -10,11 +10,13 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { LoginComponent } from './login/login.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
