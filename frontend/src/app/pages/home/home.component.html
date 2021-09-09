@@ -2,27 +2,44 @@
 
 <main style="padding-top: 70px;" class="main-color">
     <div class="container createPost">
-        <mat-card class="card">
-            <mat-card-header style="margin-left: 20px;">
-                <div mat-card-avatar>
-                    <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+        <form [formGroup]="createPost" (ngSubmit)="onSubmit()">
+            <mat-card class="card form-group">
+                <mat-card-header style="margin-left: 20px; display: flex; flex-direction: column;">
+                    <div style="display: flex; flex-direction: row; width: 100%;">
+                        <div mat-card-avatar>
+                            <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+                        </div>
+                        <mat-form-field class="field-form" appearance="fill" style="margin-left: 20px;width: 100%;">
+                            <textarea matInput name="contenu" placeholder="Contenu de votre post" formControlName="contenu"></textarea>
+                        </mat-form-field>
+                    </div>
+                </mat-card-header>
+                <div style="display: flex; flex-direction: column; width: 100%;"  *ngIf="url != null">
+                    <mat-divider></mat-divider>
+                    <h2 style="text-align: center;margin-top: 20px">Description de l'image</h2>
+                    <mat-form-field class="field-form" appearance="fill" style="width: 100%;">
+                        <input matInput name="titre" placeholder="Titre de votre image" formControlName="titre"/>
+                    </mat-form-field>
+                    <img [src]="url" alt="" style="width: 100%; margin: 20px auto">
                 </div>
-                <mat-form-field class="field-form" appearance="fill">
-                    <textarea matInput placeholder="Créez votre post"></textarea>
-                </mat-form-field>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-actions style="display: flex; justify-content: space-between; width: 85%; margin: 0 auto">
-                <button mat-button>
-                    <span style="margin-right: 10px; color: grey">Choisir votre image</span>
-                    <mat-icon style="color: red">add_photo_alternate</mat-icon>
-                </button>
-                <button mat-button>
-                    <span style="margin-right: 10px; color: grey">Publier</span>
-                    <mat-icon style="color: red">send</mat-icon>
-                </button>
-            </mat-card-actions>
-        </mat-card>
+                <mat-divider></mat-divider>
+                <mat-card-actions style="display: flex; justify-content: space-between; width: 85%; margin: 0 auto">
+                    <button mat-button>
+                        <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
+                        <span style="margin-right: 10px; color: grey">Choisir votre image</span>
+                        <mat-icon style="color: red">add_photo_alternate</mat-icon>
+                        
+                    </button>
+                    <button mat-button type="submit" [disabled]="!createPost.valid">
+                        <span style="margin-right: 10px; color: grey">Publier</span>
+                        <mat-icon style="color: red">send</mat-icon>
+                    </button>
+                </mat-card-actions>
+                <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
+                    <span style="color:red;">{{errorMessage}}</span>
+                </div>
+            </mat-card>
+        </form>
     </div>
     <div class="container" *ngIf="posts?.length != 0">
         <mat-card class="example-card" *ngFor="let post of posts" style="margin-bottom: 20px">
@@ -46,9 +63,11 @@
                 </button>
               </mat-menu>
             </mat-card-header>
+            <mat-card-content>
+                {{post.contenu}}
+            </mat-card-content>
             <img mat-card-image *ngIf="post.image != null" [src]="post.image" alt="Photo of a Shiba Inu">
             <mat-card-content style="margin-left: 20px;">
-              <p>{{post.contenu}}</p>
               <div style="display: flex; justify-content: space-between;">
                 <button mat-icon-button style="background-color: #0d8bf0; width: 25px; height: 25px">
                     <mat-icon style="color:white; font-size: 16px; margin-bottom: 16px">thumb_up</mat-icon>

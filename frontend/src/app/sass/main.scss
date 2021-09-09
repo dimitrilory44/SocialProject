@@ -1,3 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import './base/base';
+
+@import './pages/home';
+
+@import './utils/mixins', './utils/variables';
+
+// problème mixin

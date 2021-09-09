@@ -12,14 +12,14 @@
                     <mat-icon>email</mat-icon>
                     Votre email
                 </mat-label>
-                <input type="text" name="email" matInput formControlName="email"> 
+                <input type="text" name="email" matInput> 
             </mat-form-field>
-            <mat-form-field class="field-form" style="width: 100%" appearance="outline">
+            <mat-form-field class="field-form" style="width: 100%; " appearance="outline">
                 <mat-label for="password">
                     <mat-icon>lock</mat-icon>
                     Votre mot de passe
                 </mat-label>
-                <input type="password" name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <input type="password" name="password" matInput [type]="hide ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>

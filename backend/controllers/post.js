@@ -5,11 +5,11 @@ const fs = require('fs');
 /*********************** POST ********************************/
 
 exports.createPost = (req, res) => {
+    const postObject = JSON.parse(req.body.post);
+    console.log(postObject);
     const newPost = {
-        titre: req.body.titre,
-        contenu: req.body.contenu,
-        image: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`,
-        UserId: req.body.userId
+        ...postObject,
+        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }
     Post.create(newPost)
     .then(() => res.status(201).json({message: 'Post crée !'}))
@@ -72,15 +72,18 @@ exports.updatePost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-    Post.findOne({id: req.params.id})
-    .then(my_post => {
-        const filename = my_post.imageUrl.split('/images/posts/')[1];
-        fs.unlink(`images/${filename}`, () => {
-            Post.destroy({where: {id: req.params.id}})
-            .then(() => res.status(200).json({message: "Post supprimé !"}))
-            .catch(error => res.status(400).json(error));
-        });
-    })
+    // Post.findOne({id: req.params.id})
+    // .then(my_post => {
+    //     const filename = my_post.imageUrl.split('/images/posts/')[1];
+    //     fs.unlink(`images/${filename}`, () => {
+    //         Post.destroy({where: {id: req.params.id}})
+    //         .then(() => res.status(200).json({message: "Post supprimé !"}))
+    //         .catch(error => res.status(400).json(error));
+    //     });
+    // })
+    // .catch(error => res.status(400).json(error));
+    Post.destroy({where: {id: req.params.id}})
+    .then(() => res.status(200).json({message: "Post supprimé !"}))
     .catch(error => res.status(400).json(error));
 };
 

@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const MaterialComponents = [
   MatIconModule,
@@ -18,7 +19,8 @@ const MaterialComponents = [
   MatCardModule,
   MatGridListModule,
   MatInputModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSnackBarModule
 ]
 
 @NgModule({
