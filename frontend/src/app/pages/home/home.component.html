@@ -1,6 +1,9 @@
 <app-header></app-header>
 
-<main style="padding-top: 70px;" class="main-color">
+<main style="padding-top: 70px" class="main-color">
+    <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
+        <span style="color:red;">{{errorMessage}}</span>
+    </div>
     <div class="container createPost">
         <form [formGroup]="createPost" (ngSubmit)="onSubmit()">
             <mat-card class="card form-group">
@@ -15,41 +18,32 @@
                     </div>
                 </mat-card-header>
                 <div style="display: flex; flex-direction: column; width: 100%;"  *ngIf="url != null">
-                    <mat-divider></mat-divider>
-                    <h2 style="text-align: center;margin-top: 20px">Description de l'image</h2>
-                    <mat-form-field class="field-form" appearance="fill" style="width: 100%;">
-                        <input matInput name="titre" placeholder="Titre de votre image" formControlName="titre"/>
-                    </mat-form-field>
                     <img [src]="url" alt="" style="width: 100%; margin: 20px auto">
                 </div>
                 <mat-divider></mat-divider>
-                <mat-card-actions style="display: flex; justify-content: space-between; width: 85%; margin: 0 auto">
+                <mat-card-actions style="display: flex; justify-content: space-between; width: 70%; margin: 0 auto">
                     <button mat-button>
                         <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
-                        <span style="margin-right: 10px; color: grey">Choisir votre image</span>
                         <mat-icon style="color: red">add_photo_alternate</mat-icon>
-                        
+                        <span style="margin-left: 10px; color: grey">Image</span>
                     </button>
                     <button mat-button type="submit" [disabled]="!createPost.valid">
-                        <span style="margin-right: 10px; color: grey">Publier</span>
                         <mat-icon style="color: red">send</mat-icon>
+                        <span style="margin-left: 10px; color: grey">Publier</span>
                     </button>
                 </mat-card-actions>
-                <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
-                    <span style="color:red;">{{errorMessage}}</span>
-                </div>
             </mat-card>
         </form>
     </div>
     <div class="container" *ngIf="posts?.length != 0">
-        <mat-card class="example-card" *ngFor="let post of posts" style="margin-bottom: 20px">
+        <mat-card class="example-card" *ngFor="let post of posts; let i = index" style="margin-bottom: 20px">
             <mat-card-header style="margin-left: 20px;">
               <div mat-card-avatar>
                 <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
               </div>
-              <mat-card-title>{{post.User.prenom}}</mat-card-title>
+              <mat-card-title>{{post.User.prenom}} {{post.User.nom}}</mat-card-title>
               <mat-card-subtitle>{{post.createdAt | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</mat-card-subtitle>
-              <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" style="position:absolute; right:20px; color:grey">
+              <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" style="position:absolute; right:20px; color:grey" *ngIf="user_id == post.UserId">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
@@ -73,21 +67,20 @@
                     <mat-icon style="color:white; font-size: 16px; margin-bottom: 16px">thumb_up</mat-icon>
                     <span> 0</span>
                 </button>
-                <button mat-button style="color: grey">{{post.Comments.length}} commentaire(s)</button>
+                <a class="comments" (click)="openBottomSheetVisualisation(post.id)"><span style="color: grey">{{post.Comments.length}} commentaire(s)</span></a>
             </div>
             </mat-card-content>
             <mat-divider></mat-divider>
-            <mat-card-actions style="display: flex; justify-content: space-between; width: 85%; margin: 0 auto">
+            <mat-card-actions style="display: flex; justify-content: space-between; width: 70%; margin: 0 auto">
                 <button mat-button>
                     <mat-icon style="color: grey">thumb_up</mat-icon>
                     <span style="margin-left: 10px; color: grey">J'aime</span>
                 </button>
-                <button mat-button>
+                <button mat-button (click)="openBottomSheet(post.id)">
                     <mat-icon style="color: grey">chat_bubble_outline</mat-icon>
                     <span style="margin-left: 10px; color: grey">Commenter</span>
                 </button>
             </mat-card-actions>
-            <mat-divider></mat-divider>
         </mat-card>
         <mat-divider></mat-divider>
     </div>

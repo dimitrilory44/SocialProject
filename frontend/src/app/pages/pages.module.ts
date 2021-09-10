@@ -8,11 +8,13 @@ import { AppMaterialModule } from '../app-material.module';
 
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,

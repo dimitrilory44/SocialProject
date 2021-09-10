@@ -29,10 +29,11 @@ exports.getAllPost = (req, res) => {
             }, {
                 model: Comment,
                 attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
+                include: [{model: User, attributes: ['nom', 'prenom']}],
                 required: false
             }
         ],
-        attributes: ['id', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt']
+        attributes: ['id', 'UserId', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt']
     })
     .then(posts => res.status(200).json(posts))
     .catch(error => res.status(400).json(error));
@@ -161,22 +162,18 @@ exports.createComment = (req, res) => {
 };
 
 exports.getAllComment = (req, res) => {
-    Post.findAll({
+    Comment.findAll({
         include: [
             {
                 model: User,
                 attributes: ['nom', 'prenom', 'image'],
                 required: true
-            }, {
-                model: Comment,
-                attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
-                required: false
             }
         ],
         where: {
-            id: req.params.id
+            PostId: req.params.id
         },
-        attributes: ['id', 'titre', 'contenu', 'createdAt', 'updatedAt']
+        attributes: ['id', 'UserId', 'contenu', 'createdAt', 'updatedAt']
     })
     .then(comments => res.status(201).json(comments))
     .catch(error => res.status(400).json(error));

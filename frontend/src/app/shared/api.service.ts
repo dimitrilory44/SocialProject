@@ -40,4 +40,10 @@ export class ApiService {
     }));
   }
 
+  getComments(postId :number) {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/comments').pipe(map(result => {
+      return result;
+    }));
+  }
+
 }

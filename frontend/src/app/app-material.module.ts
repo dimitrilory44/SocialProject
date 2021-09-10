@@ -9,6 +9,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 const MaterialComponents = [
   MatIconModule,
@@ -20,7 +22,9 @@ const MaterialComponents = [
   MatGridListModule,
   MatInputModule,
   MatDividerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatExpansionModule,
+  MatBottomSheetModule
 ]
 
 @NgModule({

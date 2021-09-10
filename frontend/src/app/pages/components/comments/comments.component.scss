@@ -1,0 +1,8 @@
+.choix {
+    display: none;
+
+}
+
+.parent:hover>.choix {
+    display: block;
+}

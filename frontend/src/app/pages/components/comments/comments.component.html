@@ -1,0 +1,42 @@
+<div style="padding: 10px; margin-top: 10px; padding: 0; display: flex; flex-direction: column; max-height: 400px; overflow-x: hidden" *ngIf="comments !== null">
+    <div style="width: 500px; display: flex; margin-bottom: 20px" class="parent" *ngFor="let comment of comments">
+        <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+        <div class="commentaire">
+            <div style="font-weight: bold;">
+                {{comment.User.nom}}
+                {{comment.User.prenom}}
+            </div>
+            {{comment.contenu}}
+        </div>
+        <button mat-icon-button class="choix" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Modifier commentaire</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon style="color:red">delete</mat-icon>
+                <span>Supprimer commentaire</span>
+            </button>
+        </mat-menu>
+    </div>
+    <mat-divider></mat-divider>
+    <form>
+        <div style="display: flex; flex-direction: row; margin-top: 20px; margin-bottom: 0; width: 100%;">
+            <div mat-card-avatar>
+                <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+            </div>
+            <mat-form-field class="field-form" appearance="fill" style="margin-left: 20px; width: 100%; ">
+                <input matInput name="contenu" placeholder="Envoyer un commentaire" autofocus/>
+            </mat-form-field>
+            <button mat-icon-button type="submit">
+                <mat-icon style="color: red">send</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>
+<ng-template #elseBlock>
+    bale
+</ng-template>
