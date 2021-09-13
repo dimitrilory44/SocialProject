@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ApiService } from './shared/post.service';
+import { PostService } from './shared/post.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   subscription$ ?:Subscription;
 
   constructor(
-    private _apiService: ApiService
+    private _apiService: PostService
   ) { }
   
   ngOnInit(): void {

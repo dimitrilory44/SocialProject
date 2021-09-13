@@ -13,7 +13,7 @@ routes.post('/', multer, postCtrl.createPost);
 routes.get('/', postCtrl.getAllPost);
 
 // Affichage d'un post
-// routes.get('/:id', postCtrl.getOnePost);
+routes.get('/:id', postCtrl.getOnePost);
 
 // Modification d'un post
 routes.put('/:id', multer, postCtrl.updatePost);

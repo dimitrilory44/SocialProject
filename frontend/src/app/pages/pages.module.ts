@@ -10,13 +10,17 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { PostListComponent } from './components/post-list/post-list.component';
+import { PostComponent } from '../post/post.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
     CommentsComponent,
-    PostListComponent
+    PostListComponent,
+    PostComponent,
+    ProfilComponent
   ],
   imports: [
     CommonModule,

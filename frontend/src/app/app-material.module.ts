@@ -13,6 +13,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
   MatIconModule,
@@ -28,7 +29,8 @@ const MaterialComponents = [
   MatExpansionModule,
   MatBottomSheetModule,
   ScrollingModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatDialogModule
 ]
 
 @NgModule({

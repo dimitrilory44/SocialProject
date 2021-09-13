@@ -1,8 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { ApiService } from 'src/app/shared/post.service';
+import { PostComponent } from 'src/app/post/post.component';
+import { PostService } from 'src/app/shared/post.service';
 import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
@@ -20,8 +22,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   errorMessage ?:string;
 
   constructor(
-    private _apiService: ApiService,
+    private _apiService: PostService,
     private _snackBar: MatSnackBar,
+    private _dialog: MatDialog,
     private _bottomSheet: MatBottomSheet
   ) { }
 
@@ -39,8 +42,19 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription$.unsubscribe();
+    this.subscription$?.unsubscribe();
     this.subscription$Delete?.unsubscribe();
+  }
+
+  openDialog(id :number) {
+    const dialogRef = this._dialog.open(PostComponent, {
+      data : id,
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   deletePost(id: number) {

@@ -10,7 +10,7 @@ import { apiResponse } from '../_models/apiResponse';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class PostService {
   
   constructor(private http: HttpClient) {}
 
@@ -35,8 +35,20 @@ export class ApiService {
     }));
   };
 
-  likePost(postId :number, likeData :number) : Observable<any> {
+  getPost(postId :number) :Observable<any> {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}`).pipe(map(result => {
+      return result;
+    }));
+  }
+
+  likePost(postId :number, likeData :number) :Observable<any> {
     return this.http.post<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/likes', likeData).pipe(map(result => {
+      return result;
+    }));
+  }
+
+  updatePost(postId :number, post :Post) :Observable<any> {
+    return this.http.put<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}`, post).pipe(map(result => {
       return result;
     }));
   }
@@ -55,6 +67,12 @@ export class ApiService {
 
   getComments(postId :number) :Observable<any> {
     return this.http.get<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/comments').pipe(map(result => {
+      return result;
+    }));
+  }
+
+  deleteComment(postId :number, commentId :number) :Observable<any> {
+    return this.http.delete<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/comments' + `/${commentId}`).pipe(map(result => {
       return result;
     }));
   }

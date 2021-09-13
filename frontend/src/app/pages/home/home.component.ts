@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/models/Post.models';
-import { ApiService } from '../../shared/post.service';
+import { PostService } from '../../shared/post.service';
 import { mimeType } from './mime-type.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   createPost :FormGroup;
 
   constructor(
-    private _apiService: ApiService,
+    private _apiService: PostService,
     private _formBuilder :FormBuilder,
     private _snackBar: MatSnackBar
   ){}
@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.createPostSubscription$.unsubscribe();
+  ngOnDestroy() :void {
+    this.createPostSubscription$?.unsubscribe();
   }
 
   openSnackBar(message: string, action: string) {
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     post.image = '';
     post.UserId = this.createPost.get('UserId').value;
 
-    this.createPostSubscription$ = this._apiService.createPost(post, this.file).subscribe({
+    this._apiService.createPost(post, this.file).subscribe({
       next: result => {
         this.openSnackBar(result.message, 'fermer');
         window.location.reload();

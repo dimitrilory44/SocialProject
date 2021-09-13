@@ -38,22 +38,16 @@ exports.getAllPost = (req, res) => {
     .catch(error => res.status(400).json(error));
 };
 
-// exports.getOnePost = (req, res) => {
-//     Post.findOne({
-//         include: [
-//             {
-//                 model: User,
-//                 attributes: ['nom', 'prenom', 'image']
-//             }
-//         ],
-//         where: {
-//             id: req.params.id
-//         },
-//         attributes: ['id', 'titre', 'contenu', 'createdAt', 'updatedAt']
-//     })
-//     .then(post => res.status(200).json(post))
-//     .catch(error => res.status(400).json(error));
-// };
+exports.getOnePost = (req, res) => {
+    Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: ['id', 'titre', 'contenu', 'image', 'createdAt', 'updatedAt']
+    })
+    .then(post => res.status(200).json(post))
+    .catch(error => res.status(400).json(error));
+};
 
 exports.updatePost = (req, res) => {
     const postObject = req.file ? {
@@ -167,7 +161,7 @@ exports.getAllComment = (req, res) => {
         include: [
             {
                 model: User,
-                attributes: ['nom', 'prenom', 'image'],
+                attributes: ['id', 'nom', 'prenom', 'image'],
                 required: true
             }
         ],

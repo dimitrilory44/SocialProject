@@ -4,7 +4,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/models/Comment.models';
-import { ApiService } from 'src/app/shared/post.service';
+import { PostService } from 'src/app/shared/post.service';
 import { WebSocketService } from 'src/app/shared/web-socket.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class CommentsComponent implements OnInit {
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: number,
-    private _apiService: ApiService,
+    private _apiService: PostService,
     private _formBuilder :FormBuilder,
     private _snackBar: MatSnackBar,
     private _webService: WebSocketService
@@ -96,5 +96,19 @@ export class CommentsComponent implements OnInit {
     })
   }
   
+  deleteComment(id: number) {
+    this._apiService.deleteComment(this.data, id).subscribe({
+      next: result => {
+        this.openSnackBar(result.message, 'fermer');
+        setTimeout(function(){ 
+          location.reload();
+        }, 1500);
+      },
+      error: error => {
+        this.errorMessage = error.message;
+        console.log(error.error);
+      }
+    })
+  }
 
 }

@@ -34,7 +34,7 @@
                     <mat-icon>edit</mat-icon>
                     <span>Modifier commentaire</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="deleteComment(comment.id)" *ngIf="user_id == comment.User.id">
                     <mat-icon style="color:red">delete</mat-icon>
                     <span>Supprimer commentaire</span>
                 </button>
