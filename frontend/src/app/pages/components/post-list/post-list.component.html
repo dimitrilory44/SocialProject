@@ -1,0 +1,49 @@
+<div class="container" *ngIf="postList?.length != 0">
+    <mat-card class="example-card" *ngFor="let post of postList; let i = index" style="margin-bottom: 20px">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+          </div>
+          <mat-card-title>{{post.User.prenom}} {{post.User.nom}}</mat-card-title>
+          <mat-card-subtitle>{{post.createdAt | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</mat-card-subtitle>
+          <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" style="position:absolute; right:20px; color:grey" *ngIf="user_id == post.UserId">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Modifier post</span>
+            </button>
+            <button mat-menu-item (click)="deletePost(post.id)" *ngIf="post.Comments.length == 0">
+              <mat-icon style="color:red">delete</mat-icon>
+              <span>Supprimer post</span>
+            </button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+            {{post.contenu}}
+        </mat-card-content>
+        <img mat-card-image *ngIf="post.image != null" [src]="post.image" alt="Photo of a Shiba Inu">
+        <mat-card-content style="margin-left: 20px;">
+          <div style="display: flex; justify-content: space-between;">
+            <button mat-icon-button style="background-color: #0d8bf0; width: 25px; height: 25px">
+                <mat-icon style="color:white; font-size: 16px; margin-bottom: 16px">thumb_up</mat-icon>
+                <span> 0</span>
+            </button>
+            <a class="comments" (click)="openBottomSheetVisualisation(post.id)"><span style="color: grey">{{post.Comments.length}} commentaire(s)</span></a>
+        </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions style="display: flex; justify-content: space-between; width: 70%; margin: 0 auto">
+            <button mat-button>
+                <mat-icon style="color: grey">thumb_up</mat-icon>
+                <span style="margin-left: 10px; color: grey">J'aime</span>
+            </button>
+            <button mat-button (click)="openBottomSheet(post.id)">
+                <mat-icon style="color: grey">chat_bubble_outline</mat-icon>
+                <span style="margin-left: 10px; color: grey">Commenter</span>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-divider></mat-divider>
+</div>

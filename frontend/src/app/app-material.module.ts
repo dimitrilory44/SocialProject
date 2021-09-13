@@ -11,6 +11,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const MaterialComponents = [
   MatIconModule,
@@ -24,7 +26,9 @@ const MaterialComponents = [
   MatDividerModule,
   MatSnackBarModule,
   MatExpansionModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  ScrollingModule,
+  MatProgressBarModule
 ]
 
 @NgModule({

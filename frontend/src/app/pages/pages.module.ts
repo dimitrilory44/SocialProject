@@ -9,12 +9,14 @@ import { AppMaterialModule } from '../app-material.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
-    CommentsComponent
+    CommentsComponent,
+    PostListComponent
   ],
   imports: [
     CommonModule,

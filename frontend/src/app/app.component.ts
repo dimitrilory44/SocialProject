@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ApiService } from './shared/api.service';
+import { ApiService } from './shared/post.service';
 
 @Component({
   selector: 'app-root',

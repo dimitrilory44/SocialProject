@@ -6,7 +6,6 @@ const fs = require('fs');
 
 exports.createPost = (req, res) => {
     const postObject = JSON.parse(req.body.post);
-    console.log(postObject);
     const newPost = {
         ...postObject,
         image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -33,7 +32,7 @@ exports.getAllPost = (req, res) => {
                 required: false
             }
         ],
-        attributes: ['id', 'UserId', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt']
+        attributes: ['id', 'UserId', 'titre', 'image', 'isLike', 'contenu', 'createdAt', 'updatedAt']
     })
     .then(posts => res.status(200).json(posts))
     .catch(error => res.status(400).json(error));
@@ -73,18 +72,17 @@ exports.updatePost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-    // Post.findOne({id: req.params.id})
-    // .then(my_post => {
-    //     const filename = my_post.imageUrl.split('/images/posts/')[1];
-    //     fs.unlink(`images/${filename}`, () => {
-    //         Post.destroy({where: {id: req.params.id}})
-    //         .then(() => res.status(200).json({message: "Post supprimé !"}))
-    //         .catch(error => res.status(400).json(error));
-    //     });
-    // })
-    // .catch(error => res.status(400).json(error));
-    Post.destroy({where: {id: req.params.id}})
-    .then(() => res.status(200).json({message: "Post supprimé !"}))
+    // Penser à supprimer les commentaires aussi
+
+    Post.findOne({where: {id: req.params.id}})
+    .then(my_post => {
+        const filename = my_post.image.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+            Post.destroy({where: {id: req.params.id}})
+            .then(() => res.status(200).json({message: "Post supprimé !"}))
+            .catch(error => res.status(400).json(error));
+        });
+    })
     .catch(error => res.status(400).json(error));
 };
 
@@ -153,7 +151,7 @@ exports.getLikesPost = (req, res) => {
 exports.createComment = (req, res) => {
     const newComment = {
         contenu: req.body.contenu,
-        UserId: req.body.userId,
+        UserId: req.body.UserId,
         PostId: req.params.id
     };
     Comment.create(newComment)
@@ -163,6 +161,9 @@ exports.createComment = (req, res) => {
 
 exports.getAllComment = (req, res) => {
     Comment.findAll({
+        order: [
+            ['createdAt', 'DESC']
+        ],
         include: [
             {
                 model: User,
