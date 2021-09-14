@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     if(this._authService.isLogged()) {
       return true;
     } else {
-      this._router.navigate(["/login"]);
+      this._router.navigate(["/forbidden"]);
       // redirection vers une page qui va lui dire qu'il n'a pas les droits
       return false;
     }

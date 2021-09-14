@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Constants } from '../app.constants';
-import { Comment } from '../models/Comment.models';
-import { Post } from '../models/Post.models';
+import { Comment } from '../pages/models/Comment.models';
+import { Post } from '../pages/models/Post.models';
 import { apiResponse } from '../_models/apiResponse';
 
 @Injectable({

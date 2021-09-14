@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from '../_services/auth.service';
+import { AuthService } from '../../_services/auth.service';
 import { MustMatch } from './must-match.validator';
 
 @Component({
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
+  // getter pour récupérer les accès des champs du formulaire
   get f() { return this.registerForm.controls; }
 
   openSnackBar(message: string, action: string) {

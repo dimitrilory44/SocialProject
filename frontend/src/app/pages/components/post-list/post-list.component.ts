@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { PostComponent } from 'src/app/post/post.component';
-import { PostService } from 'src/app/shared/post.service';
+import { PostService } from 'src/app/service/post.service';
 import { CommentsComponent } from '../comments/comments.component';
 
 @Component({

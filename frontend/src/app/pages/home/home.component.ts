@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Post } from 'src/app/models/Post.models';
-import { PostService } from '../../shared/post.service';
+import { Post } from 'src/app/pages/models/Post.models';
+import { PostService } from '../../service/post.service';
 import { mimeType } from './mime-type.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       image: [null, Validators.required, mimeType],
       UserId: this.user_id
     });
+
+    // this.user = 
   }
 
   ngOnDestroy() :void {

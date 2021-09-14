@@ -12,7 +12,10 @@
                     <mat-icon>email</mat-icon>
                     Votre email
                 </mat-label>
-                <input type="text" name="email" matInput formControlName="email"> 
+                <input type="text" name="email" matInput formControlName="email">
+                <mat-error *ngIf="submitted && l.email.errors" class="invalid-feedback">
+                    <div *ngIf="l.email.errors.required"><strong>Email</strong> est obligatoire</div>
+                </mat-error>  
             </mat-form-field>
             <mat-form-field class="field-form" style="width: 100%; " appearance="outline">
                 <mat-label for="password">
@@ -23,12 +26,15 @@
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
+                <mat-error *ngIf="submitted && l.password.errors" class="invalid-feedback">
+                    <div *ngIf="l.password.errors.required"><strong>Password</strong> est obligatoire</div>
+                </mat-error> 
             </mat-form-field>
-            <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
-                <span style="color:red;">{{errorMessage}}</span>
-            </div>
             <div class="action_auth">
                 <button mat-raised-button class="button" type="submit">SE CONNECTER</button>
+                <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
+                    <span style="color:red;">{{errorMessage}}</span>
+                </div>
                 <mat-divider></mat-divider>
                 <p>Vous n'avez pas de compte ? <strong><a routerLink="/register">Inscrivez-vous</a></strong></p>
             </div>

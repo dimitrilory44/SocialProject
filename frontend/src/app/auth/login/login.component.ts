@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../_services/auth.service';
+import { AuthGuard } from '../../_helpers';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,22 +24,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     })
   }
 
+  // getter pour récupérer les accès des champs du formulaire
+  get l() { return this.loginForm.controls; }
+
   onSubmitLogin() {
     this.submitted = true;
-
+    
     this._authService.login(this.loginForm.value).subscribe({
       next: result => {
+
+        // Je stocke les informations du token permettant de sécuriser la navigation côté client
         localStorage.setItem("token", JSON.stringify(result.token));
-        
         let respBody = result;
+
+        // Je stocke localement les informations de l'utilisateur
         let user = JSON.stringify(respBody);
         localStorage.setItem('currentUser', user);
-
+        
         this._router.navigate(['/']);
       },
       error: error => {

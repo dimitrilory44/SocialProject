@@ -2,8 +2,8 @@ import { Component, OnInit, Inject, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Post } from '../models/Post.models';
-import { PostService } from '../shared/post.service';
+import { Post } from '../pages/models/Post.models';
+import { PostService } from '../service/post.service';
 
 @Component({
   selector: 'app-post',

@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { Comment } from 'src/app/models/Comment.models';
-import { PostService } from 'src/app/shared/post.service';
-import { WebSocketService } from 'src/app/shared/web-socket.service';
+import { Comment } from 'src/app/pages/models/Comment.models';
+import { PostService } from 'src/app/service/post.service';
+import { WebSocketService } from '../../../_services/web-socket.service';
 
 @Component({
   selector: 'app-comments',
