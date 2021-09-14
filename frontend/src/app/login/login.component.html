@@ -6,26 +6,29 @@
     </div>
     <div class="authentification container">
         <h2 style="margin-top: 20px;">Se connecter</h2>
-        <form class="form-auth">    
+        <form class="form-auth" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">    
             <mat-form-field class="field-form" style="width: 100%" appearance="outline">
                 <mat-label for="email">
                     <mat-icon>email</mat-icon>
                     Votre email
                 </mat-label>
-                <input type="text" name="email" matInput> 
+                <input type="text" name="email" matInput formControlName="email"> 
             </mat-form-field>
             <mat-form-field class="field-form" style="width: 100%; " appearance="outline">
                 <mat-label for="password">
                     <mat-icon>lock</mat-icon>
                     Votre mot de passe
                 </mat-label>
-                <input type="password" name="password" matInput [type]="hide ? 'password' : 'text'">
+                <input type="password" name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
+                <span style="color:red;">{{errorMessage}}</span>
+            </div>
             <div class="action_auth">
-                <button mat-raised-button class="button" type="submit" routerLink="/">SE CONNECTER</button>
+                <button mat-raised-button class="button" type="submit">SE CONNECTER</button>
                 <mat-divider></mat-divider>
                 <p>Vous n'avez pas de compte ? <strong><a routerLink="/register">Inscrivez-vous</a></strong></p>
             </div>
