@@ -28,9 +28,15 @@ exports.getAllPost = (req, res) => {
             }, {
                 model: Comment,
                 attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
-                include: [{model: User, attributes: ['nom', 'prenom']}],
+                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                required: false
+            }, {
+                model: Like_post,
+                attributes: ['createdAt', 'updatedAt'],
+                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
                 required: false
             }
+
         ],
         attributes: ['id', 'UserId', 'titre', 'image', 'isLike', 'contenu', 'createdAt', 'updatedAt']
     })
@@ -92,8 +98,7 @@ exports.likeOrNot = (req, res) => {
                 isLike: req.body.like
             }, {
                 where: {
-                    id: req.params.id,
-                    UserId: req.body.userId
+                    id: req.params.id
                 }
             })
             .then(() => res.status(201).json({message: 'Utilisateur a liké !'}))
@@ -112,8 +117,7 @@ exports.likeOrNot = (req, res) => {
                 isLike: req.body.like
             }, {
                 where: {
-                    id: req.params.id,
-                    UserId: req.body.userId
+                    id: req.params.id
                 }
             })
             .then(() => res.status(201).json({message: 'Utilisateur a enlevé son like !'}))

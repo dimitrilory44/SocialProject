@@ -12,6 +12,7 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostComponent } from '../post/post.component';
 import { ProfilComponent } from './profil/profil.component';
+import { TooltipListPipe } from '../tooltip-list.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfilComponent } from './profil/profil.component';
     CommentsComponent,
     PostListComponent,
     PostComponent,
-    ProfilComponent
+    ProfilComponent,
+    TooltipListPipe
   ],
   imports: [
     CommonModule,

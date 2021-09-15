@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthGuard } from '../../_helpers';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { AuthService } from '../../_services/auth.service';
 export class LoginComponent implements OnInit {
 
   hide = true;
+  loginSubscription$ :Subscription;
   loginForm :FormGroup;
   errorMessage :string = '';
   submitted = false;
@@ -29,6 +30,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  // ngOnDestroy() {
+  //   this.loginSubscription$.unsubscribe();
+  // }
+
   // getter pour récupérer les accès des champs du formulaire
   get l() { return this.loginForm.controls; }
 
@@ -37,7 +42,6 @@ export class LoginComponent implements OnInit {
     
     this._authService.login(this.loginForm.value).subscribe({
       next: result => {
-
         // Je stocke les informations du token permettant de sécuriser la navigation côté client
         localStorage.setItem("token", JSON.stringify(result.token));
         let respBody = result;

@@ -1,0 +1,11 @@
+.like {
+	color: #0d8bf0;
+}
+
+.dislike {
+    color: grey;
+}
+
+::ng-deep .tooltip-list {
+    white-space: pre-line!important;
+}

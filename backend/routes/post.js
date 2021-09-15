@@ -1,8 +1,9 @@
 const express = require('express');
 const routes = express.Router();
 
-const postCtrl = require('../controllers/post');
+// const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
+const postCtrl = require('../controllers/post');
 
 /**************** POST ************************/
 

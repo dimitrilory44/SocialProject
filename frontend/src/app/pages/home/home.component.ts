@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Post } from 'src/app/pages/models/Post.models';
+import { Post } from '../models/Post.models';
 import { PostService } from '../../service/post.service';
 import { mimeType } from './mime-type.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { User } from '../models/User.models';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,13 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
   createPostSubscription$ :Subscription;
-  posts ?:any[]; 
+  posts ?:Post[]; 
   file?: File;
   url ?:string;
   errorMessage ?:string;
   user_id :number = 2;
+
+  user :User;
 
   createPost :FormGroup;
 
@@ -29,14 +32,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   ){}
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+
+    console.log(this.user.userId);
+
     this.createPost = this._formBuilder.group({
       titre : ['post_image', Validators.required],
       contenu : ['', Validators.required],
       image: [null, Validators.required, mimeType],
-      UserId: this.user_id
+      UserId: this.user.userId
     });
 
-    // this.user = 
   }
 
   ngOnDestroy() :void {

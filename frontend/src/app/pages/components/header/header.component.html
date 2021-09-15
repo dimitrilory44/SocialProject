@@ -6,7 +6,7 @@
             <span class="example-spacer"></span>
             <mat-chip-list>
                 <mat-chip>
-                    <span>Users</span>
+                    <span *ngIf="user !== null">{{user.prenom}} {{user.nom}}</span>
                     <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon">
                         <mat-icon class="icon">person</mat-icon>
                     </button>

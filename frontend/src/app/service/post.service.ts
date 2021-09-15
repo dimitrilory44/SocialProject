@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Constants } from '../app.constants';
 import { Comment } from '../pages/models/Comment.models';
+import { Like } from '../pages/models/Like.models';
 import { Post } from '../pages/models/Post.models';
 import { apiResponse } from '../_models/apiResponse';
 
@@ -41,7 +42,13 @@ export class PostService {
     }));
   }
 
-  likePost(postId :number, likeData :number) :Observable<any> {
+  getLikes(postId :number) :Observable<any> {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/likes').pipe(map(result => {
+      return result;
+    }));
+  }
+
+  likePost(postId :number, likeData :Like) :Observable<any> {
     return this.http.post<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/likes', likeData).pipe(map(result => {
       return result;
     }));

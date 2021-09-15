@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/pages/models/Comment.models';
 import { PostService } from 'src/app/service/post.service';
 import { WebSocketService } from '../../../_services/web-socket.service';
+import { User } from '../../models/User.models';
 
 @Component({
   selector: 'app-comments',
@@ -21,6 +22,8 @@ export class CommentsComponent implements OnInit {
   user_id :number = 2;
   errorMessage ?:string;
 
+  user :User;
+
   commentTemp ?: any;
   createComment :FormGroup;
 
@@ -33,6 +36,8 @@ export class CommentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+
     console.log(this.data);
 
     this.subscription$ = this._apiService.getComments(this.data).subscribe(res => {
@@ -43,7 +48,7 @@ export class CommentsComponent implements OnInit {
 
     this.createComment = this._formBuilder.group({
       contenu : ['', Validators.required],
-      UserId: this.user_id
+      UserId: this.user.userId
     });
 
     this.subscriptionMessage$ = this._webService.getNewMessage().subscribe((message: any) => {
@@ -74,8 +79,8 @@ export class CommentsComponent implements OnInit {
     const commentTemp = {
       "contenu": this.createComment.get('contenu').value,
       "PostId": this.data,
-      "nom": "lory",
-      "prenom": "dimitri",
+      "nom": this.user.nom,
+      "prenom": this.user.prenom,
       "createdAt": new Date()
     }
 

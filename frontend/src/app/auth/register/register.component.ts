@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../_services/auth.service';
 import { MustMatch } from './must-match.validator';
 
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
   hide2 = true;
-
+  registerSubscription$ :Subscription;
   registerForm :FormGroup;
   submitted = false;
   errorMessage = "";
@@ -37,6 +38,10 @@ export class RegisterComponent implements OnInit {
       validator: MustMatch('password', 'confirmPassword')
     });
   }
+
+  // ngOnDestroy() {
+  //   this.registerSubscription$.unsubscribe();
+  // }
 
   // getter pour récupérer les accès des champs du formulaire
   get f() { return this.registerForm.controls; }
