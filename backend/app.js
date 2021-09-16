@@ -37,7 +37,7 @@ const testConnectionDB = async () => {
 testConnectionDB();
 
 app.get('/api', (req, res) => {
-    res.json({title: 'Bienvenue sur mon API REST Groupomania'});
+  res.json({title: 'Bienvenue sur mon API REST Groupomania'});
 });
 
 // Authentification de l'utilisateur

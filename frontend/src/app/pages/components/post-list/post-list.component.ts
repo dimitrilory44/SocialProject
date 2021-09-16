@@ -19,15 +19,18 @@ import { Post } from '../../models/Post.models';
 export class PostListComponent implements OnInit, OnDestroy {
 
   @Input() postList :Post[];
+  
+  @Input() errorServeur ?: string = '';
+
+  errorMessage ?:string = '';
 
   user_id :number = 2;
   subscription$Delete ?:Subscription;
   subscription$ ?:Subscription;
-  errorMessage ?:string;
   likesCount: number | boolean;
   isActive: boolean = false;
   color :string;
-  word :string = '';
+  likeList :string = '';
 
   user :User;
   likePost :FormGroup;
@@ -42,19 +45,6 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-
-    this.subscription$ = this._apiService.getPosts().subscribe({
-      next: data => {
-        this.postList = data;
-        console.log(this.postList);
-      },
-      error: error => {
-        this.errorMessage = error.message;
-        console.log(error.message);
-      }
-    });
-
-    // Je souscris pour les likes
   }
 
   ngOnDestroy() {
@@ -145,18 +135,14 @@ export class PostListComponent implements OnInit, OnDestroy {
 	}
 
   getLikes(id :number) {
+    this.likeList = '';
+    this.tableauString = [];
     this._apiService.getLikes(id).subscribe({
       next: result => {
+        console.log(result);
         for(let i = 0; i < result.length ; i++) {
           this.tableauString[i] = result[i].User.nom + ' ' + result[i].User.prenom;
-          console.log(this.tableauString);
-
-          // this.tableauString.forEach(element => {
-          //   this.word += element + '\n';
-          // })
-
-          // this.word = this.tableauString.join('\r');
-          //&#13;
+          this.likeList = this.tableauString.join('\n');
         }
       },
       error: error => {

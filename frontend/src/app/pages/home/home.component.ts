@@ -10,15 +10,17 @@ import { User } from '../models/User.models';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['../../sass/pages/_home.scss']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
   createPostSubscription$ :Subscription;
-  posts ?:Post[]; 
+  subscription$ ?:Subscription;
+  posts ?:Post[];
   file?: File;
   url ?:string;
-  errorMessage ?:string;
+  errorMessage ?:string = '';
+  errorServeur ?:string = '';
   user_id :number = 2;
 
   user :User;
@@ -35,6 +37,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
     console.log(this.user.userId);
+
+    this.subscription$ = this._apiService.getPosts().subscribe({
+      next: data => {
+        this.posts = data;
+        console.log(this.posts);
+      },
+      error: error => {
+        this.errorServeur = error.message;
+        console.log(error.message);
+      }
+    });
 
     this.createPost = this._formBuilder.group({
       titre : ['post_image', Validators.required],

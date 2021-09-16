@@ -1,1 +1,14 @@
 <app-header></app-header>
+
+<main>
+    <div style="display:flex; justify-content: center;">
+        <div style="display:flex; margin-top:30px; flex-direction: column">
+            <img src="../../../assets/guest.png" class="avatar" style="margin: 0 auto" alt="" width="150" height="150">
+            <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
+            <p>{{user.description}}</p>
+            <mat-form-field class="field-form" appearance="fill" style="width: 350px;">
+                <textarea matInput name="contenu" placeholder="Entrer une description"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+</main>

@@ -1,39 +1,43 @@
-<app-header></app-header>
+<app-header *ngIf="!errorServeur"></app-header>
 
-<main style="padding-top: 70px" class="main-color">
-    <div style="text-align: center; font-weight: bold" *ngIf="errorMessage != null">
-        <span style="color:red;">{{errorMessage}}</span>
+<main>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column" *ngIf="errorServeur">
+        <h1 class="mat-display-4" style="margin-top: 50px; color: red">500</h1>
+        <h2 style="color:grey;text-align:center">Ce probleme vient de nous. On mettra tout en oeuvre pour le réglé au plus vite</h2>
     </div>
-    <div class="container createPost">
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column" *ngIf="errorMessage">
+        <h2 style="color:grey;text-align:center">{{errorMessage}}</h2>
+    </div>
+    <section id="createPost" class="container" *ngIf="!errorServeur">
         <form [formGroup]="createPost" (ngSubmit)="onSubmit()">
-            <mat-card class="card form-group">
-                <mat-card-header style="margin-left: 20px; display: flex; flex-direction: column;">
-                    <div style="display: flex; flex-direction: row; width: 100%;">
+            <mat-card class="new-post--card">
+                <mat-card-header class="new-post--card--header">
+                    <div class="avatar--contenu">
                         <div mat-card-avatar>
                             <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
                         </div>
-                        <mat-form-field class="field-form" appearance="fill" style="margin-left: 20px;width: 100%;">
+                        <mat-form-field class="field-form-contenu" appearance="fill">
                             <textarea matInput name="contenu" placeholder="Contenu de votre post" formControlName="contenu"></textarea>
                         </mat-form-field>
                     </div>
                 </mat-card-header>
-                <div style="display: flex; flex-direction: column; width: 100%;"  *ngIf="url != null">
-                    <img [src]="url" alt="" style="width: 100%; margin: 20px auto">
-                </div>
+                <mat-card-content class="new-post--card--content" *ngIf="url != null">
+                    <img [src]="url" alt="" class="new-post--image">
+                </mat-card-content>
                 <mat-divider></mat-divider>
-                <mat-card-actions style="display: flex; justify-content: space-between; width: 70%; margin: 0 auto">
+                <mat-card-actions class="new-post--card--actions">
                     <button mat-button>
                         <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
                         <mat-icon style="color: red">add_photo_alternate</mat-icon>
-                        <span style="margin-left: 10px; color: grey">Image</span>
+                        <span class="image">Image</span>
                     </button>
                     <button mat-button type="submit" [disabled]="!createPost.valid">
                         <mat-icon style="color: red">send</mat-icon>
-                        <span style="margin-left: 10px; color: grey">Publier</span>
+                        <span class="send">Publier</span>
                     </button>
                 </mat-card-actions>
             </mat-card>
         </form>
-    </div>
-    <post-list [postList]="posts"></post-list>
+    </section>
+    <post-list [postList]="posts" [errorServeur]="errorServeur"></post-list>
 </main>

@@ -10,7 +10,7 @@ import { User } from '../../models/User.models';
 })
 export class HeaderComponent implements OnInit {
 
-  user :User;
+  userHeader :User;
 
   constructor(
     private _router: Router,
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.userHeader = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   logout() {

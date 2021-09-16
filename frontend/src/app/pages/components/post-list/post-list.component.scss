@@ -1,11 +1,100 @@
-.like {
-	color: #0d8bf0;
-}
-
-.dislike {
-    color: grey;
-}
-
 ::ng-deep .tooltip-list {
     white-space: pre-line!important;
+    max-width: 120px;
+} 
+
+.post {
+    &--card {
+        margin-bottom: 20px;
+
+        &--header {
+            margin-left: 20px;
+
+            .avatar {
+                border-radius: 50%;
+            }
+
+            .actions--post {
+                position:absolute; 
+                right:20px; 
+                top:10px; 
+                color:grey;
+            }
+        }
+
+        &--content {
+            .content {
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            .like--comment--list {
+                display: flex; 
+                justify-content: space-between;
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+    
+            .like--list--container {
+                display: flex; 
+                justify-content: center; 
+                align-items: center;
+            }
+        }
+        
+        .btn--list {
+            background-color: #0d8bf0; 
+            width: 25px; 
+            height: 25px;
+            
+            .icon-list-like {
+                color:white; 
+                font-size: 16px; 
+                margin-bottom: 16px;
+            }
+
+        }
+        
+        &--like {
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+            
+            .like--content {
+                margin-left: 10px;
+            }
+        }
+
+        &--comment {
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+
+        &--actions {
+            display: flex; 
+            justify-content: space-between; 
+            width: 70%; 
+            margin: 0 auto;
+            
+            .action--like {
+                margin-left: 10px;
+            }
+
+            .action--comment {
+                margin-left: 10px; 
+                color: grey;
+            }
+
+            .like {
+                color: #0d8bf0;
+            }
+            
+            .dislike {
+                color: grey;
+            }
+        }
+    }
 }

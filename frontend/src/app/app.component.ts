@@ -16,8 +16,13 @@ export class AppComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    this.subscription$ = this._apiService.testApi().subscribe(res => {
-      console.log(res.title);
+    this.subscription$ = this._apiService.testApi().subscribe({
+      next: result => {
+        console.log(result.title);
+      },
+      error: error => {
+        console.log(error.message);
+      }
     })
   }
 
