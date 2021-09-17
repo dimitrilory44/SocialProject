@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   createPostSubscription$ :Subscription;
   subscription$ ?:Subscription;
-  posts ?:Post[];
+  posts ?:Post[] = [];
   likes ?:Like[];
   file?: File;
   url ?:string;
@@ -49,23 +49,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.image = this.my_user.image;
       },
       error: error => {
-        // this.errorMessage = error.message;
+        this.errorServeur = error.message;
         console.log(error.error);
       }
     })
 
     console.log(this.user.userId);
-
-    this.subscription$ = this._apiService.getPosts().subscribe({
-      next: data => {
-        this.posts = data;
-        console.log(this.posts);
-      },
-      error: error => {
-        this.errorServeur = error.message;
-        console.log(error.message);
-      }
-    });
 
     this.createPost = this._formBuilder.group({
       titre : ['post_image', Validators.required],

@@ -19,7 +19,6 @@ import { Post } from '../../models/Post.models';
 export class PostListComponent implements OnInit, OnDestroy {
 
   @Input() postList :Post[];
-  
   @Input() errorServeur ?: string = '';
 
   errorMessage ?:string = '';
@@ -45,6 +44,17 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+
+    this._apiService.getPosts().subscribe({
+      next: data => {
+        this.postList = data;
+        console.log(this.postList);
+      },
+      error: error => {
+        this.errorServeur = error.message;
+        console.log(error.message);
+      }
+    });
   }
 
   ngOnDestroy() {

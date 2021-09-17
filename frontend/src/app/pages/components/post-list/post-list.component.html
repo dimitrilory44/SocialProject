@@ -1,4 +1,7 @@
-<section class="container" *ngIf="postList; else elseBlock">
+<div style="margin-top: 50px;" *ngIf="errorServeur">
+    <h1 style="text-align: center; color:red">{{errorServeur}}</h1>
+</div>
+<section class="container" *ngIf="postList">
     <mat-card class="post--card" *ngFor="let post of postList; let i = index">
         <mat-card-header class="post--card--header">
           <div mat-card-avatar>
@@ -53,10 +56,4 @@
           </button>
         </mat-card-actions>
     </mat-card>
-    <mat-divider></mat-divider>
 </section>
-<ng-template #elseBlock>
-  <div style="margin-top: 150px;" *ngIf="!errorServeur">
-    <h1 style="text-align: center; color:grey">Vous n'avez visiblement pas de post pour l'instant</h1>
-  </div>
-</ng-template>
