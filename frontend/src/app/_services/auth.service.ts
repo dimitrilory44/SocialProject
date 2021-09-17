@@ -39,5 +39,6 @@ export class AuthService {
   logout() {
     localStorage.setItem('currentUser', null);
     localStorage.removeItem("token");
+    // renvoyer expiration token backend
   }
 }

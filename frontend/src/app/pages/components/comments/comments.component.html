@@ -1,7 +1,7 @@
 <div class="comments">
     <div class="comments--form" *ngIf="lenght !== 0; else elseBlock">
         <div class="comments--list" *ngIf="commentTemp.length != 0">
-            <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+            <img class="avatar" [src]="image" alt="" width="40" height="40">
             <div class="comments--description">
                 <div class="comments--decoration comments--opacity">
                     <div style="font-weight: bold; position: relative" class="comment--description">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="comments--list" *ngFor="let comment of comments">
-            <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+            <img class="avatar" [src]="comment.User.image" alt="" width="40" height="40">
             <div class="comments--description">
                 <div class="comments--decoration">
                     <div style="font-weight: bold;" class="comment--description">
@@ -26,7 +26,7 @@
                 </div>
                 <p class="comments--createdAt">{{comment.createdAt | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</p>
             </div>
-            <button mat-icon-button class="comments--choice" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="user.userId == comment.User.id">
+            <button mat-icon-button class="comments--choice" [matMenuTriggerFor]="menu" aria-label="Menu modification commentaire" *ngIf="user.userId == comment.User.id">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -48,7 +48,7 @@
     <form [formGroup]="createComment" (ngSubmit)="onSubmitComment()">
         <div class="newComment">
             <div mat-card-avatar>
-                <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+                <img class="avatar" [src]="image" alt="" width="40" height="40">
             </div>
             <mat-form-field class="field-form" appearance="fill">
                 <textarea matInput name="contenu"  formControlName="contenu" placeholder="Envoyer un commentaire" autofocus></textarea>

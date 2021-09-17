@@ -14,7 +14,7 @@
                 <mat-card-header class="new-post--card--header">
                     <div class="avatar--contenu">
                         <div mat-card-avatar>
-                            <img class="avatar" src="../../../assets/guest.png" alt="" width="40" height="40">
+                            <img class="avatar" [src]="image" alt="" width="40" height="40">
                         </div>
                         <mat-form-field class="field-form-contenu" appearance="fill">
                             <textarea matInput name="contenu" placeholder="Contenu de votre post" formControlName="contenu"></textarea>
@@ -31,7 +31,7 @@
                         <mat-icon style="color: red">add_photo_alternate</mat-icon>
                         <span class="image">Image</span>
                     </button>
-                    <button mat-button type="submit" [disabled]="!createPost.valid">
+                    <button mat-button type="submit">
                         <mat-icon style="color: red">send</mat-icon>
                         <span class="send">Publier</span>
                     </button>

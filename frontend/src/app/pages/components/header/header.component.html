@@ -8,7 +8,7 @@
                 <mat-chip>
                     <span *ngIf="userHeader !== null">{{userHeader.prenom}} {{userHeader.nom}}</span>
                     <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon">
-                        <mat-icon class="icon">person</mat-icon>
+                        <img [src]="image" class="avatar avatar-mini" style="margin-left: 15px" alt="">
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item routerLink="profil">

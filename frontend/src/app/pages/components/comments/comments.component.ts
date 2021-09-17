@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/pages/models/Comment.models';
 import { PostService } from 'src/app/service/post.service';
+import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from '../../../_services/web-socket.service';
 import { User } from '../../models/User.models';
 
@@ -19,8 +20,9 @@ export class CommentsComponent implements OnInit {
   subscription$ ?:Subscription;
   subscriptionMessage$ ?:Subscription;
   lenght :number;
-  user_id :number = 2;
+  my_user :User;
   errorMessage ?:string;
+  image :string = '';
 
   user :User;
 
@@ -30,6 +32,7 @@ export class CommentsComponent implements OnInit {
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: number,
     private _apiService: PostService,
+    private _userService: UserService,
     private _formBuilder :FormBuilder,
     private _snackBar: MatSnackBar,
     private _webService: WebSocketService
@@ -50,6 +53,18 @@ export class CommentsComponent implements OnInit {
       contenu : ['', Validators.required],
       UserId: this.user.userId
     });
+
+    this._userService.getUser(this.user.userId).subscribe({
+      next: result => {
+        console.log(result);
+        this.my_user = result;
+        this.image = this.my_user.image;
+      },
+      error: error => {
+        // this.errorMessage = error.message;
+        console.log(error.error);
+      }
+    })
 
     this.subscriptionMessage$ = this._webService.getNewMessage().subscribe((message: any) => {
       console.log(message);
@@ -79,6 +94,7 @@ export class CommentsComponent implements OnInit {
     const commentTemp = {
       "contenu": this.createComment.get('contenu').value,
       "PostId": this.data,
+      "image": this.image,
       "nom": this.user.nom,
       "prenom": this.user.prenom,
       "createdAt": new Date()

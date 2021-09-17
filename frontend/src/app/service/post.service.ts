@@ -6,6 +6,7 @@ import { Constants } from '../app.constants';
 import { Comment } from '../pages/models/Comment.models';
 import { Like } from '../pages/models/Like.models';
 import { Post } from '../pages/models/Post.models';
+import { User } from '../pages/models/User.models';
 import { apiResponse } from '../_models/apiResponse';
 
 @Injectable({
@@ -21,10 +22,12 @@ export class PostService {
     }));
   }
 
-  createPost(post :Post, image :File) :Observable<any> {
+  createPost(post :Post, image? :File) :Observable<any> {
     const postData = new FormData();
     postData.append('post', JSON.stringify(post));
-    postData.append('image', image, post.titre);
+    if(image) {
+      postData.append('image', image, post.titre);
+    }
     return this.http.post<apiResponse>(Constants.BASE_URL + '/posts', postData).pipe(map(result => {
       return result;
     }));
@@ -83,5 +86,25 @@ export class PostService {
       return result;
     }));
   }
+
+  // getUser(userId :number) :Observable<any> {
+  //   return this.http.get<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`).pipe(map(result => {
+  //     return result;
+  //   }));
+  // }
+
+  // updateUserCoordonnee(userId :number, user :User) :Observable<any> {
+  //   return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, user).pipe(map(result => {
+  //     return result;
+  //   }));
+  // }
+
+  // updateUser(userId :number, image :File) :Observable<any> {
+  //   const userData = new FormData();
+  //   userData.append('image', image);
+  //   return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, userData).pipe(map(result => {
+  //     return result;
+  //   }));
+  // }
 
 }

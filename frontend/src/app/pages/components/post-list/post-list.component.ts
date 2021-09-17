@@ -28,7 +28,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   subscription$Delete ?:Subscription;
   subscription$ ?:Subscription;
   likesCount: number | boolean;
-  isActive: boolean = false;
+  isActive: boolean;
   color :string;
   likeList :string = '';
 
@@ -98,11 +98,14 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLike(id: number, postCount: boolean) {
-    if(postCount) {
-      this.likesCount = (this.isActive) ? postCount : 0;
+  onLike(id: number) {
+
+    // if(this.postList[index].Like_posts[0].User.userId == this.user.userId){}
+    // Il faut stocker un booleen sinon ca n'ira que dans un sens
+    if(this.isActive) {
+      this.likesCount = 0;
     } else {
-      this.likesCount = (this.isActive) ? 0 : 1;
+      this.likesCount = 1;
     }
     this.isActive = !this.isActive;
 
@@ -117,7 +120,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this._apiService.likePost(id, my_like).subscribe({
       next: result => {
         console.log(result.message);
-        location.reload();
+        // location.reload();
       },
       error: error => {
         console.log(error.error.error);

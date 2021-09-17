@@ -33,11 +33,6 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      isLike: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: 0
-      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,

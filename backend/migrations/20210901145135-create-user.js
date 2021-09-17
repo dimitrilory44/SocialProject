@@ -28,11 +28,12 @@ module.exports = {
       image: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "localhost:3000/images/guest.png"
+        defaultValue: "http://localhost:3000/images/guest.png"
       },
-      description: {
-        allowNull: true,
-        type: Sequelize.STRING
+      telephone: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: "XXXXXXXXXX"
       },
       isAdmin: {
         allowNull: false,

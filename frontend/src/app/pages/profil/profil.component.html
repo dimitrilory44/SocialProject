@@ -2,13 +2,35 @@
 
 <main>
     <div style="display:flex; justify-content: center;">
-        <div style="display:flex; margin-top:30px; flex-direction: column">
-            <img src="../../../assets/guest.png" class="avatar" style="margin: 0 auto" alt="" width="150" height="150">
-            <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
-            <p>{{user.description}}</p>
-            <mat-form-field class="field-form" appearance="fill" style="width: 350px;">
-                <textarea matInput name="contenu" placeholder="Entrer une description"></textarea>
-            </mat-form-field>
+        <div style="display:flex; margin-top:30px; flex-direction: column" class="profil">
+            <form [formGroup]="updateUser" (ngSubmit)="onSubmitUser()">
+                <div style="position: relative; display:flex; justify-content: center" class="image">
+                    <img [src]='image' class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+                    <button mat-button class="edit" style="position: absolute; right: 20px; bottom: -10px">
+                        <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
+                        <mat-icon style="color:grey">add_a_photo</mat-icon>
+                    </button>
+                </div>
+                <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
+                <div class="coordonnées">
+                    <div style="margin-bottom: 20px">
+                        <button mat-icon-button (click)="gotoMail()">
+                            <mat-icon style="color:rgb(62, 49, 49)">email</mat-icon>
+                        </button>
+                        <span style="margin-left: 10px;">{{user.email}}</span>
+                    </div>
+                    <div style="margin-bottom: 20px; position:relative" class="edit-tel">
+                        <button mat-icon-button (click)="gotoTel()">
+                            <mat-icon>phone</mat-icon>
+                        </button>
+                        <span style="text-align:center">{{telephone}}</span>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-left: 50px; margin-right: 50px">
+                    <button mat-button color="warn">Annuler</button>
+                    <button mat-flat-button color="primary" type="submit" [disabled]="!updateUser.valid">Modifiez</button>
+                </div>
+            </form>
         </div>
     </div>
 </main>

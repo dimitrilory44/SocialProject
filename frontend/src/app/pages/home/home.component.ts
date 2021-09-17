@@ -6,6 +6,8 @@ import { mimeType } from './mime-type.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { User } from '../models/User.models';
+import { Like } from '../models/Like.models';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-home',
@@ -17,24 +19,40 @@ export class HomeComponent implements OnInit, OnDestroy {
   createPostSubscription$ :Subscription;
   subscription$ ?:Subscription;
   posts ?:Post[];
+  likes ?:Like[];
   file?: File;
   url ?:string;
   errorMessage ?:string = '';
   errorServeur ?:string = '';
-  user_id :number = 2;
-
+  
+  my_user :User;
   user :User;
+  image :string = '';
+  imagePost :string = '';
 
   createPost :FormGroup;
 
   constructor(
     private _apiService: PostService,
+    private _userService: UserService,
     private _formBuilder :FormBuilder,
     private _snackBar: MatSnackBar
   ){}
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+
+    this._userService.getUser(this.user.userId).subscribe({
+      next: result => {
+        console.log(result);
+        this.my_user = result;
+        this.image = this.my_user.image;
+      },
+      error: error => {
+        // this.errorMessage = error.message;
+        console.log(error.error);
+      }
+    })
 
     console.log(this.user.userId);
 
@@ -82,9 +100,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if(this.createPost.invalid) {
-      return;
-    }
     const post = new Post();
     post.titre = this.createPost.get('titre').value;
     post.contenu = this.createPost.get('contenu').value;

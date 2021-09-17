@@ -1,0 +1,32 @@
+.image:hover>.edit {
+    display: block;
+}
+
+// .edit {
+//     display: none;
+// }
+
+input[type="file"] {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+}
+
+input[type="text"] {
+    border: none;
+    background-color: transparent;
+    width: 80px;
+}
+
+input:focus, :hover{
+    outline: none;
+}
+
+.coordonnées {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

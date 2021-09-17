@@ -7,7 +7,6 @@ export class Post {
     titre: string;
     contenu: string;
     image: string;
-    isLike: boolean;
     UserId: number;
     Like_posts :Like[];
     Comments :Comment[];

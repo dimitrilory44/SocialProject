@@ -25,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     titre: DataTypes.STRING,
     image: DataTypes.STRING,
     contenu: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    isLike: DataTypes.BOOLEAN
+    createdAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Post',

@@ -6,10 +6,10 @@ const fs = require('fs');
 
 exports.createPost = (req, res) => {
     const postObject = JSON.parse(req.body.post);
-    const newPost = {
+    const newPost = req.file ? {
         ...postObject,
         image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    }
+    } : {...postObject};
     Post.create(newPost)
     .then(() => res.status(201).json({message: 'Post crée !'}))
     .catch(error => res.status(400).json(error));
@@ -32,13 +32,13 @@ exports.getAllPost = (req, res) => {
                 required: false
             }, {
                 model: Like_post,
-                attributes: ['createdAt', 'updatedAt'],
+                attributes: ['createdAt', 'updatedAt', 'isLike'],
                 include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
                 required: false
             }
 
         ],
-        attributes: ['id', 'UserId', 'titre', 'image', 'isLike', 'contenu', 'createdAt', 'updatedAt']
+        attributes: ['id', 'UserId', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt']
     })
     .then(posts => res.status(200).json(posts))
     .catch(error => res.status(400).json(error));
@@ -57,14 +57,12 @@ exports.getOnePost = (req, res) => {
 
 exports.updatePost = (req, res) => {
     const postObject = req.file ? {
-        titre: req.body.titre,
         contenu: req.body.contenu,
         image: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`
     } : {...req.body};
     Post.update(postObject, {
         where: {
-            id: req.params.id,
-            UserId: req.body.userId
+            id: req.params.id
         }
     })
     .then(() => res.status(201).json({message: 'Post modifié !'}))
@@ -89,21 +87,12 @@ exports.deletePost = (req, res) => {
 exports.likeOrNot = (req, res) => {
     if(req.body.like == 1) {
         const like = {
+            isLike: req.body.like,
             UserId: req.body.userId,
             PostId: req.params.id
         };
         Like_post.create(like)
-        .then(() => {
-            Post.update({
-                isLike: req.body.like
-            }, {
-                where: {
-                    id: req.params.id
-                }
-            })
-            .then(() => res.status(201).json({message: 'Utilisateur a liké !'}))
-            .catch(error => res.status(400).json({error}));
-        })
+        .then(() => res.status(201).json({message: 'Utilisateur a liké !'}))
         .catch(error => res.status(400).json({error}));
     } else if(req.body.like == 0){
         Like_post.destroy({
@@ -112,17 +101,8 @@ exports.likeOrNot = (req, res) => {
                 PostId: req.params.id
             }
         })
-        .then(() => {
-            Post.update({
-                isLike: req.body.like
-            }, {
-                where: {
-                    id: req.params.id
-                }
-            })
-            .then(() => res.status(201).json({message: 'Utilisateur a enlevé son like !'}))
-            .catch(error => res.status(400).json({error}));
-        })
+        .then(() => res.status(201).json({message: 'Utilisateur a enlevé son like !'}))
+        .catch(error => res.status(400).json({error}));
     } else {
         return res.status(400).json({error : 'Attention pas de like supérieur à 1'});
     }

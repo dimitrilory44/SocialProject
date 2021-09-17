@@ -6,7 +6,7 @@ exports.getAllUser = (req, res) => {
         where: {
             isAdmin: 0
         },
-        attributes: ['id','email', 'nom', 'prenom', 'image', 'description']
+        attributes: ['id','email', 'nom', 'prenom', 'image', 'telephone']
     })
     .then(users => res.status(200).json(users))
     .catch(error => res.status(400).json(error))
@@ -21,7 +21,7 @@ exports.getOneUser = (req, res) => {
             nom: user.nom,
             prenom: user.prenom,
             image: user.image,
-            description: user.description,
+            telephone: user.telephone,
             isAdmin: user.isAdmin 
         })
     }).catch(error => res.status(400).json(error));
@@ -29,10 +29,7 @@ exports.getOneUser = (req, res) => {
 
 exports.updateUser = (req, res) => {
     const userObject = req.file ? {
-        email: req.body.email,
-        nom: req.body.nom,
-        prenom: req.body.prenom,
-        image: `${req.protocol}://${req.get('host')}/images/users/${req.file.filename}`
+        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body};
     User.update(userObject, {
         where: {
