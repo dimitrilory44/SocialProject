@@ -8,8 +8,8 @@ export class Post {
     contenu: string;
     image: string;
     UserId: number;
-    Like_posts :Like[];
-    Comments :Comment[];
-    User :User;
+    Like_posts ?:Like[];
+    Comments ?:Comment[];
+    User ?:User;
     createdAt :Date;
 }

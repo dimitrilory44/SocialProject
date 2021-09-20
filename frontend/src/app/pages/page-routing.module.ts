@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PostListPageComponent } from '../post-list-page/post-list-page.component';
 import { AuthGuard } from '../_helpers/auth-guard.service';
 
 import { HomeComponent } from './home/home.component';
+import { PostPageComponent } from './post-page/post-page.component';
 import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard]}
+  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard]},
+  { path: 'profil/:id', component: PostListPageComponent, canActivate: [AuthGuard]},
+  { path: 'posts/:id', component: PostPageComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

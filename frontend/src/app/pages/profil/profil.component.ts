@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { User } from '../models/User.models';
 import { Constants } from '../../app.constants';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { mimeType } from '../home/mime-type.validator';
-import { PostService } from 'src/app/service/post.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +15,8 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit, OnDestroy {
+
+  @Output() change = new EventEmitter();
 
   user :User;
   userSouscription$ :Subscription;
@@ -31,6 +33,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
 
   constructor(
     private _formBuilder :FormBuilder,
+    private _routes :Router,
     private _userService :UserService,
     private _snackBar: MatSnackBar
   ) { }
@@ -105,4 +108,9 @@ export class ProfilComponent implements OnInit, OnDestroy {
     })
   }
 
+  showPost(event :any, id: number) {
+    event.preventDefault();
+    this._routes.navigate(['/profil', id]);
+    this.change.emit(id);
+  }
 }

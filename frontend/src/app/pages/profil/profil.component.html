@@ -31,6 +31,9 @@
                     <button mat-flat-button color="primary" type="submit" [disabled]="!updateUser.valid">Modifiez</button>
                 </div>
             </form>
+            <button mat-flat-button color="primary" style="margin-top: 50px" (click)="showPost($event, user.userId)">
+                Voir les posts associés
+            </button>
         </div>
     </div>
 </main>

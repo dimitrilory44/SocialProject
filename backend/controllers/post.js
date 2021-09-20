@@ -49,7 +49,25 @@ exports.getOnePost = (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'titre', 'contenu', 'image', 'createdAt', 'updatedAt']
+        include: [
+            {
+                model: User,
+                attributes: ['nom', 'prenom', 'image'],
+                required: true
+            }, {
+                model: Comment,
+                attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
+                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                required: false
+            }, {
+                model: Like_post,
+                attributes: ['createdAt', 'updatedAt', 'isLike'],
+                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                required: false
+            }
+
+        ],
+        attributes: ['id', 'UserId', 'titre', 'contenu', 'image', 'createdAt', 'updatedAt']
     })
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json(error));

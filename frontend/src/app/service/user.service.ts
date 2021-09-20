@@ -19,6 +19,12 @@ export class UserService {
     }));
   }
 
+  getPostByUser(userId :number) :Observable<any> {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}` + '/posts').pipe(map(result => {
+      return result;
+    }));
+  }
+
   updateUserCoordonnee(userId :number, user :User) :Observable<any> {
     return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, user).pipe(map(result => {
       return result;

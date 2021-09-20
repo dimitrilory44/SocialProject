@@ -1,59 +1,16 @@
-<div style="margin-top: 50px;" *ngIf="errorServeur">
-    <h1 style="text-align: center; color:red">{{errorServeur}}</h1>
+<div class="message-erreur" *ngIf="errorServeur">
+    <h1 class="message">{{errorServeur}}</h1>
 </div>
-<section class="container" *ngIf="postList">
-    <mat-card class="post--card" *ngFor="let post of postList; let i = index">
-        <mat-card-header class="post--card--header">
-          <div mat-card-avatar>
-            <img class="avatar" [src]="post.User.image" alt="" width="40" height="40">
-          </div>
-          <mat-card-title>{{post.User.prenom}} {{post.User.nom}}</mat-card-title>
-          <mat-card-subtitle>{{post.createdAt | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</mat-card-subtitle>
-          <button mat-icon-button class="actions--post" [matMenuTriggerFor]="menu" aria-label="Vers menu" *ngIf="user.userId == post.UserId">
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openDialog(post.id)">
-              <mat-icon>edit</mat-icon>
-              <span>Modifier post</span>
-            </button>
-            <button mat-menu-item (click)="deletePost(post.id)" *ngIf="post.Comments.length == 0">
-              <mat-icon style="color:red">delete</mat-icon>
-              <span>Supprimer post</span>
-            </button>
-          </mat-menu>
-        </mat-card-header>
-        <mat-card-content class="post--card--content">
-          <div class="content">{{post.contenu}}</div>
-          <img mat-card-image *ngIf="post.image" [src]="post.image" alt="Photo du post">
-          <div class="like--comment--list">
-            <div class="like--list--container">
-              <button mat-icon-button class="btn--list" 
-                      #tooltip="matTooltip"
-                      [matTooltip]="likeList"
-                      matTooltipClass="tooltip-list"
-                      matTooltipPosition="above">
-                  <mat-icon class="icon-list-like">thumb_up</mat-icon>
-              </button>
-              <a class="post--card--like" (click)="tooltip.toggle(); getLikes(post.id)">
-                <span class="like--content"> {{post.Like_posts.length}}</span>
-              </a>
-            </div>
-            <a class="post--card--comment" (click)="openBottomSheetVisualisation(post.id)">
-              <span style="color: grey">{{post.Comments.length}} commentaire(s)</span>
-            </a>
-          </div>
-        </mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-card-actions class="post--card--actions">
-          <button mat-button (click)="onLike(post.id)">
-              <mat-icon [ngStyle]="{'color' : color}" [class.like]="isActive" [class.dislike]="!isActive">thumb_up</mat-icon>
-              <span class="action--like" [ngStyle]="{'color' : color}" [class.like]="isActive" [class.dislike]="!isActive">J'aime</span>
-          </button>
-          <button mat-button (click)="openBottomSheet(post.id)">
-              <mat-icon style="color: grey">chat_bubble_outline</mat-icon>
-              <span class="action--comment">Commenter</span>
-          </button>
-        </mat-card-actions>
-    </mat-card>
+<div class="message-erreur" *ngIf="errorMessage">
+  <h1 class="message">{{errorMessage}}</h1>
+</div>
+<section class="container" *ngIf="postList ; else elseBlock">
+    <post *ngFor="let post of postList; let i = index"
+          [post]="post" [user]="user" [author]="author" [comments]="comments" [likes]="likes" [errorMessage]="errorMessage">
+    </post>
 </section>
+<ng-template #elseBlock>
+  <div class="post-list">
+    <h1 class="message-post">Vous n'avez pas de post pour l'instant</h1>
+  </div>
+</ng-template>

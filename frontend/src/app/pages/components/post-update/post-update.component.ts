@@ -3,15 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { Post } from '../pages/models/Post.models';
-import { PostService } from '../service/post.service';
+import { Post } from '../../models/Post.models';
+import { PostService } from '../../../service/post.service';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  templateUrl: './post-update.component.html',
+  styleUrls: ['./post-update.component.scss']
 })
-export class PostComponent implements OnInit {
+export class UpdatePostComponent implements OnInit {
 
   subscription$ ?:Subscription;
   post :Post;
@@ -20,7 +20,7 @@ export class PostComponent implements OnInit {
   updatePost :FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: number,
     private _formBuilder :FormBuilder,
     private _apiService :PostService,
     private _snackBar :MatSnackBar

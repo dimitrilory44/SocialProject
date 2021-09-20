@@ -55,23 +55,28 @@ exports.deleteUser = (req, res) => {
 
 exports.getPostByUser = (req, res) => {
     User.findAll({
-        include: [
-            {
-                model: Post,
-                attributes: ['id', 'titre', 'image', 'contenu', 'isLike', 'createdAt', 'updatedAt'],
-                include: [{
-                    model: Comment,
-                    attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
-                    required: false
-                }],
-                required: true
-            }
-        ],
+        include: [{
+            model: Post,
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            attributes: ['id', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt'],
+            include: [{
+                model: Comment,
+                attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
+                required: false
+            }, {
+                model: User,
+                attributes: ['id', 'nom', 'prenom', 'image'],
+                required: false
+            }],
+            required: true
+        }],
         where: {
             id: req.params.id
         },
         attributes: ['nom', 'prenom', 'image'],
     })
-    .then(posts => res.status(201).json(posts))
+    .then(post => res.status(201).json(post))
     .catch(error => res.status(400).json(error));
 };

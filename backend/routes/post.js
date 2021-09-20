@@ -7,6 +7,7 @@ const postCtrl = require('../controllers/post');
 
 /**************** POST ************************/
 
+
 // création d'un post
 routes.post('/', multer, postCtrl.createPost);
 

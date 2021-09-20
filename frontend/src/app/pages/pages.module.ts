@@ -10,8 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { PostListComponent } from './components/post-list/post-list.component';
-import { PostComponent } from '../post/post.component';
+import { UpdatePostComponent } from './components/post-update/post-update.component';
 import { ProfilComponent } from './profil/profil.component';
+import { PostComponent } from './components/post/post.component';
+import { PostPageComponent } from './post-page/post-page.component';
+import { PostListPageComponent } from '../post-list-page/post-list-page.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,11 @@ import { ProfilComponent } from './profil/profil.component';
     HeaderComponent,
     CommentsComponent,
     PostListComponent,
+    UpdatePostComponent,
+    ProfilComponent,
     PostComponent,
-    ProfilComponent
+    PostPageComponent,
+    PostListPageComponent
   ],
   imports: [
     CommonModule,

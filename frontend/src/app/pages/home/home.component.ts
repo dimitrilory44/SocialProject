@@ -42,6 +42,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
+    this.subscription$ = this._apiService.getPosts().subscribe({
+      next: data => {
+        this.posts = data;
+        console.log(this.posts);
+      },
+      error: error => {
+        this.errorServeur = error.message;
+        console.log(error.message);
+      }
+    });
+
     this._userService.getUser(this.user.userId).subscribe({
       next: result => {
         console.log(result);
@@ -67,6 +78,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() :void {
     this.createPostSubscription$?.unsubscribe();
+    this.subscription$?.unsubscribe();
   }
 
   openSnackBar(message: string, action: string) {
