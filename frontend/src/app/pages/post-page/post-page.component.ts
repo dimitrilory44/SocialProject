@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
 import { Post } from '../models/Post.models';
@@ -16,10 +16,12 @@ export class PostPageComponent implements OnInit {
   user ?:User;
   my_user :User;
   image :string = '';
+  isPost :boolean = false;
 
   errorServeur ?:string = '';
 
   constructor(
+    private _routes :Router,
     private _activeRoute :ActivatedRoute,
     private _userService :UserService,
     private _apiService: PostService
@@ -27,6 +29,11 @@ export class PostPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (this._routes.url.startsWith("/posts")) {
+      this.isPost = true;        
+      console.log(this.isPost);
+    }
 
     this._activeRoute.paramMap.subscribe((res:any) => {
       this._apiService.getPost(res.get("id")).subscribe({

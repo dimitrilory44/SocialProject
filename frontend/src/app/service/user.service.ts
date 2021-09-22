@@ -31,12 +31,6 @@ export class UserService {
     }));
   }
 
-  updateUserCoordonnee(userId :number, user :User) :Observable<any> {
-    return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, user).pipe(map(result => {
-      return result;
-    }));
-  }
-
   updateUser(userId :number, user: User, image? :File) :Observable<any> {
     const userData = new FormData();
     userData.append('user', JSON.stringify(user));
@@ -44,6 +38,13 @@ export class UserService {
       userData.append('image', image);
     }
     return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, userData).pipe(map(result => {
+      return result;
+    }));
+  }
+
+  // Ne fonction pas
+  deleteUser(userId :number) :Observable<any> {
+    return this.http.delete<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`).pipe(map(result => {
       return result;
     }));
   }

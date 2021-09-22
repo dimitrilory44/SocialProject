@@ -16,9 +16,9 @@ import { ProfilComponent } from './profil/profil.component';
 import { PostComponent } from './components/post/post.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { PostListPageComponent } from './post-list-page/post-list-page.component';
-import { FooterComponent } from './commun/footer/footer.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +31,9 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
     PostComponent,
     PostPageComponent,
     PostListPageComponent,
-    FooterComponent,
     UserListComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    CommentListComponent
   ],
   imports: [
     CommonModule,

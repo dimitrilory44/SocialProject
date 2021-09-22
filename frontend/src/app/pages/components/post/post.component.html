@@ -37,20 +37,30 @@
               <span class="like--content"> {{post?.Like_posts?.length}}</span>
             </a>
         </div>
-        <a class="post--card--comment" (click)="openBottomSheetVisualisation(post.id)">
+        <a class="post--card--comment" (click)="openBottomSheetVisualisation(post.id)" *ngIf="!isPost">
+          <span style="color: grey">{{post?.Comments?.length}} commentaire(s)</span>
+        </a>
+        <a class="post--card--comment" *ngIf="isPost">
           <span style="color: grey">{{post?.Comments?.length}} commentaire(s)</span>
         </a>
       </div>
     </mat-card-content>
+    <div *ngIf="isPost">
+      <comment-list [postId]="post.id"></comment-list>
+    </div>
     <mat-divider></mat-divider>
     <mat-card-actions class="post--card--actions">
       <button mat-button (click)="onLike(post.id)">
           <mat-icon [ngStyle]="{'color' : color}" [class.like]="isActive" [class.dislike]="!isActive">thumb_up</mat-icon>
           <span class="action--like" [ngStyle]="{'color' : color}" [class.like]="isActive" [class.dislike]="!isActive">J'aime</span>
       </button>
-      <button mat-button (click)="openBottomSheet(post.id)">
+      <button mat-button (click)="openBottomSheet(post.id)" *ngIf="!isPost">
           <mat-icon style="color: grey">chat_bubble_outline</mat-icon>
           <span class="action--comment">Commenter</span>
       </button>
+      <button mat-button *ngIf="isPost">
+        <mat-icon style="color: grey">chat_bubble_outline</mat-icon>
+        <span class="action--comment">Commenter</span>
+    </button>
     </mat-card-actions>
 </mat-card>

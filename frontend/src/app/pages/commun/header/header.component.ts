@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,23 +16,24 @@ import { User } from '../../models/User.models';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() change = new EventEmitter();
+
   userHeader :User;
   user :User;
   image :string = '';
   width :number;
 
+  userSearch :FormGroup;
+
   myControl = new FormControl();
-  options: any[] = [
-    {name: 'Mary'},
-    {name: 'Shelley'},
-    {name: 'Igor'}
-  ];
-  filteredOptions: Observable<User[]>;
+  users :any[] = [];
+  filteredOptions: Observable<any[]>;
 
   constructor(
     private _router: Router,
     private _authService: AuthService,
     private _userService: UserService,
+    private _routes: Router,
     private _dialog: MatDialog
   ) { }
 
@@ -53,13 +54,23 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filter(name) : this.options.slice())
-      );
+    this._userService.getUsers().subscribe({
+      next: data => {
+        console.log(data);
+        this.users = data;
+        console.log(this.users);
+      },
+      error: error => {
+        console.log(error.message);
+      }
+    })   
 
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(prenom => prenom ? this._filter(prenom) : this.users.slice())
+    );
+
+    console.log(this.filteredOptions);
   }
 
   openDialog(): void {
@@ -73,13 +84,19 @@ export class HeaderComponent implements OnInit {
   }
 
   displayFn(user: any): string {
-    return user && user.name ? user.name : '';
+    return user && user.prenom ? user.prenom : '';
   }
 
-  private _filter(name: string): any[] {
-    const filterValue = name.toLowerCase();
+  private _filter(prenom: string): any[] {
+    const filterValue = prenom.toLowerCase();
 
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.users.filter(user => user.prenom.toLowerCase().includes(filterValue));
+  }
+
+  goToprofil(event :any, id :number) {
+    event.preventDefault();
+    this._routes.navigate(['/profil', id]);
+    this.change.emit(id);
   }
 
   logout() {

@@ -50,9 +50,9 @@
             <div mat-card-avatar>
                 <img class="avatar" [src]="image" alt="" width="40" height="40">
             </div>
-            <mat-form-field class="field-form" appearance="fill">
+            <div class="form-search comments--decoration">
                 <textarea matInput name="contenu"  formControlName="contenu" placeholder="Envoyer un commentaire" autofocus></textarea>
-            </mat-form-field>
+            </div>
             <button mat-icon-button type="submit" [disabled]="!createComment.valid">
                 <mat-icon class="newComment--send">send</mat-icon>
             </button>

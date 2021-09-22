@@ -25,6 +25,7 @@ export class PostComponent implements OnInit, OnDestroy {
   @Input() author ?:User;
   @Input() comments ?:Comment[];
   @Input() likes ?:Like[] = [];
+  @Input() isPost ?: boolean;
   @Input() errorMessage ?:string = '';
 
   @Output() change = new EventEmitter();
@@ -33,8 +34,10 @@ export class PostComponent implements OnInit, OnDestroy {
   subscription$ ?:Subscription;
   likesCount: number | boolean;
   isActive: boolean;
+  isComment :boolean = false;
   color :string;
   likeList :string = '';
+  id :number;
 
   likePost :FormGroup;
   tableauString :string[] = [];
@@ -163,5 +166,9 @@ export class PostComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this._routes.navigate(['/posts', post.id]);
     this.change.emit(post.id);
+  }
+
+  showComments() {
+    this.isComment = false;
   }
 }

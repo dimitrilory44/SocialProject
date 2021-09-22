@@ -6,7 +6,6 @@ import { Constants } from '../app.constants';
 import { Comment } from '../pages/models/Comment.models';
 import { Like } from '../pages/models/Like.models';
 import { Post } from '../pages/models/Post.models';
-import { User } from '../pages/models/User.models';
 import { apiResponse } from '../_models/apiResponse';
 
 @Injectable({
@@ -63,6 +62,7 @@ export class PostService {
     }));
   }
 
+  // Ne fonctionne pas
   deletePost(postId :number) :Observable<any> {
     return this.http.delete<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}`).pipe(map(result => {
       return result;
@@ -86,25 +86,4 @@ export class PostService {
       return result;
     }));
   }
-
-  // getUser(userId :number) :Observable<any> {
-  //   return this.http.get<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`).pipe(map(result => {
-  //     return result;
-  //   }));
-  // }
-
-  // updateUserCoordonnee(userId :number, user :User) :Observable<any> {
-  //   return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, user).pipe(map(result => {
-  //     return result;
-  //   }));
-  // }
-
-  // updateUser(userId :number, image :File) :Observable<any> {
-  //   const userData = new FormData();
-  //   userData.append('image', image);
-  //   return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, userData).pipe(map(result => {
-  //     return result;
-  //   }));
-  // }
-
 }

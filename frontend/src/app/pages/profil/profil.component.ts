@@ -8,6 +8,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { UserUpdateComponent } from '../components/user-update/user-update.component';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class ProfilComponent implements OnInit, OnDestroy {
   constructor(
     private _routes :Router,
     private _userService :UserService,
+    private _authService :AuthService,
+    private _snackBar :MatSnackBar,
     private _dialog :MatDialog
   ) { }
 
@@ -62,6 +65,27 @@ export class ProfilComponent implements OnInit, OnDestroy {
   gotoTel() {
     this.telTo = 'tel:' + this.telephone
     window.location.href = this.telTo;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
+
+  deleteUser(id: number) {
+    this._userService.deleteUser(id).subscribe({
+      next: result => {
+        this._authService.logout();
+        this._routes.navigate(['/login']);
+        console.log(result.message);
+      },
+      error: error => {
+        // this.errorMessage = error.message;
+        console.log(error.message);
+      }
+    })
   }
 
   openDialog(user :User): void {

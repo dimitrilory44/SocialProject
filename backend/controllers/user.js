@@ -45,7 +45,7 @@ exports.updateUser = (req, res) => {
 exports.deleteUser = (req, res) => {
     User.findOne({where: {id: req.params.id}})
     .then(my_user => {
-        const filename = my_user.imageUrl.split('/images/users/')[1];
+        const filename = my_user.imageUrl.split('/images/')[1];
         fs.unlink(`images/${filename}`, () => {
             User.destroy({where: {id: req.params.id}})
             .then(() => res.status(200).json({message: "Utilisateur supprimé !"}))

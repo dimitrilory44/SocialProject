@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <main>
-    <section class="container" style="margin-top: 20px;">
+    <section class="container" style="margin-top: 20px;" *ngIf="data">
         <div style="position: relative; display:flex; justify-content: center" class="image">
             <img [src]='image' class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
         </div>
@@ -11,7 +11,7 @@
                 <button mat-icon-button (click)="gotoMail()">
                     <mat-icon style="color:rgb(62, 49, 49)">email</mat-icon>
                 </button>
-                <span style="margin-left: 10px;">{{user.email}}</span>
+                <span style="margin-left: 10px;">{{email}}</span>
             </div>
             <div style="margin-bottom: 20px; position:relative" class="edit-tel">
                 <button mat-icon-button (click)="gotoTel()">
@@ -21,10 +21,8 @@
             </div>
         </div>
     </section>
-    <section style="margin-bottom: 50px;">
+    <section style="margin-bottom: 50px">
         <post-list [postList]="postByUser"></post-list>
     </section>
     <mat-divider></mat-divider>
 </main>
-
-<app-footer></app-footer>
