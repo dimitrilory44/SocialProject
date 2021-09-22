@@ -1,0 +1,19 @@
+<div style="display: flex;">
+    <h1 mat-dialog-title>Utilisateurs</h1>
+    <span class="example-spacer"></span>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+    <div *ngFor="let user of users" style="display: flex; align-items:center; margin-top: 20px">
+        <img class="avatar" [src]="user?.image" alt="" width="40" height="40">
+        <div style="margin-left: 20px; display:flex; justify-content:center">
+            <a (click)="gotoprofil($event, user?.id)">
+                <span>{{user?.prenom}}</span> 
+                <span style="margin-left: 5px">{{user?.nom}}</span>
+            </a>
+        </div>
+    </div>
+</mat-dialog-content>

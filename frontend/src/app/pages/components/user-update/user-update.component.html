@@ -1,0 +1,31 @@
+<div style="display: flex;">
+    <h1 mat-dialog-title>Modifie tes coordonnées</h1>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography" style="display: flex; justify-content: center; flex-direction:column; text-align:center; margin-top: 20px; overflow: hidden">
+    <form [formGroup]="updateUser" (ngSubmit)="onSubmitUser()">
+        <div style="display: flex; align-items:center; margin-bottom: 20px">
+            <div class="hint">Select your file</div>
+            <button mat-button>
+                <input type="file" (change)="onSelectFile($event)" formControlName="image"/>
+                <mat-icon style="color:grey">add_a_photo</mat-icon>
+            </button>
+        </div>
+        <div style="width: 100%; margin-bottom: 20px">
+            <img [src]="image" alt="" width="200">
+        </div>
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+33 &nbsp;</span>
+            <input type="tel" matInput placeholder="XX-XX-XX-XX-XX" formControlName="telephone">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-dialog-actions align="end">
+            <button mat-button [mat-dialog-close]="true" type="submit">Modifier</button>
+        </mat-dialog-actions>
+    </form>
+</mat-dialog-content>

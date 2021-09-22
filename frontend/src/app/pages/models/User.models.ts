@@ -5,4 +5,5 @@ export class User {
     prenom: string;
     image:string;
     telephone: string;
+    isAdmin:boolean;
 }

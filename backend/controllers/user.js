@@ -1,5 +1,5 @@
 const db = require('../models');
-const { User, Post, Comment } = db.sequelize.models;
+const { User, Post, Comment, Like_post } = db.sequelize.models;
 
 exports.getAllUser = (req, res) => {
     User.findAll({
@@ -28,9 +28,11 @@ exports.getOneUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
+    const user = JSON.parse(req.body.user);
     const userObject = req.file ? {
+        ...user,
         image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : {...req.body};
+    } : {...user};
     User.update(userObject, {
         where: {
             id: req.params.id
@@ -41,7 +43,7 @@ exports.updateUser = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-    User.findOne({id: req.params.id})
+    User.findOne({where: {id: req.params.id}})
     .then(my_user => {
         const filename = my_user.imageUrl.split('/images/users/')[1];
         fs.unlink(`images/${filename}`, () => {
@@ -54,13 +56,13 @@ exports.deleteUser = (req, res) => {
 };
 
 exports.getPostByUser = (req, res) => {
-    User.findAll({
+    User.findOne({
         include: [{
             model: Post,
             order: [
                 ['createdAt', 'DESC']
             ],
-            attributes: ['id', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'titre', 'image', 'contenu', 'UserId', 'createdAt', 'updatedAt'],
             include: [{
                 model: Comment,
                 attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
@@ -69,13 +71,18 @@ exports.getPostByUser = (req, res) => {
                 model: User,
                 attributes: ['id', 'nom', 'prenom', 'image'],
                 required: false
+            },{
+                model: Like_post,
+                attributes: ['createdAt', 'updatedAt', 'isLike'],
+                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                required: false
             }],
             required: true
         }],
         where: {
             id: req.params.id
         },
-        attributes: ['nom', 'prenom', 'image'],
+        attributes: ['nom', 'prenom', 'image', 'email', 'telephone'],
     })
     .then(post => res.status(201).json(post))
     .catch(error => res.status(400).json(error));

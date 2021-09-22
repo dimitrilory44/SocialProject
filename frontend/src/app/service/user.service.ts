@@ -13,6 +13,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  getUsers() :Observable<any> {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/users').pipe(map(result => {
+      return result;
+    }));
+  }
+
   getUser(userId :number) :Observable<any> {
     return this.http.get<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`).pipe(map(result => {
       return result;
@@ -31,9 +37,12 @@ export class UserService {
     }));
   }
 
-  updateUser(userId :number, image :File) :Observable<any> {
+  updateUser(userId :number, user: User, image? :File) :Observable<any> {
     const userData = new FormData();
-    userData.append('image', image);
+    userData.append('user', JSON.stringify(user));
+    if(image) {
+      userData.append('image', image);
+    }
     return this.http.put<apiResponse>(Constants.BASE_URL + '/users' + `/${userId}`, userData).pipe(map(result => {
       return result;
     }));

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Post } from '../pages/models/Post.models';
-import { User } from '../pages/models/User.models';
-import { UserService } from '../service/user.service';
+import { Post } from '../models/Post.models';
+import { User } from '../models/User.models';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-post-list-page',
@@ -14,9 +14,14 @@ export class PostListPageComponent implements OnInit {
   postByUser ?:Post[] = [];
   user :User;
   postUser :User;
-  prenom :User;
-  nom :User;
-  image :User;
+  prenom ?:User;
+  nom ?:User;
+  image ?:User;
+  email ?:User;
+  telephone ?:User;
+  mailTo :string = '';
+  telTo :string = '';
+
   
   constructor(
     private _activeRoute :ActivatedRoute,
@@ -29,11 +34,13 @@ export class PostListPageComponent implements OnInit {
     this._activeRoute.paramMap.subscribe((res:any) => {
       this._userService.getPostByUser(res.get("id")).subscribe({
         next: data => {
-          console.log(data[0]);
-          this.prenom = data[0].prenom;
-          this.nom = data[0].nom;
-          this.image = data[0].image;
-          this.postByUser = data[0].Posts;
+          console.log(data);
+          this.prenom = data.prenom;
+          this.nom = data.nom;
+          this.email = data.email;
+          this.telephone = data.telephone;
+          this.image = data.image;
+          this.postByUser = data.Posts;
           console.log(this.postByUser);
         },
         error: error => {
@@ -43,4 +50,13 @@ export class PostListPageComponent implements OnInit {
     });
   }
 
+  gotoMail() {
+    this.mailTo = 'mailto:' + this.user.email
+    window.location.href = this.mailTo;
+  }
+
+  gotoTel() {
+    this.telTo = 'tel:' + this.telephone
+    window.location.href = this.telTo;
+  }
 }

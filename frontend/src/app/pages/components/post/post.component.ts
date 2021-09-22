@@ -56,9 +56,9 @@ export class PostComponent implements OnInit, OnDestroy {
     this.subscription$Delete?.unsubscribe();
   }
 
-  openDialog(id :number) {
+  openDialog(post :Post) {
     const dialogRef = this._dialog.open(UpdatePostComponent, {
-      data : id,
+      data : post,
       width: '500px'
     });
 

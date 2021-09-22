@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, } from '@angular/core';
+import { Component, OnInit, Inject, AfterContentInit, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,71 +11,62 @@ import { PostService } from '../../../service/post.service';
   templateUrl: './post-update.component.html',
   styleUrls: ['./post-update.component.scss']
 })
-export class UpdatePostComponent implements OnInit {
+export class UpdatePostComponent implements OnInit, AfterContentInit {
 
   subscription$ ?:Subscription;
-  post :Post;
+  post ?:Post;
   errorMessage ?:string;
 
   updatePost :FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: Post,
     private _formBuilder :FormBuilder,
     private _apiService :PostService,
     private _snackBar :MatSnackBar
   ) { }
  
- ngOnInit() {
-   console.log(this.data);
-   this.subscription$ = this._apiService.getPost(this.data).subscribe({
-    next: data => {
-      this.post = data;
-      console.log(this.post);
-      console.log(this.post.contenu);
-      
-      this.updatePost.controls.contenu.setValue(this.post.contenu);
-      this.updatePost.controls.image.setValue(this.post.image);
-    },
-    error: error => {
-      this.errorMessage = error.message;
-      console.log(error.message);
-    }
-  });
+  ngOnInit() {
+    this.post = this.data;
   
-  this.updatePost = this._formBuilder.group({
-   contenu : ['', Validators.required],
-   image: [null, Validators.required]
-  });
+    this.updatePost = this._formBuilder.group({
+      contenu : ['', Validators.required],
+      image: [null, Validators.required]
+    });
+  }
+  
+  ngAfterContentInit() {
+    this.updatePost.controls.contenu.setValue(this.post.contenu);
+    this.updatePost.controls.image.setValue(this.post.image);
+  }
 
- }
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
+  }
 
- openSnackBar(message: string, action: string) {
-  this._snackBar.open(message, action, {
-    horizontalPosition: 'center',
-    verticalPosition: 'top'
-  });
-}
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
 
- onSubmitUpdate() {
-  console.log(this.updatePost.value);
+  onSubmitUpdate() {
+    console.log(this.updatePost.value);
 
-  let post = new Post();
-  post.contenu = this.updatePost.get('contenu').value;
-  post.image = this.updatePost.get('image').value;
+    let post = new Post();
+    post.contenu = this.updatePost.get('contenu').value;
+    post.image = this.updatePost.get('image').value;
 
-  this._apiService.updatePost(this.data, post).subscribe({
-    next: result => {
-      this.openSnackBar(result.message, 'fermer');
-      setTimeout(function(){ 
+    this.subscription$ = this._apiService.updatePost(this.post.id, post).subscribe({
+      next: result => {
+        this.openSnackBar(result.message, 'fermer');
         location.reload();
-      }, 1500);
-    },
-    error: error => {
-      this.errorMessage = error.message;
-      console.log(error.message);
-    }
-  })
- }
-
+      },
+      error: error => {
+        this.errorMessage = error.message;
+        console.log(error.message);
+      }
+    })
+  }
 }

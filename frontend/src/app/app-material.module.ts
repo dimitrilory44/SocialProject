@@ -15,6 +15,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const MaterialComponents = [
   MatIconModule,
@@ -32,7 +33,8 @@ const MaterialComponents = [
   ScrollingModule,
   MatProgressBarModule,
   MatDialogModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatAutocompleteModule
 ]
 
 @NgModule({

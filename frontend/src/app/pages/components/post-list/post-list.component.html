@@ -4,7 +4,7 @@
 <div class="message-erreur" *ngIf="errorMessage">
   <h1 class="message">{{errorMessage}}</h1>
 </div>
-<section class="container" *ngIf="postList ; else elseBlock">
+<section class="container postList" *ngIf="postList.length > 0; else elseBlock">
     <post *ngFor="let post of postList; let i = index"
           [post]="post" [user]="user" [author]="author" [comments]="comments" [likes]="likes" [errorMessage]="errorMessage">
     </post>

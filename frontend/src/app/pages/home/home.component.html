@@ -39,5 +39,10 @@
             </mat-card>
         </form>
     </section>
-    <post-list [postList]="posts" [errorServeur]="errorServeur"></post-list>
+    <section id="listePost">
+        <post-list [postList]="posts" [errorServeur]="errorServeur"></post-list>
+    </section>
+    <mat-divider></mat-divider>
 </main>
+
+<app-footer *ngIf="!errorServeur"></app-footer>

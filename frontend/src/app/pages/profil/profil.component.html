@@ -1,39 +1,36 @@
 <app-header></app-header>
 
 <main>
-    <div style="display:flex; justify-content: center;">
-        <div style="display:flex; margin-top:30px; flex-direction: column" class="profil">
-            <form [formGroup]="updateUser" (ngSubmit)="onSubmitUser()">
-                <div style="position: relative; display:flex; justify-content: center" class="image">
-                    <img [src]='image' class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
-                    <button mat-button class="edit" style="position: absolute; right: 20px; bottom: -10px">
-                        <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
-                        <mat-icon style="color:grey">add_a_photo</mat-icon>
+    <section style="display:flex; justify-content: center;">
+        <div style="display:flex; margin-top: 20px; flex-direction: column; margin-bottom: 30px" class="profil">
+            <div style="display:flex; justify-content: center;" class="image">
+                <img [src]='image' class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+            </div> 
+            <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
+            <div class="coordonnées">
+                <div style="margin-bottom: 20px">
+                    <button mat-icon-button (click)="gotoMail()">
+                        <mat-icon style="color:rgb(62, 49, 49)">email</mat-icon>
                     </button>
+                    <span style="margin-left: 10px;">{{user.email}}</span>
                 </div>
-                <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
-                <div class="coordonnées">
-                    <div style="margin-bottom: 20px">
-                        <button mat-icon-button (click)="gotoMail()">
-                            <mat-icon style="color:rgb(62, 49, 49)">email</mat-icon>
-                        </button>
-                        <span style="margin-left: 10px;">{{user.email}}</span>
-                    </div>
-                    <div style="margin-bottom: 20px; position:relative" class="edit-tel">
-                        <button mat-icon-button (click)="gotoTel()">
-                            <mat-icon>phone</mat-icon>
-                        </button>
-                        <span style="text-align:center">{{telephone}}</span>
-                    </div>
+                <div style="margin-bottom: 20px; position:relative" class="edit-tel">
+                    <button mat-icon-button (click)="gotoTel()">
+                        <mat-icon>phone</mat-icon>
+                    </button>
+                    <span style="text-align:center">{{telephone}}</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-left: 50px; margin-right: 50px">
-                    <button mat-button color="warn">Annuler</button>
-                    <button mat-flat-button color="primary" type="submit" [disabled]="!updateUser.valid">Modifiez</button>
-                </div>
-            </form>
-            <button mat-flat-button color="primary" style="margin-top: 50px" (click)="showPost($event, user.userId)">
+            </div>
+            <div style="display: flex; justify-content:center">
+                <button mat-button color="warn">Supprimer votre compte</button>
+                <button mat-button color="primary" (click)="openDialog(my_user)">Modifiez votre compte</button>
+            </div>
+            <button mat-flat-button color="primary" style="margin-top: 30px" (click)="showPost($event, user.userId)">
                 Voir les posts associés
             </button>
+            <mat-divider></mat-divider>
         </div>
-    </div>
+    </section>
 </main>
+
+<app-footer></app-footer>
