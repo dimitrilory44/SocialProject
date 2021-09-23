@@ -4,14 +4,14 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { CommentsComponent } from '../comments/comments.component';
-import { Like } from '../../models/Like.models';
-import { Post } from '../../models/Post.models';
-import { User } from '../../models/User.models';
+import { CommentsBottomComponent } from '../../comments/comment-bottom/comments-bottom.component';
+import { Like } from '../../../models/Like.models';
+import { Post } from '../../../models/Post.models';
+import { User } from '../../../models/User.models';
 import { UpdatePostComponent } from '../post-update/post-update.component';
-import { PostService } from '../../../service/post.service';
+import { PostService } from '../../../../service/post.service';
 import { Router } from '@angular/router';
-import { Comment } from '../../models/Comment.models';
+import { Comment } from '../../../models/Comment.models';
 
 @Component({
   selector: 'post',
@@ -21,7 +21,7 @@ import { Comment } from '../../models/Comment.models';
 export class PostComponent implements OnInit, OnDestroy {
 
   @Input() post ?:Post;
-  @Input() user ?:User;
+  @Input() userLink ?:User;
   @Input() author ?:User;
   @Input() comments ?:Comment[];
   @Input() likes ?:Like[] = [];
@@ -38,6 +38,8 @@ export class PostComponent implements OnInit, OnDestroy {
   color :string;
   likeList :string = '';
   id :number;
+
+  user :User;
 
   likePost :FormGroup;
   tableauString :string[] = [];
@@ -92,14 +94,14 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   openBottomSheet(id: number): void {
-    this._bottomSheet.open(CommentsComponent, {
+    this._bottomSheet.open(CommentsBottomComponent, {
       autoFocus: true,
       data: id
     });
   }
 
   openBottomSheetVisualisation(id: number): void {
-    this._bottomSheet.open(CommentsComponent, {
+    this._bottomSheet.open(CommentsBottomComponent, {
       autoFocus: false,
       data: id
     });

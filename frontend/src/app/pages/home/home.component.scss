@@ -58,6 +58,26 @@ input[type="file"] {
     }
 }
 
+textarea {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+.form-search {
+    background-color: #ebedf0;
+    border-radius: 20px;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    margin-left: 12px;
+    margin-bottom: 20px;
+}
+
+input:focus, :hover{
+    outline: none;
+}
+
 // .commentaire {
 //     background-color: #ebedf0;
 //     width: 30%;

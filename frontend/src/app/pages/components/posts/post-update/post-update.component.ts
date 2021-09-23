@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { Post } from '../../models/Post.models';
-import { PostService } from '../../../service/post.service';
+import { Post } from '../../../models/Post.models';
+import { PostService } from '../../../../service/post.service';
 
 @Component({
   selector: 'app-post',

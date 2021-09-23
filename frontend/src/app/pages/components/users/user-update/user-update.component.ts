@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/service/user.service';
-import { mimeType } from '../../home/mime-type.validator';
-import { User } from '../../models/User.models';
+import { mimeType } from '../../../home/mime-type.validator';
+import { User } from '../../../models/User.models';
 
 @Component({
   selector: 'app-user-update',

@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
-import { User } from '../../models/User.models';
+import { WebSocketService } from 'src/app/_services/web-socket.service';
+import { Comment } from '../../../models/Comment.models';
+import { User } from '../../../models/User.models';
 
 @Component({
   selector: 'comment-list',
@@ -14,14 +16,20 @@ export class CommentListComponent implements OnInit {
   @Input() postId ?:number;
 
   subscription$ :Subscription;
-  comments :any;
-  user :User;
+  subscriptionMessage$ ?:Subscription;
+  comments ?:Comment[];
+  user :any;
   my_user :User;
   image :string = '';
+  lenght :number;
+  isComment :boolean = false;
+
+  commentTemp ?: any;
 
   constructor(
     private _apiService :PostService,
-    private _userService :UserService
+    private _userService :UserService,
+    private _webService :WebSocketService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +38,7 @@ export class CommentListComponent implements OnInit {
     this.subscription$ = this._apiService.getComments(this.postId).subscribe(res => {
       console.log(res);
       this.comments = res;
+      this.lenght = this.comments.length;
     });
 
     this._userService.getUser(this.user.userId).subscribe({
@@ -43,6 +52,10 @@ export class CommentListComponent implements OnInit {
         console.log(error.error);
       }
     })
-  }
 
+    this.subscriptionMessage$ = this._webService.getNewMessage().subscribe((message: any) => {
+      console.log(message);
+      this.commentTemp = message;
+    });
+  }
 }

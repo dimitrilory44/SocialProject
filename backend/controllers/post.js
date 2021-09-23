@@ -155,6 +155,17 @@ exports.createComment = (req, res) => {
     .catch(error => res.status(400).json(error));
 };
 
+exports.getOneComment = (req, res) => {
+    Comment.findOne({
+        where: {
+            id: req.params.idComment,
+            PostId: req.params.idPost
+        }
+    })
+    .then(comment => res.status(200).json(comment))
+    .catch(error => res.status(400).json(error));
+}
+
 exports.getAllComment = (req, res) => {
     Comment.findAll({
         order: [

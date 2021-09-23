@@ -45,8 +45,9 @@
         </a>
       </div>
     </mat-card-content>
-    <div *ngIf="isPost">
+    <div *ngIf="isPost" style="padding: 15px">
       <comment-list [postId]="post.id"></comment-list>
+      <new-comment [data]="post.id" [findUser]="userLink"></new-comment>
     </div>
     <mat-divider></mat-divider>
     <mat-card-actions class="post--card--actions">

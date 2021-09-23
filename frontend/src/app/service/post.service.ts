@@ -75,8 +75,20 @@ export class PostService {
     }));
   }
 
+  getComment(postId :number, commentId :number) :Observable<any> {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/comments' + `/${commentId}`).pipe(map(result => {
+      return result;
+    }));
+  }
+
   getComments(postId :number) :Observable<any> {
     return this.http.get<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/comments').pipe(map(result => {
+      return result;
+    }));
+  }
+
+  updateComment(postId :number, commentId :number, comment :Comment) :Observable<any> {
+    return this.http.put<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/comments' + `/${commentId}`, comment).pipe(map(result => {
       return result;
     }));
   }

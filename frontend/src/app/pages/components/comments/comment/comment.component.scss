@@ -1,0 +1,64 @@
+.comments--list {
+    display:flex; 
+    margin-bottom: 10px;
+
+    &:hover>.comments--choice {
+        display: block;
+    }
+}
+
+.comments--description {
+    display:flex; 
+    flex-direction: column;
+    width: 190px;
+}
+
+.comments--decoration {
+    background-color: #ebedf0;
+    border-radius: 18px;
+    display: inline-block;
+    line-height: 16px;
+    width: 90%;
+    margin-left: 10px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 6px 12px 7px 12px;
+}
+
+.comments--createdAt {
+    color: grey; 
+    margin-left: 15px;
+}
+
+.comments--choice {
+    display: none;
+}
+
+.comments {
+    background-color: #ebedf0;
+    border-radius: 18px;
+    display: flex;
+    line-height: 16px;
+    width: 100%;
+    margin-left: 10px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 6px 12px 7px 12px;
+}
+
+.comment--input {
+    border: none;
+    background-color: transparent;
+    margin-left: -2px!important;
+}
+
+.form-search {
+    background-color: #ebedf0;
+    border-radius: 20px;
+
+    display: flex;
+}
+
+input:focus, :hover{
+    outline: none;
+}

@@ -34,6 +34,9 @@ routes.get('/:id/likes', postCtrl.getLikesPost);
 // creation d'un commentaire
 routes.post('/:id/comments', postCtrl.createComment);
 
+// Avoir un commentaire
+routes.get('/:idPost/comments/:idComment', postCtrl.getOneComment);
+
 // Avoir tous les commentaires
 routes.get('/:id/comments', postCtrl.getAllComment);
 

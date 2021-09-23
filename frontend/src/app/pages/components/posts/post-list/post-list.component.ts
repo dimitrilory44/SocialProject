@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../models/User.models';
-import { Comment } from '../../models/Comment.models';
-import { Post } from '../../models/Post.models';
-import { Like } from '../../models/Like.models';
+import { User } from '../../../models/User.models';
+import { Comment } from '../../../models/Comment.models';
+import { Post } from '../../../models/Post.models';
+import { Like } from '../../../models/Like.models';
 
 @Component({
   selector: 'post-list',

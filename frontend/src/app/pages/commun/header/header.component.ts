@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
-import { UserListComponent } from '../../components/user-list/user-list.component';
+import { UserListComponent } from '../../components/users/user-list/user-list.component';
 import { User } from '../../models/User.models';
 
 @Component({

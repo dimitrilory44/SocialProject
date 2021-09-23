@@ -1,13 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { User } from '../models/User.models';
-import { Constants } from '../../app.constants';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { UserUpdateComponent } from '../components/user-update/user-update.component';
+import { UserUpdateComponent } from '../components/users/user-update/user-update.component';
 import { AuthService } from 'src/app/_services/auth.service';
 
 

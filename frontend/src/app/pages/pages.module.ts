@@ -9,22 +9,27 @@ import { AppMaterialModule } from '../app-material.module';
 import { HeaderComponent } from './commun/header/header.component';
 
 import { HomeComponent } from './home/home.component';
-import { CommentsComponent } from './components/comments/comments.component';
-import { PostListComponent } from './components/post-list/post-list.component';
-import { UpdatePostComponent } from './components/post-update/post-update.component';
 import { ProfilComponent } from './profil/profil.component';
-import { PostComponent } from './components/post/post.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { PostListPageComponent } from './post-list-page/post-list-page.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
-import { CommentListComponent } from './components/comment-list/comment-list.component';
+
+import { PostListComponent } from './components/posts/post-list/post-list.component';
+import { PostComponent } from './components/posts/post/post.component';
+import { UpdatePostComponent } from './components/posts/post-update/post-update.component';
+
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserUpdateComponent } from './components/users/user-update/user-update.component';
+
+import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
+import { NewCommentComponent } from './components/comments/new-comment/new-comment.component';
+import { CommentComponent } from './components/comments/comment/comment.component';
+import { CommentsBottomComponent } from './components/comments/comment-bottom/comments-bottom.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
-    CommentsComponent,
+    CommentsBottomComponent,
     PostListComponent,
     UpdatePostComponent,
     ProfilComponent,
@@ -33,7 +38,9 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     PostListPageComponent,
     UserListComponent,
     UserUpdateComponent,
-    CommentListComponent
+    CommentListComponent,
+    NewCommentComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,

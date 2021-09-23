@@ -1,0 +1,23 @@
+<div class="comments--form" *ngIf="lenght !== 0; else elseBlock">
+    <div class="comments--list" *ngIf="commentTemp.length != 0">
+        <img class="avatar" [src]="image" alt="" width="40" height="40">
+        <div class="comments--description">
+            <div class="comments--decoration comments--opacity">
+                <div style="font-weight: bold; position: relative" class="comment--description">
+                    <mat-progress-bar mode="buffer" style="position: absolute; top: -5px"></mat-progress-bar>
+                    {{commentTemp["prenom"]}}
+                    {{commentTemp["nom"]}}
+                </div>
+                {{commentTemp["contenu"]}}
+            </div>
+            <p class="comments--createdAt">{{commentTemp["createdAt"] | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</p>
+        </div>
+    </div>
+    <comment *ngFor="let comment of comments; let i = index"
+            [postId]="postId" [comment]="comment">
+    </comment>
+</div>
+<ng-template #elseBlock>
+    <p class="comments--none">Pas de commentaire pour l'instant. Soyez le premier !</p>
+</ng-template>
+<mat-divider></mat-divider>

@@ -6,7 +6,7 @@
 </div>
 <section class="container postList" *ngIf="postList.length > 0; else elseBlock">
     <post *ngFor="let post of postList; let i = index"
-          [post]="post" [user]="user" [author]="author" [comments]="comments" [likes]="likes" [errorMessage]="errorMessage">
+          [post]="post" [userLink]="user" [author]="author" [comments]="comments" [likes]="likes" [errorMessage]="errorMessage">
     </post>
 </section>
 <ng-template #elseBlock>

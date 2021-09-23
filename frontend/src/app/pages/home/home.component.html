@@ -16,9 +16,9 @@
                         <div mat-card-avatar>
                             <img class="avatar" [src]="image" alt="" width="40" height="40">
                         </div>
-                        <mat-form-field class="field-form-contenu" appearance="fill">
-                            <textarea matInput name="contenu" placeholder="Contenu de votre post" formControlName="contenu"></textarea>
-                        </mat-form-field>
+                        <div class="form-search">
+                            <textarea name="contenu" placeholder="Contenu de votre post" formControlName="contenu"></textarea>
+                        </div>
                     </div>
                 </mat-card-header>
                 <mat-card-content class="new-post--card--content" *ngIf="url != null">
