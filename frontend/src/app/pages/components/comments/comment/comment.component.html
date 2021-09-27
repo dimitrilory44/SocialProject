@@ -28,7 +28,7 @@
             </div>
         </div>
     </form>
-    <button mat-icon-button class="comment__choice" [matMenuTriggerFor]="menu" aria-label="Menu modification commentaire" *ngIf="user.userId == comment.UserId && !isComment">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu modification commentaire" *ngIf="user.userId == comment.UserId && !isComment">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">

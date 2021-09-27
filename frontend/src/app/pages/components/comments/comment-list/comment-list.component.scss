@@ -1,0 +1,11 @@
+.comments {
+    overflow-y: auto; 
+    max-height: 200px; 
+    width: 100%; 
+    overflow-x: hidden;
+}
+
+.no-comments {
+    color:gray; 
+    text-align:center;
+}

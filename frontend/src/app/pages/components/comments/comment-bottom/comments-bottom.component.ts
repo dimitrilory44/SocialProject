@@ -6,7 +6,8 @@ import { User } from '../../../models/User.models';
 
 @Component({
   selector: 'app-comments',
-  templateUrl: './comments-bottom.component.html'
+  templateUrl: './comments-bottom.component.html',
+  styleUrls: ['./comments-bottom.component.scss']
 })
 export class CommentsBottomComponent implements OnInit, OnDestroy {
 

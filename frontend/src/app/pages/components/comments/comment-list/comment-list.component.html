@@ -1,4 +1,4 @@
-<div class="comment__form" *ngIf="lenght !== 0; else elseBlock">
+<div class="comments" *ngIf="lenght !== 0; else elseBlock">
     <div class="comment__list" *ngIf="commentTemp.length != 0">
         <img class="avatar" [src]="image" alt="" width="40" height="40" *ngIf="image">
         <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40" *ngIf="image == null">
@@ -19,6 +19,6 @@
     </comment>
 </div>
 <ng-template #elseBlock>
-    <p class="comment__none">Pas de commentaire pour l'instant. Soyez le premier !</p>
+    <p class="no-comments">Pas de commentaire pour l'instant. Soyez le premier !</p>
 </ng-template>
 <mat-divider></mat-divider>

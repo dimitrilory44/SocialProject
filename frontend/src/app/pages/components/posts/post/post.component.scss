@@ -1,89 +1,89 @@
-// ::ng-deep .tooltip-list {
-//     white-space: pre-line!important;
-//     max-width: 120px;
-// }
+::ng-deep .tooltip-list {
+    white-space: pre-line!important;
+    max-width: 120px;
+}
 
-// .post {
-//     &--card {
-//         margin-bottom: 20px;
+.post {
+    &--card {
+        margin-bottom: 20px;
 
-//         &:hover {
-//             cursor: pointer;
-//         }
+        &:hover {
+            cursor: pointer;
+        }
 
-//         &--header {
-//             margin-left: 20px;
+        &--header {
+            // margin-left: 20px;
 
-//             .avatar {
-//                 border-radius: 50%;
-//             }
+            .avatar {
+                border-radius: 50%;
+            }
 
-//             .actions--post {
-//                 position:absolute; 
-//                 right:20px; 
-//                 top:10px; 
-//                 color:grey;
-//             }
-//         }
+            .actions--post {
+                position:absolute; 
+                right:20px; 
+                top:10px; 
+                color:grey;
+            }
+        }
 
-//         &--content {
-//             .content {
-//                 padding-left: 20px;
-//                 margin-bottom: 30px;
-//             }
+        &--content {
+            .content {
+                padding-left: 20px;
+                margin-bottom: 30px;
+            }
 
-//             .like--comment--list {
-//                 display: flex; 
-//                 justify-content: space-between;
-//                 margin-right: 20px;
-//                 margin-left: 20px;
-//             }
+            .like--comment--list {
+                display: flex; 
+                justify-content: space-between;
+                margin-right: 20px;
+                margin-left: 20px;
+            }
     
-//             .like--list--container {
-//                 display: flex; 
-//                 justify-content: center; 
-//                 align-items: center;
-//             }
-//         }
+            .like--list--container {
+                display: flex; 
+                justify-content: center; 
+                align-items: center;
+            }
+        }
         
-//         .btn--list {
-//             background-color: #0d8bf0; 
-//             width: 25px; 
-//             height: 25px;
-//         }
+        .btn--list {
+            background-color: #0d8bf0; 
+            width: 25px; 
+            height: 25px;
+        }
         
-//         &--like {
-//             &:hover {
-//                 text-decoration: underline;
-//                 cursor: pointer;
-//             }
+        &--like {
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
             
-//             .like--content {
-//                 margin-left: 10px;
-//             }
-//         }
+            .like--content {
+                margin-left: 10px;
+            }
+        }
 
-//         &--comment {
-//             &:hover {
-//                 text-decoration: underline;
-//                 cursor: pointer;
-//             }
-//         }
+        &--comment {
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
 
-//         &--actions {
-//             display: flex; 
-//             justify-content: space-between; 
-//             width: 70%; 
-//             margin: 0 auto;
+        &--actions {
+            display: flex; 
+            justify-content: space-between; 
+            width: 70%; 
+            margin: 0 auto;
             
-//             .action--like {
-//                 margin-left: 10px;
-//             }
+            .action--like {
+                margin-left: 10px;
+            }
 
-//             .action--comment {
-//                 margin-left: 10px; 
-//                 color: grey;
-//             }
-//         }
-//     }
-// }
+            .action--comment {
+                margin-left: 10px; 
+                color: grey;
+            }
+        }
+    }
+}
