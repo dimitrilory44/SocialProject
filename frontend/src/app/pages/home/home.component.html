@@ -5,8 +5,8 @@
     <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
     <section id="createPost" class="container" *ngIf="!errorServeur">
         <form [formGroup]="createPost" (ngSubmit)="onSubmit()">
-            <mat-card class="new-post--card">
-                <mat-card-header class="new-post--card--header">
+            <mat-card class="card">
+                <mat-card-header class="card__header header__spacing">
                     <div class="avatar--contenu">
                         <div mat-card-avatar *ngIf="image == null">
                             <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40">
@@ -19,19 +19,19 @@
                         </div>
                     </div>
                 </mat-card-header>
-                <mat-card-content class="new-post--card--content" *ngIf="url != null">
-                    <img [src]="url" alt="" class="new-post--image">
+                <mat-card-content class="card__content" *ngIf="url != null">
+                    <img [src]="url" alt="" class="new-post__image">
                 </mat-card-content>
                 <mat-divider></mat-divider>
-                <mat-card-actions class="new-post--card--actions">
+                <mat-card-actions class="card__actions">
                     <button mat-button>
                         <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
                         <mat-icon class="icon-file">add_photo_alternate</mat-icon>
-                        <span class="image">Image</span>
+                        <span class="new-post__detail">Image</span>
                     </button>
                     <button mat-button type="submit">
                         <mat-icon class="icon-sent">send</mat-icon>
-                        <span class="send">Publier</span>
+                        <span class="new-post__detail">Publier</span>
                     </button>
                 </mat-card-actions>
             </mat-card>

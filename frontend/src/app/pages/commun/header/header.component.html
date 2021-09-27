@@ -12,9 +12,9 @@
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" class="form-autocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nom">
             <a (click)="goToprofil($event, option.id)">
-              <img class="form-autocomplete-img avatar" aria-hidden [src]="option.image" height="25" *ngIf="option.image">
-              <img class="form-autocomplete-img avatar" aria-hidden src="../../../../assets/guest.png" height="25" *ngIf="option.image == null">
-              <span>{{option.prenom}} {{option.nom}}</span>
+                <img class="form-autocomplete-img avatar" aria-hidden [src]="option.image" height="25" *ngIf="option.image">
+                <img class="form-autocomplete-img avatar" aria-hidden src="../../../../assets/guest.png" height="25" *ngIf="option.image == null">
+                <span>{{option.prenom}} {{option.nom}}</span>
             </a>
           </mat-option>
         </mat-autocomplete>

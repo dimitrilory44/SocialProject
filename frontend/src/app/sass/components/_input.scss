@@ -34,6 +34,13 @@ input[type="text"] {
     width: 200px;
 }
 
+input[type="file"] {
+    left: -5px;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+}
+
 .field-form {
     margin-left: 20px; 
     width: 100%;

@@ -1,91 +1,27 @@
-// @import '../utils/mixins', '../utils/variables';
-
 #createPost {
     margin: 20px auto;
 }
 
-input[type="file"] {
-    left: -5px;
-    opacity: 0;
-    position: absolute;
-    top: 8px;
-}
-
-.new-post--card {
-    &--header {
-        display: flex; 
-        flex-direction: column;
-        margin-left: 20px;
-        
-        .avatar--contenu {
-            display: flex; 
-            flex-direction: row; 
-            width: 100%;
-
-            .field-form-contenu {
-                margin-left: 20px;
-                width:100%;
-            }
-        }
-    }
-
-    &--content {
-        display: flex; 
-        flex-direction: column; 
-        width: 100%;
-
-        .new-post--image {
-            width: 100%; 
-            margin: 20px auto;
-        }
-    }
-
-    &--actions {
-        display: flex; 
-        justify-content: space-between; 
-        width: 70%; 
-        margin: 0 auto;
-
-        .image {
-            margin-left: 10px; 
-            color: grey;
-        }
-
-        .send {
-            margin-left: 10px; 
-            color: grey;
-        }
-    }
-}
-
-textarea {
-    border: none;
-    background-color: transparent;
-    width: 100%;
-}
-
-.form-search {
-    background-color: #ebedf0;
-    border-radius: 20px;
-    width: 100%;
-    display: flex;
-    padding: 10px;
-    margin-left: 12px;
+.header__spacing {
+    display: flex; 
+    flex-direction: column;
     margin-bottom: 20px;
+        
+    .avatar--contenu {
+        display: flex; 
+        flex-direction: row; 
+        width: 100%;
+    }
 }
 
-input:focus, :hover{
-    outline: none;
-}
+.new-post {
+    &__image {
+        width: 100%; 
+        margin: 20px auto;
+    }
 
-// .commentaire {
-//     background-color: #ebedf0;
-//     width: 30%;
-//     border-radius: 18px;
-//     display: inline-block;
-//     line-height: 16px;
-//     margin-left: 10px;
-//     min-width: 0;
-//     overflow: hidden;
-//     padding: 6px 12px 7px 12px;
-// }
+    &__detail {
+        margin-left: 10px; 
+        color: grey;
+    }
+}
