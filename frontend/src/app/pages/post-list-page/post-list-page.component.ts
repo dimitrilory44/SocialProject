@@ -22,6 +22,8 @@ export class PostListPageComponent implements OnInit {
   mailTo :string = '';
   telTo :string = '';
   data :any[];
+
+  errorServeur ?:string = '';
   
   constructor(
     private _activeRoute :ActivatedRoute,
@@ -53,7 +55,7 @@ export class PostListPageComponent implements OnInit {
           }
         },
         error: error => {
-          console.log(error.message);
+          this.errorServeur = error.message;
         }
       })
     });

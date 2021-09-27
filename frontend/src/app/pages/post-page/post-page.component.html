@@ -1,11 +1,9 @@
-<app-header></app-header>
+<app-header *ngIf="!errorServeur"></app-header>
 
 <main>
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 100px" *ngIf="errorServeur">
-        <h1 class="mat-display-4" style="color:red;text-align:center">500</h1>
-        <h2 style="color:grey;text-align:center">Erreur Serveur. Ca vient probablement de notre côté</h2>
-    </div>
-    <section class="container" style="margin-top: 20px">
+    <error-client [errorClient]="errorMessage" *ngIf="errorMessage"></error-client>
+    <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
+    <section class="container" style="margin-top: 20px" *ngIf="!errorServeur">
         <post [post]="post" [userLink]="my_user" [isPost]="isPost"></post>
     </section>
 </main>

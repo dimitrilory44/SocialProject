@@ -25,6 +25,9 @@ import { NewCommentComponent } from './components/comments/new-comment/new-comme
 import { CommentComponent } from './components/comments/comment/comment.component';
 import { CommentsBottomComponent } from './components/comments/comment-bottom/comments-bottom.component';
 
+import { ErreurClientComponent } from '../error/pages/erreur-client/erreur-client.component';
+import { ErreurServeurComponent } from '../error/pages/erreur-serveur/erreur-serveur.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -40,7 +43,9 @@ import { CommentsBottomComponent } from './components/comments/comment-bottom/co
     UserUpdateComponent,
     CommentListComponent,
     NewCommentComponent,
-    CommentComponent
+    CommentComponent,
+    ErreurServeurComponent,
+    ErreurClientComponent
   ],
   imports: [
     CommonModule,

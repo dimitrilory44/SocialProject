@@ -28,6 +28,9 @@ export class ProfilComponent implements OnInit, OnDestroy {
   mailTo :string = '';
   telTo :string = '';
 
+  errorServeur ?:string = '';
+  errorMessage ?:string = '';
+
   constructor(
     private _routes :Router,
     private _userService :UserService,
@@ -46,6 +49,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
         this.telephone = this.my_user.telephone;
       },
       error: error => {
+        this.errorServeur = error.message;
         console.log(error.error);
       }
     })
@@ -80,7 +84,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
         console.log(result.message);
       },
       error: error => {
-        // this.errorMessage = error.message;
+        this.errorMessage = error.message;
         console.log(error.message);
       }
     })

@@ -13,14 +13,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard, AuthInterceptor } from './_helpers';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
+
+import { ForbiddenComponent } from './error/forbidden/forbidden.component';
+import { ErreurClientAuthComponent } from './error/auth/erreur-client/erreur-client-auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ErreurClientAuthComponent
   ],
   imports: [
     BrowserModule,

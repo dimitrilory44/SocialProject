@@ -7,7 +7,7 @@
     <div class="register container">
         <h2 style="margin-top: 20px;">Inscription</h2>
         <form class="form-auth" [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
-            <mat-form-field class="field-form" appearance="outline">
+            <mat-form-field class="field-auth field-register" appearance="outline">
                 <mat-label for="nom">
                     <mat-icon>person</mat-icon>
                     Saisir votre nom
@@ -17,7 +17,7 @@
                     <div *ngIf="f.nom.errors.required"><strong>Nom</strong> est obligatoire</div>
                 </mat-error>  
             </mat-form-field>
-            <mat-form-field class="field-form" appearance="outline">
+            <mat-form-field class="field-auth field-register" appearance="outline">
                 <mat-label for="prenom">
                     <mat-icon>person</mat-icon>
                     Saisir votre prenom
@@ -27,7 +27,7 @@
                     <div *ngIf="f.prenom.errors.required"><strong>Prenom</strong> est obligatoire</div>
                 </mat-error> 
             </mat-form-field>
-            <mat-form-field class="field-form" appearance="outline">
+            <mat-form-field class="field-auth field-register" appearance="outline">
                 <mat-label for="email">
                     <mat-icon>email</mat-icon>
                    Saisir votre email
@@ -38,7 +38,7 @@
                     <div *ngIf="f.email.errors.pattern"><strong>Email</strong> must be a valid email address</div>
                 </mat-error> 
             </mat-form-field>    
-            <mat-form-field class="field-form" appearance="outline">
+            <mat-form-field class="field-auth field-register" appearance="outline">
                 <mat-label for="password">
                     <mat-icon>lock</mat-icon>
                     Saisir un mot de passe
@@ -52,7 +52,7 @@
                     <div *ngIf="f.password.errors.minlength"><strong>Password</strong> doit contenir 6 characters minimum</div>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="field-form" appearance="outline">
+            <mat-form-field class="field-auth field-register" appearance="outline">
                 <mat-label for="confirmPassword">
                     <mat-icon>lock</mat-icon>
                     Saisir à nouveau votre mot de passe

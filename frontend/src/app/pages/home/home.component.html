@@ -1,13 +1,8 @@
 <app-header *ngIf="!errorServeur"></app-header>
 
 <main>
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column" *ngIf="errorMessage">
-        <h2 style="color:red;text-align:center">{{errorMessage}}</h2>
-    </div>
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 100px" *ngIf="errorServeur">
-        <h1 class="mat-display-4" style="color:red;text-align:center">500</h1>
-        <h2 style="color:grey;text-align:center">Erreur Serveur. Ca vient probablement de notre côté</h2>
-    </div>
+    <error-client [errorClient]="errorMessage" *ngIf="errorMessage"></error-client>
+    <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
     <section id="createPost" class="container" *ngIf="!errorServeur">
         <form [formGroup]="createPost" (ngSubmit)="onSubmit()">
             <mat-card class="new-post--card">
@@ -42,8 +37,5 @@
             </mat-card>
         </form>
     </section>
-    <section id="listePost">
-        <post-list [postList]="posts" [errorServeur]="errorServeur"></post-list>
-    </section>
-    <mat-divider></mat-divider>
+    <post-list [postList]="posts" [errorServeur]="errorServeur"></post-list>
 </main>

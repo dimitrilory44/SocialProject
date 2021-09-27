@@ -7,6 +7,12 @@
     padding: 5px;
 }
 
+.field-auth {
+    display: flex!important;
+    flex-direction: column!important;
+    justify-content: center!important;
+}
+
 .form-header {
     background-color: #e0e0e0;
     width: 180px;
@@ -30,6 +36,10 @@ input[type="text"] {
 
 .field-form {
     margin-left: 20px; 
+    width: 100%;
+}
+
+.field-content {
     width: 100%;
 }
 

@@ -1,0 +1,18 @@
+.card {
+    margin-bottom: 20px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &__header {
+        margin-left: 20px;
+    }
+
+    &__actions {
+        display: flex!important; 
+        justify-content: space-between!important; 
+        width: 70%; 
+        margin: 0 auto!important;
+    }
+} 

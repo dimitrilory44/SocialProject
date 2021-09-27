@@ -97,14 +97,6 @@ export class PostComponent implements OnInit, OnDestroy  {
 
   openBottomSheet(id: number): void {
     this._bottomSheet.open(CommentsBottomComponent, {
-      autoFocus: true,
-      data: id
-    });
-  }
-
-  openBottomSheetVisualisation(id: number): void {
-    this._bottomSheet.open(CommentsBottomComponent, {
-      autoFocus: false,
       data: id
     });
   }

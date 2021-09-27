@@ -1,7 +1,9 @@
-<app-header></app-header>
+<app-header *ngIf="!errorServeur"></app-header>
 
 <main>
-    <section style="display:flex; justify-content: center;">
+    <error-client [errorClient]="errorMessage" *ngIf="errorMessage"></error-client>
+    <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
+    <section style="display:flex; justify-content: center;" *ngIf="!errorServeur">
         <div style="display:flex; margin-top: 20px; flex-direction: column; margin-bottom: 30px" class="profil">
             <div style="display:flex; justify-content: center;" class="image" *ngIf="image == null">
                 <img src="../../../../assets/guest.png" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
@@ -31,7 +33,6 @@
             <button mat-flat-button color="primary" style="margin-top: 30px" (click)="showPost($event, user.userId)">
                 Voir les posts associés
             </button>
-            <mat-divider></mat-divider>
         </div>
     </section>
 </main>

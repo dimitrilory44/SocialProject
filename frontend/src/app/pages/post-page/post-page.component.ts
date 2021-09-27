@@ -1,5 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
@@ -21,6 +20,7 @@ export class PostPageComponent implements OnInit {
   isPost :boolean = false;
 
   errorServeur ?:string = '';
+  errorMessage ?:string = '';
 
   constructor(
     private _routes :Router,

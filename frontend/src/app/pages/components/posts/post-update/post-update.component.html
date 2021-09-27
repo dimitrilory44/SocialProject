@@ -1,12 +1,18 @@
-<h1 mat-dialog-title>Modifie ton post</h1>
-<mat-dialog-content class="mat-typography" style="display: flex; justify-content: center; flex-direction:column; text-align:center">
+<div class="dialog-header">
+    <h1 mat-dialog-title>Modifiez post</h1>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<mat-dialog-content class="mat-typography dialog-content">
     <form [formGroup]="updatePost" (ngSubmit)="onSubmitUpdate()">
-        <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+        <mat-form-field class="field-content" appearance="fill">
             <mat-label>Contenu</mat-label>
             <textarea matInput placeholder="Votre contenu" formControlName="contenu"></textarea>
         </mat-form-field>
         <br>
-        <img *ngIf="post" [src]="post.image" alt="" style="width: 100%;">
+        <img *ngIf="post" [src]="post.image" alt="" class="post__image">
         <mat-dialog-actions align="end">
             <button mat-button mat-dialog-close>Cancel</button>
             <button mat-button [mat-dialog-close]="true" type="submit">Modifier</button>
