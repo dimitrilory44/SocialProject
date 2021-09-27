@@ -76,7 +76,7 @@ exports.getOnePost = (req, res) => {
 exports.updatePost = (req, res) => {
     const postObject = req.file ? {
         contenu: req.body.contenu,
-        image: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`
+        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body};
     Post.update(postObject, {
         where: {
@@ -88,8 +88,6 @@ exports.updatePost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-    // Penser à supprimer les commentaires aussi
-
     Post.findOne({where: {id: req.params.id}})
     .then(my_post => {
         const filename = my_post.image.split('/images/')[1];
@@ -138,7 +136,7 @@ exports.getLikesPost = (req, res) => {
             PostId: req.params.id
         }
     })
-    .then(postLike => res.status(201).json(postLike))
+    .then(postLike => res.status(200).json(postLike))
     .catch(error => res.status(400).json(error));
 };
 

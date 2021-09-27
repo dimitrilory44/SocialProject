@@ -18,7 +18,7 @@ import { Comment } from '../../../models/Comment.models';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit, OnDestroy {
+export class PostComponent implements OnInit, OnDestroy  {
 
   @Input() post ?:Post;
   @Input() userLink ?:User;
@@ -38,6 +38,7 @@ export class PostComponent implements OnInit, OnDestroy {
   color :string;
   likeList :string = '';
   id :number;
+  isLike :boolean = false;
 
   user :User;
 
@@ -54,6 +55,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    // appeler post service
   }
 
   ngOnDestroy() {
@@ -108,7 +110,6 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   onLike(id: number) {
-
     // if(this.postList[index].Like_posts[0].User.userId == this.user.userId){}
     // Il faut stocker un booleen sinon ca n'ira que dans un sens
     if(this.isActive) {
@@ -164,13 +165,12 @@ export class PostComponent implements OnInit, OnDestroy {
     });
   }
 
-  showPost(event :any, post :Post) {
-    event.preventDefault();
-    this._routes.navigate(['/posts', post.id]);
-    this.change.emit(post.id);
+  showPost(id :number) {
+    this._routes.navigate(['/posts', id]);
+    this.change.emit(id);
   }
 
-  showComments() {
-    this.isComment = false;
+  showComment() {
+    this.isComment = !this.isComment;
   }
 }

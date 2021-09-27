@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   user :User;
   image :string = '';
   width :number;
+  isSearch :boolean = true;
 
   userSearch :FormGroup;
 
@@ -40,11 +41,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.userHeader = JSON.parse(localStorage.getItem('currentUser'));
 
+    if (this._routes.url.startsWith("/profil") || this._routes.url.startsWith("/posts")) {
+      this.isSearch = false;        
+      console.log(this.isSearch);
+    }
+
     this.width = window.innerWidth;
 
     this._userService.getUser(this.userHeader.userId).subscribe({
       next: result => {
-        console.log(result);
         this.user = result;
         this.image = this.user.image;
       },
@@ -56,9 +61,7 @@ export class HeaderComponent implements OnInit {
 
     this._userService.getUsers().subscribe({
       next: data => {
-        console.log(data);
         this.users = data;
-        console.log(this.users);
       },
       error: error => {
         console.log(error.message);
@@ -69,8 +72,6 @@ export class HeaderComponent implements OnInit {
         startWith(''),
         map(prenom => prenom ? this._filter(prenom) : this.users.slice())
     );
-
-    console.log(this.filteredOptions);
   }
 
   openDialog(): void {

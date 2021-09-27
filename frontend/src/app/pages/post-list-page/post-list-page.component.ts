@@ -34,6 +34,7 @@ export class PostListPageComponent implements OnInit {
     this._activeRoute.paramMap.subscribe((res:any) => {
       this._userService.getPostByUser(res.get("id")).subscribe({
         next: data => {
+          this.postByUser = [];
           console.log(data);
           this.data = data;
           if (data) {
@@ -44,6 +45,11 @@ export class PostListPageComponent implements OnInit {
             this.image = data.image;
             this.postByUser = data.Posts;
             console.log(this.postByUser);
+          } else {
+            this.prenom = data.prenom;
+            this.nom = data.nom;
+            this.email = data.email;
+            this.telephone = data.telephone;
           }
         },
         error: error => {

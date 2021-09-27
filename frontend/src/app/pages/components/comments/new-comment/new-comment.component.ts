@@ -8,8 +8,7 @@ import { User } from '../../../models/User.models';
 
 @Component({
   selector: 'new-comment',
-  templateUrl: './new-comment.component.html',
-  styleUrls: ['./new-comment.component.scss']
+  templateUrl: './new-comment.component.html'
 })
 export class NewCommentComponent implements OnInit {
 

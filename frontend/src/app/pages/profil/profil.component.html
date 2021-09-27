@@ -3,9 +3,12 @@
 <main>
     <section style="display:flex; justify-content: center;">
         <div style="display:flex; margin-top: 20px; flex-direction: column; margin-bottom: 30px" class="profil">
-            <div style="display:flex; justify-content: center;" class="image">
-                <img [src]='image' class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
-            </div> 
+            <div style="display:flex; justify-content: center;" class="image" *ngIf="image == null">
+                <img src="../../../../assets/guest.png" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+            </div>
+            <div style="display:flex; justify-content: center;" class="image" *ngIf="image">
+                <img [src]="image" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+            </div>  
             <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
             <div class="coordonnées">
                 <div style="margin-bottom: 20px">

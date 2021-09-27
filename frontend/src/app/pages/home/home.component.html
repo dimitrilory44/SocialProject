@@ -13,7 +13,10 @@
             <mat-card class="new-post--card">
                 <mat-card-header class="new-post--card--header">
                     <div class="avatar--contenu">
-                        <div mat-card-avatar>
+                        <div mat-card-avatar *ngIf="image == null">
+                            <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40">
+                        </div>
+                        <div mat-card-avatar *ngIf="image">
                             <img class="avatar" [src]="image" alt="" width="40" height="40">
                         </div>
                         <div class="form-search">
@@ -28,11 +31,11 @@
                 <mat-card-actions class="new-post--card--actions">
                     <button mat-button>
                         <input type="file" name="image" (change)="onSelectFile($event)" formControlName="image"/>
-                        <mat-icon style="color: red">add_photo_alternate</mat-icon>
+                        <mat-icon class="icon-file">add_photo_alternate</mat-icon>
                         <span class="image">Image</span>
                     </button>
                     <button mat-button type="submit">
-                        <mat-icon style="color: red">send</mat-icon>
+                        <mat-icon class="icon-sent">send</mat-icon>
                         <span class="send">Publier</span>
                     </button>
                 </mat-card-actions>

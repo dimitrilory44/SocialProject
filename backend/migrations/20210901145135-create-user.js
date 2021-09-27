@@ -26,9 +26,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       image: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: "http://localhost:3000/images/guest.png"
+        allowNull: true,
+        type: Sequelize.STRING
       },
       telephone: {
         allowNull: false,

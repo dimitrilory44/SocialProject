@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription$ = this._apiService.getPosts().subscribe({
       next: data => {
         this.posts = data;
-        
         console.log(this.posts);
       },
       error: error => {
@@ -56,7 +55,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this._userService.getUser(this.user.userId).subscribe({
       next: result => {
-        console.log(result);
         this.my_user = result;
         this.image = this.my_user.image;
       },
@@ -65,8 +63,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log(error.error);
       }
     })
-
-    console.log(this.user.userId);
 
     this.createPost = this._formBuilder.group({
       titre : ['post_image', Validators.required],

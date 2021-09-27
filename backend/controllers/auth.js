@@ -11,7 +11,8 @@ exports.signup = (req, res) => {
             email: req.body.email,
             password: hash,
             nom: req.body.nom,
-            prenom: req.body.prenom
+            prenom: req.body.prenom,
+            isAdmin: req.body.isAdmin
         };
         User.create(user)
         .then(() => res.status(201).json({message: 'Utilisateur crée !'}))

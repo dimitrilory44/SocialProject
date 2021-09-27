@@ -1,32 +1,34 @@
-<div class="comments--list">
-    <img class="avatar" [src]="comment?.User?.image" alt="" width="40" height="40">
-    <div class="comments--description" *ngIf="!isComment">
-        <div class="comments--decoration">
-            <div style="font-weight: bold;" class="comment--description">
+<div class="comment__list">
+    <img class="avatar" [src]="comment?.User?.image" alt="" width="40" height="40" *ngIf="comment?.User?.image">
+    <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40" *ngIf="comment?.User?.image == null">
+    <div class="comment__description" *ngIf="!isComment">
+        <div class="comment__decoration">
+            <div class="comment__author">
                 {{comment.User.prenom}}
                 {{comment.User.nom}}
             </div>
-            {{comment.contenu}}
+            <span>
+                {{comment.contenu}}
+            </span>
         </div>
-        <p class="comments--createdAt">{{comment.createdAt | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</p>
+        <p class="comment__createdAt">{{comment.createdAt | date:'dd/MM/yyyy HH:mm':'UTC+2'}}</p>
     </div>
     <form [formGroup]="updateCommentaire" (ngSubmit)="updateComment(comment?.id)">
-        <div class="comments--description" *ngIf="isComment">
-            <div class="comments">
-                <div style="font-weight: bold;" class="comment--description">
-                    {{user.prenom}}
-                    {{user.nom}}
+        <div class="comment__description" *ngIf="isComment">
+            <div class="comment__decoration comment__update">
+                <div class="comment__author">
+                    {{user.prenom}} {{user.nom}}
                     <div class="form-search">
-                        <textarea type="text" formControlName="contenu" class="comment--input"></textarea>
+                        <textarea type="text" formControlName="contenu" class="comment__input"></textarea>
                     </div>
                 </div>
                 <button mat-icon-button type="submit">
-                    <mat-icon class="send" style="color: red">send</mat-icon>
+                    <mat-icon class="icon-sent">send</mat-icon>
                 </button>
             </div>
         </div>
     </form>
-    <button mat-icon-button class="comments--choice" [matMenuTriggerFor]="menu" aria-label="Menu modification commentaire" *ngIf="user.userId == comment.UserId && !isComment">
+    <button mat-icon-button class="comment__choice" [matMenuTriggerFor]="menu" aria-label="Menu modification commentaire" *ngIf="user.userId == comment.UserId && !isComment">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -35,7 +37,7 @@
             <span>Modifier commentaire</span>
         </button>
         <button mat-menu-item (click)="deleteComment(comment?.id)">
-            <mat-icon style="color:rgb(147, 134, 134)">delete</mat-icon>
+            <mat-icon class="icon-delete">delete</mat-icon>
             <span>Supprimer commentaire</span>
         </button>
     </mat-menu>

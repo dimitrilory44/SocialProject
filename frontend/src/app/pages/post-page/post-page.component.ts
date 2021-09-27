@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
@@ -13,6 +14,7 @@ import { User } from '../models/User.models';
 export class PostPageComponent implements OnInit {
 
   post ?:Post;
+  id :number;
   user ?:User;
   my_user :User;
   image :string = '';
@@ -38,7 +40,6 @@ export class PostPageComponent implements OnInit {
     this._activeRoute.paramMap.subscribe((res:any) => {
       this._apiService.getPost(res.get("id")).subscribe({
         next: data => {
-          console.log(data);
           this.post = data;
         },
         error: error => {
@@ -50,7 +51,6 @@ export class PostPageComponent implements OnInit {
 
     this._userService.getUser(this.user.userId).subscribe({
       next: result => {
-        console.log(result);
         this.my_user = result;
         this.image = this.my_user.image;
       },

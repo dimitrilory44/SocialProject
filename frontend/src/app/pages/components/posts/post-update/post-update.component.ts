@@ -40,10 +40,6 @@ export class UpdatePostComponent implements OnInit, AfterContentInit {
     this.updatePost.controls.image.setValue(this.post.image);
   }
 
-  ngOnDestroy() {
-    this.subscription$.unsubscribe();
-  }
-
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       horizontalPosition: 'center',
@@ -58,7 +54,7 @@ export class UpdatePostComponent implements OnInit, AfterContentInit {
     post.contenu = this.updatePost.get('contenu').value;
     post.image = this.updatePost.get('image').value;
 
-    this.subscription$ = this._apiService.updatePost(this.post.id, post).subscribe({
+    this._apiService.updatePost(this.post.id, post).subscribe({
       next: result => {
         this.openSnackBar(result.message, 'fermer');
         location.reload();

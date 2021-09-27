@@ -1,29 +1,33 @@
-<header style="position: fixed; width: 100%; top:0; z-index: 1;">
-    <mat-toolbar class="toolbar" style="display:flex; justify-content: space-between;">
-      <a routerLink="/" style="text-decoration: none; display: flex; justify-content: center; align-items:center">
+<header>
+    <mat-toolbar class="toolbar">
+      <a routerLink="/" class="link-home">
         <img src="../../../../assets/icon.png" height="50" width="50"/>
         <span class="title" *ngIf="width > 700">Groupomania</span>
       </a>
       
       <!-- Recherche d'utilisateur -->
-        <div class="form-search">
-          <mat-icon>search</mat-icon>
-          <input type="text" [formControl]="myControl" [matAutocomplete]="auto" placeholder="Search">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" style="width: 200px!important;">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nom">
-              <a (click)="goToprofil($event, option.id)">
-                <img class="example-option-img" aria-hidden [src]="option.image" height="25">
-                <span>{{option.prenom}} {{option.nom}}</span>
-              </a>
-            </mat-option>
-          </mat-autocomplete>
-        </div>
+      <div class="form-search form-header" *ngIf="isSearch">
+        <mat-icon>search</mat-icon>
+        <input type="text" [formControl]="myControl" [matAutocomplete]="auto" placeholder="Search">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" class="form-autocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nom">
+            <a (click)="goToprofil($event, option.id)">
+              <img class="form-autocomplete-img avatar" aria-hidden [src]="option.image" height="25" *ngIf="option.image">
+              <img class="form-autocomplete-img avatar" aria-hidden src="../../../../assets/guest.png" height="25" *ngIf="option.image == null">
+              <span>{{option.prenom}} {{option.nom}}</span>
+            </a>
+          </mat-option>
+        </mat-autocomplete>
+      </div>
 
       <mat-chip-list>
         <mat-chip>
           <span *ngIf="userHeader !== null">{{userHeader.prenom}}</span>
-          <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon">
-            <img [src]="image" class="avatar avatar-mini" style="margin-left: 15px" alt="">
+          <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image == null">
+            <img src="../../../../assets/guest.png" class="avatar avatar-mini chip-position" alt="">
+          </button>
+          <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image">
+            <img [src]="image" class="avatar avatar-mini chip-position" alt="">
           </button>
           <mat-menu #menu="matMenu">
             <button *ngIf="user?.isAdmin" mat-menu-item (click)="openDialog()">

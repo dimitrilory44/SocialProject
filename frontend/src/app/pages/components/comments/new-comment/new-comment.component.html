@@ -1,13 +1,16 @@
 <form [formGroup]="createComment" (ngSubmit)="onSubmitComment()">
-    <div class="newComment">
-        <div mat-card-avatar>
+    <div class="comment__new">
+        <div mat-card-avatar *ngIf="findUser?.image">
             <img class="avatar" [src]="findUser?.image" alt="" width="40" height="40">
         </div>
+        <div mat-card-avatar *ngIf="findUser?.image == null">
+            <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40">
+        </div>
         <div class="form-search">
-            <textarea matInput name="contenu"  formControlName="contenu" placeholder="Envoyer un commentaire" autofocus></textarea>
+            <textarea matInput name="contenu" formControlName="contenu" placeholder="Envoyer un commentaire" autofocus></textarea>
         </div>
         <button mat-icon-button type="submit" [disabled]="!createComment.valid" *ngIf="createComment.get('contenu').value.length !== 0">
-            <mat-icon class="newComment--send">send</mat-icon>
+            <mat-icon class="icon-sent">send</mat-icon>
         </button>
     </div>
 </form>
