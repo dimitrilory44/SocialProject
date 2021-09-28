@@ -1,7 +1,7 @@
-<div class="comments" *ngIf="lenght !== 0; else elseBlock">
+<div class="comments" *ngIf="comments?.length !== 0; else elseBlock">
     <div class="comment__list" *ngIf="commentTemp.length != 0">
-        <img class="avatar" [src]="image" alt="" width="40" height="40" *ngIf="image">
-        <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40" *ngIf="image == null">
+        <img class="avatar" [src]="myUser?.image" alt="" width="40" height="40" *ngIf="myUser?.image">
+        <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40" *ngIf="myUser?.image == null">
         <div class="comment__description">
             <div class="comment__decoration comment__opacity">
                 <div style="font-weight: bold; position: relative" class="comment__description">

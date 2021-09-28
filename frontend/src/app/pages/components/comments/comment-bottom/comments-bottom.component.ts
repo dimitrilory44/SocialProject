@@ -1,6 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { Subscription } from 'rxjs';
+import { Comment } from 'src/app/pages/models/Comment.models';
+import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
 import { User } from '../../../models/User.models';
 
@@ -12,24 +14,29 @@ import { User } from '../../../models/User.models';
 export class CommentsBottomComponent implements OnInit, OnDestroy {
 
   subscription$ ?:Subscription;
+  subscriptionComments$ ?:Subscription;
   errorMessage ?:string;
+  commentList ?:Comment[];
 
   user :User;
   my_user :User;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: number,
-    private _userService :UserService
+    private _userService :UserService,
+    private _apiService :PostService
   ) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
-    console.log(this.data);
+    this.subscriptionComments$ = this._apiService.getComments(this.data).subscribe(res => {
+      this.commentList = res;
+      console.log(this.commentList);
+    });
 
     this.subscription$ = this._userService.getUser(this.user.userId).subscribe({
       next: result => {
-        console.log(result);
         this.my_user = result;
       },
       error: error => {
@@ -41,5 +48,6 @@ export class CommentsBottomComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
+    this.subscriptionComments$.unsubscribe();
   }
 }

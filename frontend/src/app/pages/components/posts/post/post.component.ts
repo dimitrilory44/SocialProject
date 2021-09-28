@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,7 +23,7 @@ export class PostComponent implements OnInit, OnDestroy  {
   @Input() post ?:Post;
   @Input() userLink ?:User;
   @Input() author ?:User;
-  @Input() comments ?:Comment[];
+  @Input() commentsPost ?:Comment[] = [];
   @Input() likes ?:Like[] = [];
   @Input() isPost ?: boolean;
   @Input() errorMessage ?:string = '';

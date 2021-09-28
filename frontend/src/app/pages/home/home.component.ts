@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { User } from '../models/User.models';
 import { Like } from '../models/Like.models';
 import { UserService } from 'src/app/service/user.service';
+import { Comment } from '../models/Comment.models';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   createPostSubscription$ :Subscription;
   subscription$ ?:Subscription;
+  usersubscription$ ?:Subscription;
   posts ?:Post[] = [];
+  commentList ?:Comment[] = [];
   likes ?:Like[];
   file?: File;
   url ?:string;
@@ -45,7 +48,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription$ = this._apiService.getPosts().subscribe({
       next: data => {
         this.posts = data;
-        console.log(this.posts);
       },
       error: error => {
         this.errorServeur = error.message;
@@ -53,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
 
-    this._userService.getUser(this.user.userId).subscribe({
+    this.usersubscription$ = this._userService.getUser(this.user.userId).subscribe({
       next: result => {
         this.my_user = result;
         this.image = this.my_user.image;
@@ -76,6 +78,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() :void {
     this.createPostSubscription$?.unsubscribe();
     this.subscription$?.unsubscribe();
+    this.usersubscription$?.unsubscribe();
   }
 
   openSnackBar(message: string, action: string) {

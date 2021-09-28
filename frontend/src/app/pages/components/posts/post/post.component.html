@@ -50,8 +50,8 @@
       </a>
     </div>
   </mat-card-content>
-  <div *ngIf="isPost" style="padding: 15px">
-    <comment-list [postId]="post.id"></comment-list>
+  <div *ngIf="isPost" style="padding: 5px">
+    <comment-list [postId]="post?.id" [comments]="commentsPost" [myUser]="userLink" *ngIf="post"></comment-list>
     <new-comment [data]="post.id" [findUser]="userLink" *ngIf="isComment"></new-comment>
   </div>
   <mat-divider></mat-divider>

@@ -20,9 +20,11 @@ export class ProfilComponent implements OnInit, OnDestroy {
 
   user :User;
   userSouscription$ :Subscription;
+  deleteSouscription$ :Subscription;
   filename :string;
   image :string = '';
   telephone :string = '';
+  email :string = '';
   file: File;
   my_user :User;
   mailTo :string = '';
@@ -47,6 +49,8 @@ export class ProfilComponent implements OnInit, OnDestroy {
         this.my_user = result;
         this.image = this.my_user.image;
         this.telephone = this.my_user.telephone;
+        this.email = this.my_user.email;
+
       },
       error: error => {
         this.errorServeur = error.message;
@@ -57,6 +61,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.userSouscription$.unsubscribe();
+    this.deleteSouscription$?.unsubscribe();
   }
 
   gotoMail() {
@@ -77,7 +82,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
   }
 
   deleteUser(id: number) {
-    this._userService.deleteUser(id).subscribe({
+    this.deleteSouscription$ = this._userService.deleteUser(id).subscribe({
       next: result => {
         this._authService.logout();
         this._routes.navigate(['/login']);

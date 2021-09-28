@@ -17,6 +17,7 @@ export class UserUpdateComponent implements OnInit, AfterContentInit {
   file :File;
   image :string = '';
   telephone :string = '';
+  url :string = '';
 
   updateUser :FormGroup;
 
@@ -29,8 +30,6 @@ export class UserUpdateComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-
-    console.log(this.data);
 
     this.image = this.data.image;
     this.telephone = this.data.telephone;
@@ -50,7 +49,7 @@ export class UserUpdateComponent implements OnInit, AfterContentInit {
       let reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
-        this.image = reader.result as string;
+        this.url = reader.result as string;
       }
       this.file = e.target.files[0];
       this.updateUser.get('image').updateValueAndValidity();

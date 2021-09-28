@@ -4,13 +4,13 @@
 <div class="message-erreur" *ngIf="errorMessage">
   <h1 class="message">{{errorMessage}}</h1>
 </div>
-<section class="container posts" *ngIf="postList.length > 0; else elseBlock">
+<section class="container posts" *ngIf="postList?.length > 0; else elseBlock">
     <post *ngFor="let post of postList; let i = index"
-          [post]="post" [userLink]="user" [author]="author" [comments]="comments" [likes]="likes" [errorMessage]="errorMessage">
+          [post]="post" [userLink]="user" [author]="author" [likes]="likes" [errorMessage]="errorMessage">
     </post>
 </section>
 <ng-template #elseBlock>
   <div class="no-posts">
-    <h1 class="message-post">Vous n'avez pas de post pour l'instant</h1>
+    <h1 class="message-post">Pas de post pour l'instant</h1>
   </div>
 </ng-template>

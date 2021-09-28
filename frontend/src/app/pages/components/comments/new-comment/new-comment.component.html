@@ -6,7 +6,7 @@
         <div mat-card-avatar *ngIf="findUser?.image == null">
             <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40">
         </div>
-        <div class="form-search">
+        <div class="form-search spacing">
             <textarea matInput name="contenu" formControlName="contenu" placeholder="Envoyer un commentaire"></textarea>
         </div>
         <button mat-icon-button type="submit" [disabled]="!createComment.valid" *ngIf="createComment.get('contenu').value.length !== 0">

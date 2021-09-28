@@ -11,13 +11,13 @@
             <div style="display:flex; justify-content: center;" class="image" *ngIf="image">
                 <img [src]="image" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
             </div>  
-            <h1 style="margin-top: 30px;text-align:center">{{user.prenom}} {{user.nom}}</h1>
+            <h1 style="margin-top: 30px;text-align:center">{{my_user?.prenom}} {{my_user?.nom}}</h1>
             <div class="coordonnées">
                 <div style="margin-bottom: 20px">
                     <button mat-icon-button (click)="gotoMail()">
                         <mat-icon style="color:rgb(62, 49, 49)">email</mat-icon>
                     </button>
-                    <span style="margin-left: 10px;">{{user.email}}</span>
+                    <span style="margin-left: 10px;">{{email}}</span>
                 </div>
                 <div style="margin-bottom: 20px; position:relative" class="edit-tel">
                     <button mat-icon-button (click)="gotoTel()">

@@ -1,5 +1,5 @@
 .form-search {
-    margin-left: 10px;
+    // margin-left: 10px;
     background-color: #ebedf0;
     border-radius: 20px;
     width: 100%;
@@ -15,11 +15,15 @@
 
 .form-header {
     background-color: #e0e0e0;
-    width: 180px;
+    width: 225px;
 }
 
 .form-autocomplete {
-    width: 200px!important;
+    width: 300px!important;
+}
+
+.spacing {
+    margin-left: 15px!important;
 }
 
 textarea {
@@ -31,7 +35,10 @@ textarea {
 input[type="text"] {
     border: none;
     background-color: transparent;
-    width: 200px;
+}
+
+.input-header {
+    width: 300px;
 }
 
 input[type="file"] {

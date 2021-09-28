@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit {
 
     if (this._routes.url.startsWith("/profil") || this._routes.url.startsWith("/posts")) {
       this.isSearch = false;        
-      console.log(this.isSearch);
     }
 
     this.width = window.innerWidth;

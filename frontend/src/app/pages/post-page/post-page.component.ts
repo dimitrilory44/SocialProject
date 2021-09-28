@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { PostService } from 'src/app/service/post.service';
 import { UserService } from 'src/app/service/user.service';
+import { Comment } from '../models/Comment.models';
 import { Post } from '../models/Post.models';
 import { User } from '../models/User.models';
 
@@ -10,14 +12,18 @@ import { User } from '../models/User.models';
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.scss']
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit, OnDestroy {
 
+  subscriptionUser$ :Subscription;
+  subscriptionPost$ :Subscription;
+  commentList ?:Comment[] = [];
   post ?:Post;
   id :number;
   user ?:User;
   my_user :User;
   image :string = '';
   isPost :boolean = false;
+  lenght :number;
 
   errorServeur ?:string = '';
   errorMessage ?:string = '';
@@ -34,13 +40,16 @@ export class PostPageComponent implements OnInit {
 
     if (this._routes.url.startsWith("/posts")) {
       this.isPost = true;        
-      console.log(this.isPost);
     }
 
-    this._activeRoute.paramMap.subscribe((res:any) => {
+    this.subscriptionPost$ = this._activeRoute.paramMap.subscribe((res:any) => {
       this._apiService.getPost(res.get("id")).subscribe({
         next: data => {
           this.post = data;
+          this._apiService.getComments(this.post?.id).subscribe(res => {
+            this.commentList = res;
+            console.log(this.commentList);
+          });
         },
         error: error => {
           this.errorServeur = error.message;
@@ -49,7 +58,7 @@ export class PostPageComponent implements OnInit {
       })
     });
 
-    this._userService.getUser(this.user.userId).subscribe({
+    this.subscriptionUser$ = this._userService.getUser(this.user.userId).subscribe({
       next: result => {
         this.my_user = result;
         this.image = this.my_user.image;
@@ -59,5 +68,10 @@ export class PostPageComponent implements OnInit {
         console.log(error.error);
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.subscriptionUser$.unsubscribe();
+    this.subscriptionPost$.unsubscribe();
   }
 }
