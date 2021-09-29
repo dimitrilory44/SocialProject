@@ -17,10 +17,6 @@ module.exports = {
           key: 'id'
         }
       },
-      titre: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       image: {
         allowNull: true,
         type: Sequelize.STRING

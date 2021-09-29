@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   Post.init({
     UserId: DataTypes.INTEGER,
-    titre: DataTypes.STRING,
     image: DataTypes.STRING,
     contenu: DataTypes.STRING,
     createdAt: DataTypes.DATE

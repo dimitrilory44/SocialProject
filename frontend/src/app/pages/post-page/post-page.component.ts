@@ -46,9 +46,9 @@ export class PostPageComponent implements OnInit, OnDestroy {
       this._apiService.getPost(res.get("id")).subscribe({
         next: data => {
           this.post = data;
+          // Récupération de tous les commentaires associé au post
           this._apiService.getComments(this.post?.id).subscribe(res => {
             this.commentList = res;
-            console.log(this.commentList);
           });
         },
         error: error => {

@@ -8,7 +8,6 @@ const helmet = require('helmet');
 const routeAuth = require('./routes/auth');
 const routeUser = require('./routes/user');
 const routePost = require('./routes/post');
-// const routeLikes = require('./routes/like');
 
 require('dotenv').config();
 
@@ -49,8 +48,5 @@ app.use('/api/users', routeUser);
 
 // Recupération des posts
 app.use('/api/posts', routePost);
-
-// Recupération des likes
-// app.use('/api/likes', routeLikes);
 
 module.exports = app;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, AfterContentInit, } from '@angular/core';
+import { Component, OnInit, Inject, AfterContentInit, OnDestroy, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +11,7 @@ import { PostService } from '../../../../service/post.service';
   templateUrl: './post-update.component.html',
   styleUrls: ['./post-update.component.scss']
 })
-export class UpdatePostComponent implements OnInit, AfterContentInit {
+export class UpdatePostComponent implements OnInit, AfterContentInit, OnDestroy {
 
   subscription$ ?:Subscription;
   post ?:Post;
@@ -40,6 +40,10 @@ export class UpdatePostComponent implements OnInit, AfterContentInit {
     this.updatePost.controls.image.setValue(this.post.image);
   }
 
+  ngOnDestroy() {
+    this.subscription$?.unsubscribe();
+  }
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       horizontalPosition: 'center',
@@ -54,7 +58,7 @@ export class UpdatePostComponent implements OnInit, AfterContentInit {
     post.contenu = this.updatePost.get('contenu').value;
     post.image = this.updatePost.get('image').value;
 
-    this._apiService.updatePost(this.post.id, post).subscribe({
+    this.subscription$ = this._apiService.updatePost(this.post.id, post).subscribe({
       next: result => {
         this.openSnackBar(result.message, 'fermer');
         location.reload();

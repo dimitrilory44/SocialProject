@@ -1,12 +1,9 @@
-<div class="message-erreur" *ngIf="errorServeur">
-    <h1 class="message">{{errorServeur}}</h1>
-</div>
-<div class="message-erreur" *ngIf="errorMessage">
-  <h1 class="message">{{errorMessage}}</h1>
-</div>
+<!-- Gestion erreur client -->
+<error-client [errorClient]="errorMessage" *ngIf="errorMessage"></error-client>
+
 <section class="container posts" *ngIf="postList?.length > 0; else elseBlock">
     <post *ngFor="let post of postList; let i = index"
-          [post]="post" [userLink]="user" [author]="author" [likes]="likes" [errorMessage]="errorMessage">
+          [post]="post" [errorMessage]="errorMessage">
     </post>
 </section>
 <ng-template #elseBlock>

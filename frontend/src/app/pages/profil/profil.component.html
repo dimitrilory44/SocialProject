@@ -3,36 +3,38 @@
 <main>
     <error-client [errorClient]="errorMessage" *ngIf="errorMessage"></error-client>
     <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
-    <section style="display:flex; justify-content: center;" *ngIf="!errorServeur">
-        <div style="display:flex; margin-top: 20px; flex-direction: column; margin-bottom: 30px" class="profil">
-            <div style="display:flex; justify-content: center;" class="image" *ngIf="image == null">
-                <img src="../../../../assets/guest.png" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+    <section id="profil-user" *ngIf="!errorServeur">
+        <div class="profil">
+            <div class="img-profil" *ngIf="image == null">
+                <img src="../../../../assets/guest.png" class="avatar" alt="" width="200">
             </div>
-            <div style="display:flex; justify-content: center;" class="image" *ngIf="image">
-                <img [src]="image" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+            <div class="img-profil" *ngIf="image">
+                <img [src]="image" class="avatar" alt="" width="200">
             </div>  
-            <h1 style="margin-top: 30px;text-align:center">{{my_user?.prenom}} {{my_user?.nom}}</h1>
-            <div class="coordonnées">
-                <div style="margin-bottom: 20px">
-                    <button mat-icon-button (click)="gotoMail()">
-                        <mat-icon style="color:rgb(62, 49, 49)">email</mat-icon>
+            <h1 class="nom-profil">{{my_user?.prenom}} {{my_user?.nom}}</h1>
+            <div class="coordonnees">
+                <div class="coordonnees__position">
+                    <button mat-icon-button (click)="gotoMail()" class="icon-sent">
+                        <mat-icon>email</mat-icon>
                     </button>
-                    <span style="margin-left: 10px;">{{email}}</span>
+                    <span>{{email}}</span>
                 </div>
-                <div style="margin-bottom: 20px; position:relative" class="edit-tel">
+                <div class="coordonnees__position">
                     <button mat-icon-button (click)="gotoTel()">
                         <mat-icon>phone</mat-icon>
                     </button>
-                    <span style="text-align:center">{{telephone}}</span>
+                    <span>{{telephone}}</span>
                 </div>
             </div>
-            <div style="display: flex; justify-content:center">
+            <div class="profil-actions">
                 <button mat-button color="warn" (click)="deleteUser(user.userId)">Supprimer votre compte</button>
                 <button mat-button color="primary" (click)="openDialog(my_user)">Modifiez votre compte</button>
             </div>
-            <button mat-flat-button color="primary" style="margin-top: 30px" (click)="showPost($event, user.userId)">
+            <button mat-flat-button color="primary" class="showPost" (click)="showPost($event, user.userId)">
                 Voir les posts associés
             </button>
         </div>
     </section>
 </main>
+
+<app-footer *ngIf="!errorServeur"></app-footer>

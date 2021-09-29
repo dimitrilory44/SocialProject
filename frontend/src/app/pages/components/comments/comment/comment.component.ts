@@ -13,6 +13,7 @@ export class CommentComponent implements OnInit {
   
   @Input() postId :number;
   @Input() comment :Comment;
+  @Input() auteur :User;
 
   updateCommentaire :FormGroup;
   isComment :boolean = false;

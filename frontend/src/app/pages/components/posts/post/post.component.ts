@@ -18,7 +18,7 @@ import { Comment } from '../../../models/Comment.models';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit, OnDestroy  {
+export class PostComponent implements OnInit, OnDestroy {
 
   @Input() post ?:Post;
   @Input() userLink ?:User;
@@ -40,6 +40,8 @@ export class PostComponent implements OnInit, OnDestroy  {
   id :number;
   isLike :boolean = false;
 
+  like :boolean;
+
   user :User;
 
   likePost :FormGroup;
@@ -55,7 +57,12 @@ export class PostComponent implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    // appeler post service
+
+    this.post.Like_posts.forEach((element:any) => {
+      if(element.User['id'] == this.user.userId) {
+        this.like = element.isLike;
+      }
+    })
   }
 
   ngOnDestroy() {
@@ -102,9 +109,7 @@ export class PostComponent implements OnInit, OnDestroy  {
   }
 
   onLike(id: number) {
-    // if(this.postList[index].Like_posts[0].User.userId == this.user.userId){}
-    // Il faut stocker un booleen sinon ca n'ira que dans un sens
-    if(this.isActive) {
+    if(this.like) {
       this.likesCount = 0;
     } else {
       this.likesCount = 1;
@@ -122,7 +127,7 @@ export class PostComponent implements OnInit, OnDestroy  {
     this._apiService.likePost(id, my_like).subscribe({
       next: result => {
         console.log(result.message);
-        // location.reload();
+        location.reload();
       },
       error: error => {
         console.log(error.error.error);
@@ -130,7 +135,7 @@ export class PostComponent implements OnInit, OnDestroy  {
     })
 
     // Affichage colorisé like ou non
-    if(this.isActive) {
+    if(this.like) {
       this.color = '#0d8bf0';
       console.log(this.likesCount);
     } else {
@@ -144,7 +149,6 @@ export class PostComponent implements OnInit, OnDestroy  {
     this.tableauString = [];
     this._apiService.getLikes(id).subscribe({
       next: result => {
-        console.log(result);
         for(let i = 0; i < result.length ; i++) {
           this.tableauString[i] = result[i].User.nom + ' ' + result[i].User.prenom;
           this.likeList = this.tableauString.join('\n');

@@ -86,12 +86,12 @@ exports.deleteUser = (req, res) => {
 exports.getPostByUser = (req, res) => {
     if(res !== null) {
         User.findOne({
+            order: [
+                [{model: Post}, 'createdAt', 'DESC']
+            ],
             include: [{
                 model: Post,
-                order: [
-                    ['createdAt', 'DESC']
-                ],
-                attributes: ['id', 'titre', 'image', 'contenu', 'UserId', 'createdAt', 'updatedAt'],
+                attributes: ['id', 'image', 'contenu', 'UserId', 'createdAt', 'updatedAt'],
                 include: [{
                     model: Comment,
                     attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
@@ -103,7 +103,7 @@ exports.getPostByUser = (req, res) => {
                 },{
                     model: Like_post,
                     attributes: ['createdAt', 'updatedAt', 'isLike'],
-                    include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                    include: [{model: User, attributes: ['id', 'nom', 'prenom', 'image']}],
                     required: false
                 }],
                 required: true

@@ -65,12 +65,12 @@ export class ProfilComponent implements OnInit, OnDestroy {
   }
 
   gotoMail() {
-    this.mailTo = 'mailto:' + this.user.email
+    this.mailTo = 'mailto:' + this.email;
     window.location.href = this.mailTo;
   }
 
   gotoTel() {
-    this.telTo = 'tel:' + this.telephone
+    this.telTo = 'tel:' + this.telephone;
     window.location.href = this.telTo;
   }
 

@@ -7,6 +7,7 @@ import { PagesRoutingModule } from './page-routing.module';
 import { AppMaterialModule } from '../app-material.module';
 
 import { HeaderComponent } from './commun/header/header.component';
+import { FooterComponent } from './commun/footer/footer.component';
 
 import { HomeComponent } from './home/home.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -45,7 +46,8 @@ import { ErreurServeurComponent } from '../error/pages/erreur-serveur/erreur-ser
     NewCommentComponent,
     CommentComponent,
     ErreurServeurComponent,
-    ErreurClientComponent
+    ErreurClientComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

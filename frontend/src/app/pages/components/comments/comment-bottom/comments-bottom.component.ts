@@ -32,7 +32,6 @@ export class CommentsBottomComponent implements OnInit, OnDestroy {
 
     this.subscriptionComments$ = this._apiService.getComments(this.data).subscribe(res => {
       this.commentList = res;
-      console.log(this.commentList);
     });
 
     this.subscription$ = this._userService.getUser(this.user.userId).subscribe({

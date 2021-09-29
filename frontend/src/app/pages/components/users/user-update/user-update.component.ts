@@ -1,7 +1,8 @@
-import { AfterContentInit, Component, Inject, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { mimeType } from '../../../home/mime-type.validator';
 import { User } from '../../../models/User.models';
@@ -11,8 +12,9 @@ import { User } from '../../../models/User.models';
   templateUrl: './user-update.component.html',
   styleUrls: ['./user-update.component.scss']
 })
-export class UserUpdateComponent implements OnInit, AfterContentInit {
+export class UserUpdateComponent implements OnInit, AfterContentInit, OnDestroy {
 
+  subscriptionUser$ :Subscription;
   user :User;
   file :File;
   image :string = '';
@@ -44,6 +46,10 @@ export class UserUpdateComponent implements OnInit, AfterContentInit {
     this.updateUser.controls.telephone.setValue(this.telephone);
   }
 
+  ngOnDestroy() {
+    this.subscriptionUser$?.unsubscribe();
+  }
+
   onSelectFile(e :any) {
     if(e.target.files && e.target.files[0]){      
       let reader = new FileReader();
@@ -70,7 +76,7 @@ export class UserUpdateComponent implements OnInit, AfterContentInit {
 
     console.log(this.updateUser.value);
 
-    this._userService.updateUser(this.user.userId, user, this.file).subscribe({
+    this.subscriptionUser$ = this._userService.updateUser(this.user.userId, user, this.file).subscribe({
       next: result => {
         this.openSnackBar(result.message, 'fermer');
         window.location.reload();

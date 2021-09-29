@@ -6,14 +6,18 @@
     </button>
 </div>
 <mat-divider></mat-divider>
-<mat-dialog-content>
+<mat-dialog-content style="position: relative;">
     <div *ngFor="let user of users" style="display: flex; align-items:center; margin-top: 20px">
-        <img class="avatar" [src]="user?.image" alt="" width="40" height="40">
-        <div style="margin-left: 20px; display:flex; justify-content:center">
+        <img class="avatar" [src]="user?.image" alt="" width="40" height="40" *ngIf="user?.image">
+        <img class="avatar" src="../../../../../assets/guest.png" alt="" width="40" height="40" *ngIf="user?.image === null">
+        <div style="margin-left: 20px; display:flex; align-items:center; cursor:pointer">
             <a (click)="gotoprofil($event, user?.id)">
                 <span>{{user?.prenom}}</span> 
                 <span style="margin-left: 5px">{{user?.nom}}</span>
             </a>
+            <button mat-icon-button (click)="deleteUser(user?.id)" class="icon-delete" style="position: absolute; right: 25px">
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
     </div>
 </mat-dialog-content>

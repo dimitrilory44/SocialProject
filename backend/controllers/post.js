@@ -28,17 +28,17 @@ exports.getAllPost = (req, res) => {
             }, {
                 model: Comment,
                 attributes: ['id', 'contenu', 'createdAt', 'updatedAt'],
-                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                include: [{model: User, attributes: ['id', 'nom', 'prenom', 'image']}],
                 required: false
             }, {
                 model: Like_post,
                 attributes: ['createdAt', 'updatedAt', 'isLike'],
-                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                include: [{model: User, attributes: ['id', 'nom', 'prenom', 'image']}],
                 required: false
             }
 
         ],
-        attributes: ['id', 'UserId', 'titre', 'image', 'contenu', 'createdAt', 'updatedAt']
+        attributes: ['id', 'UserId', 'image', 'contenu', 'createdAt', 'updatedAt']
     })
     .then(posts => res.status(200).json(posts))
     .catch(error => res.status(400).json(error));
@@ -62,12 +62,12 @@ exports.getOnePost = (req, res) => {
             }, {
                 model: Like_post,
                 attributes: ['createdAt', 'updatedAt', 'isLike'],
-                include: [{model: User, attributes: ['nom', 'prenom', 'image']}],
+                include: [{model: User, attributes: ['id', 'nom', 'prenom', 'image']}],
                 required: false
             }
 
         ],
-        attributes: ['id', 'UserId', 'titre', 'contenu', 'image', 'createdAt', 'updatedAt']
+        attributes: ['id', 'UserId', 'contenu', 'image', 'createdAt', 'updatedAt']
     })
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json(error));

@@ -56,9 +56,9 @@
   </div>
   <mat-divider></mat-divider>
   <mat-card-actions class="card__actions">
-    <button mat-button (click)="onLike(post.id)">
-      <mat-icon [ngStyle]="{'color' : color}" [class.like]="isActive" [class.dislike]="!isActive">thumb_up</mat-icon>
-      <span class="icon-like" [ngStyle]="{'color' : color}" [class.like]="isActive" [class.dislike]="!isActive">J'aime</span>
+    <button mat-button (click)="onLike(post.id)" *ngIf="post?.Like_posts">
+      <mat-icon [ngStyle]="{'color' : color}" [class.like]="like" [class.dislike]="!like">thumb_up</mat-icon>
+      <span class="icon-like" [ngStyle]="{'color' : color}" [class.like]="like" [class.dislike]="!like">J'aime</span>
     </button>
     <button mat-button (click)="openBottomSheet(post.id)" *ngIf="!isPost">
       <mat-icon class="icon-comment">chat_bubble_outline</mat-icon>

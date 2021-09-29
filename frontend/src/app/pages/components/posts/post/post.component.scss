@@ -12,15 +12,12 @@
     }
 
     &__content {
-        // padding-left: 20px;
         margin-bottom: 30px;
     }
 
     &__like--list {
         display: flex; 
         justify-content: space-between;
-        // margin-right: 20px;
-        // margin-left: 20px;
 
         .like-container {
             display: flex; 

@@ -15,7 +15,7 @@
         </div>
     </div>
     <comment *ngFor="let comment of comments; let i = index"
-            [postId]="postId" [comment]="comment">
+            [postId]="postId" [comment]="comment" [auteur]="myUser">
     </comment>
 </div>
 <ng-template #elseBlock>

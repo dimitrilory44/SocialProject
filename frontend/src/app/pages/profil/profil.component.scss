@@ -1,36 +1,43 @@
-// .image:hover>.edit {
-//     display: block;
-// }
+#profil-user {
+    display:flex; 
+    justify-content: center;
+}
 
-// .edit {
-//     display: none;
-// }
+.profil {
+    display:flex; 
+    margin-top: 20px; 
+    flex-direction: column; 
+    margin-bottom: 30px;
+}
 
-.image {
+.img-profil {
+    display:flex; 
+    justify-content: center;
     margin-left: 20px;
 }
 
-input[type="file"] {
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 10px;
+.nom-profil {
+    margin-top: 30px;
+    text-align:center;
 }
 
-input[type="text"] {
-    border: none;
-    background-color: transparent;
-    width: 80px;
-}
-
-input:focus, :hover{
-    outline: none;
-}
-
-.coordonnées {
+.coordonnees {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+
+    &__position {
+        margin-bottom: 20px
+    }
+}
+
+.profil-actions {
+    display: flex; 
+    justify-content:center
+}
+
+.showPost {
+    margin-top: 30px;
 }

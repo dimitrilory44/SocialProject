@@ -25,7 +25,7 @@ export class PostService {
     const postData = new FormData();
     postData.append('post', JSON.stringify(post));
     if(image) {
-      postData.append('image', image, post.titre);
+      postData.append('image', image);
     }
     return this.http.post<apiResponse>(Constants.BASE_URL + '/posts', postData).pipe(map(result => {
       return result;
@@ -49,8 +49,6 @@ export class PostService {
       return result;
     }));
   }
-
-  // Essayer de mapper avec la liste des post en associant postid et userId
 
   likePost(postId :number, likeData :Like) :Observable<any> {
     return this.http.post<apiResponse>(Constants.BASE_URL + '/posts' + `/${postId}` + '/likes', likeData).pipe(map(result => {

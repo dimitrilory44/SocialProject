@@ -39,3 +39,5 @@
     </section>
     <post-list [postList]="posts" [errorServeur]="errorServeur"></post-list>
 </main>
+
+<app-footer *ngIf="!errorServeur"></app-footer>

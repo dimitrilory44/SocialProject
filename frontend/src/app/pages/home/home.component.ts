@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
       error: error => {
         this.errorServeur = error.message;
-        console.log(error.message);
+        console.log(error);
       }
     });
 
@@ -67,7 +67,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
 
     this.createPost = this._formBuilder.group({
-      titre : ['post_image', Validators.required],
       contenu : ['', Validators.required],
       image: [null, Validators.required, mimeType],
       UserId: this.user.userId
@@ -102,7 +101,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const post = new Post();
-    post.titre = this.createPost.get('titre').value;
     post.contenu = this.createPost.get('contenu').value;
     post.image = '';
     post.UserId = this.createPost.get('UserId').value;
