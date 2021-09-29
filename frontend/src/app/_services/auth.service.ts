@@ -11,6 +11,7 @@ import { LoginForm } from '../_models/login.models';
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(private http: HttpClient, private _router :Router) {}
 
   isLogged():boolean{

@@ -9,7 +9,7 @@ import { AuthService } from '../../_services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   hide = true;
   loginSubscription$ :Subscription;
@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // ngOnDestroy() {
-  //   this.loginSubscription$.unsubscribe();
-  // }
+  ngOnDestroy() {
+    // this.loginSubscription$?.unsubscribe();
+  }
 
   // getter pour récupérer les accès des champs du formulaire
   get l() { return this.loginForm.controls; }

@@ -46,7 +46,7 @@
 
       <mat-chip-list *ngIf="width > 700">
         <mat-chip>
-          <span *ngIf="userHeader !== null">{{user.prenom}} {{user.nom}}</span>
+          <span *ngIf="userHeader !== null">{{user?.prenom}} {{user?.nom}}</span>
           <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image == null">
             <img src="../../../../assets/guest.png" class="avatar avatar-mini chip-position" alt="">
           </button>
