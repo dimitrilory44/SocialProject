@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Constants } from '../app.constants';
@@ -12,7 +11,7 @@ import { LoginForm } from '../_models/login.models';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private _router :Router) {}
+  constructor(private http: HttpClient) {}
 
   isLogged():boolean{
     let token = localStorage.getItem("token");
@@ -40,6 +39,5 @@ export class AuthService {
   logout() {
     localStorage.setItem('currentUser', null);
     localStorage.removeItem("token");
-    // renvoyer expiration token backend
   }
 }

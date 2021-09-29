@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import './base/base';
 
-@import './utils/variables', './utils/mixins';
+@import './utils/variables', './utils/mixins', './utils/keyframes';
 
 @import './layout/container';
 
-@import './components/icon', './components/input', './components/comment', './components/card', './components/button';
+@import './components/icon', './components/input', './components/comment', './components/card', './components/button', './components/loader';

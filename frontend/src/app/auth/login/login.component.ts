@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.loginSubscription$?.unsubscribe();
+    this.loginSubscription$?.unsubscribe();
   }
 
   // getter pour récupérer les accès des champs du formulaire
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmitLogin() {
     this.submitted = true;
     
-    this._authService.login(this.loginForm.value).subscribe({
+    this.loginSubscription$ = this._authService.login(this.loginForm.value).subscribe({
       next: result => {
         // Je stocke les informations du token permettant de sécuriser la navigation côté client
         localStorage.setItem("token", JSON.stringify(result.token));

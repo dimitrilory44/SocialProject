@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { MustMatch } from './must-match.validator';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   hide = true;
   hide2 = true;
@@ -39,9 +39,9 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy() {
-  //   this.registerSubscription$.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this.registerSubscription$?.unsubscribe();
+  }
 
   // getter pour récupérer les accès des champs du formulaire
   get f() { return this.registerForm.controls; }
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
         return;
     }
-    this._authService.register(this.registerForm.value).subscribe({
+    this.registerSubscription$ = this._authService.register(this.registerForm.value).subscribe({
       next: result => {
         console.log(result.message);
         this.openSnackBar(result.message, 'fermer');
