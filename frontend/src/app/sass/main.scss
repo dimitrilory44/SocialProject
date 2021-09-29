@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import './base/base';
-
 @import './utils/variables', './utils/mixins', './utils/keyframes';
+
+@import './base/base', './base/typography';
 
 @import './layout/container';
 

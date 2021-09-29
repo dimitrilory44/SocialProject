@@ -1,3 +1,5 @@
+@import '../../../../sass/utils/variables';
+
 .message-erreur {
     margin-top: 50px;
 }
@@ -14,7 +16,7 @@
 .no-posts {
     display:flex; 
     justify-content:center;
-    color: grey;
+    color: $couleur-secondaire;
     
     .message-post {
         text-align: center;

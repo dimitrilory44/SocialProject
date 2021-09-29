@@ -1,4 +1,4 @@
-
+@import '../../sass/utils/variables';
 
 .register {
     display: flex;
@@ -27,7 +27,7 @@
             margin-bottom: 20px;
 
             .button {
-                background-color: red;
+                background-color: $couleur-primaire;
                 width: 200px;
                 margin: 20px auto;
                 color: white;

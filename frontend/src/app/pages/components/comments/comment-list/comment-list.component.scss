@@ -1,3 +1,5 @@
+@import '../../../../sass/utils/variables';
+
 .comments {
     overflow-y: auto; 
     max-height: 200px; 
@@ -6,6 +8,6 @@
 }
 
 .no-comments {
-    color:gray; 
+    color: $couleur-secondaire; 
     text-align:center;
 }
