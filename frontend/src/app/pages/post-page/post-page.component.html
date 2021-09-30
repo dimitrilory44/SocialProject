@@ -3,7 +3,7 @@
 <main>
     <error-client [errorClient]="errorMessage" *ngIf="errorMessage"></error-client>
     <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
-    <div class="goBack">
+    <div class="goBack" *ngIf="!errorServeur">
         <a href="javascript:history.back()" mat-icon-button>
             <mat-icon>keyboard_arrow_left</mat-icon>
         </a>

@@ -1,4 +1,4 @@
-<div style="display: flex;">
+<div class="dialog-header">
     <h1 mat-dialog-title>Modifie tes coordonnées</h1>
     <span class="example-spacer"></span>
     <button mat-icon-button [mat-dialog-close]="true">
@@ -6,17 +6,18 @@
     </button>
 </div>
 <mat-divider></mat-divider>
-<mat-dialog-content class="mat-typography" style="display: flex; justify-content: center; flex-direction:column; text-align:center; margin-top: 20px; overflow: hidden">
+<mat-dialog-content class="mat-typography dialog-content">
     <form [formGroup]="updateUser" (ngSubmit)="onSubmitUser()">
-        <div style="display: flex; align-items:center; margin-bottom: 20px">
+        <h4 class="message">Choisir une image avec l'exemple de dimension suivant : 1000x1000</h4>
+        <div class="file-container">
             <div class="hint">Select your file</div>
             <button mat-button>
                 <input type="file" (change)="onSelectFile($event)" formControlName="image"/>
                 <mat-icon style="color:grey">add_a_photo</mat-icon>
             </button>
         </div>
-        <div style="width: 100%; margin-bottom: 20px">
-            <img [src]="url" alt="" width="200">
+        <div style="width: 100%; margin-bottom: 20px" *ngIf="url">
+            <img [src]="url" alt="image" width="100">
         </div>
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
             <mat-label>Telephone</mat-label>
@@ -24,7 +25,7 @@
             <input type="tel" matInput placeholder="XX-XX-XX-XX-XX" formControlName="telephone">
         </mat-form-field>
         <mat-dialog-actions align="end">
-            <button mat-button [mat-dialog-close]="true" type="submit">Modifier</button>
+            <button mat-button [mat-dialog-close]="true" type="submit" [disabled]="!url">Modifier</button>
         </mat-dialog-actions>
     </form>
 </mat-dialog-content>

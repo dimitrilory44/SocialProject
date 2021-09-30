@@ -83,7 +83,6 @@ export class UserUpdateComponent implements OnInit, AfterContentInit, OnDestroy 
         console.log(result.message);
       },
       error: error => {
-        // this.errorMessage = error.message;
         console.log(error.error);
       }
     })

@@ -15,26 +15,30 @@
     margin-bottom: 30px;
 }
 
-.coordonnees {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .mail {
-        margin-bottom: 20px;
-
-        .mail-intitule {
-            margin-left: 10px;
+#post-List {
+    margin-top: 20px;
+    
+    .coordonnees {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        .mail {
+            margin-bottom: 20px;
+    
+            .mail-intitule {
+                margin-left: 10px;
+            }
         }
-    }
-
-    .telephone {
-        margin-bottom: 20px; 
-        position:relative;
-
-        .telephone-intitule {
-            text-align:center;
+    
+        .telephone {
+            margin-bottom: 20px; 
+            position:relative;
+    
+            .telephone-intitule {
+                text-align:center;
+            }
         }
     }
 }
