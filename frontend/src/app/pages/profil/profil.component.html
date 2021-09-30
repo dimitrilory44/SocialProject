@@ -6,10 +6,10 @@
     <section id="profil-user" *ngIf="!errorServeur">
         <div class="profil">
             <div class="img-profil" *ngIf="image == null">
-                <img src="../../../../assets/guest.png" class="avatar" alt="" width="200">
+                <img src="../../../../assets/guest.png" class="avatar" alt="img-guest" width="200">
             </div>
             <div class="img-profil" *ngIf="image">
-                <img [src]="image" class="avatar" alt="" width="200">
+                <img [src]="image" class="avatar" alt="img-guest" width="200">
             </div>  
             <h1 class="nom-profil">{{my_user?.prenom}} {{my_user?.nom}}</h1>
             <div class="coordonnees">

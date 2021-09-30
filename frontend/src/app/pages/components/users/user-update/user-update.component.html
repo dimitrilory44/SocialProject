@@ -16,10 +16,10 @@
                 <mat-icon style="color:grey">add_a_photo</mat-icon>
             </button>
         </div>
-        <div style="width: 100%; margin-bottom: 20px" *ngIf="url">
-            <img [src]="url" alt="image" width="100">
+        <div class="image-preview" *ngIf="url">
+            <img [src]="url" alt="image" alt="img-preview" width="100">
         </div>
-        <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+        <mat-form-field class="field-content" appearance="fill">
             <mat-label>Telephone</mat-label>
             <span matPrefix>+33 &nbsp;</span>
             <input type="tel" matInput placeholder="XX-XX-XX-XX-XX" formControlName="telephone">

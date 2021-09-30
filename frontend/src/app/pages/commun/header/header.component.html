@@ -12,8 +12,8 @@
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" class="form-autocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.nom" style="width: 300px!important">
             <a (click)="goToprofil($event, option.id)">
-                <img class="form-autocomplete-img avatar" aria-hidden [src]="option.image" height="25" *ngIf="option.image">
-                <img class="form-autocomplete-img avatar" aria-hidden src="../../../../assets/guest.png" height="25" *ngIf="option.image == null">
+                <img class="form-autocomplete-img avatar" aria-hidden [src]="option.image" alt="img-avatar" height="25" *ngIf="option.image">
+                <img class="form-autocomplete-img avatar" aria-hidden src="../../../../assets/guest.png" alt="img-avatar" height="25" *ngIf="option.image == null">
                 <span>{{option.prenom}} {{option.nom}}</span>
             </a>
           </mat-option>
@@ -23,10 +23,10 @@
       <!-- Affichage de l'utilisateur courant en mobile -->
       <div *ngIf="width < 700">
         <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image == null">
-          <img src="../../../../assets/guest.png" class="avatar avatar-mini chip-position" alt="">
+          <img src="../../../../assets/guest.png" class="avatar avatar-mini chip-position" alt="img-guest">
         </button>
         <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image">
-          <img [src]="image" class="avatar avatar-mini chip-position" alt="">
+          <img [src]="image" class="avatar avatar-mini chip-position" alt="img-guest">
         </button>
         <mat-menu #menu="matMenu">
           <button *ngIf="user?.isAdmin" mat-menu-item (click)="openDialog()">
@@ -47,10 +47,10 @@
         <mat-chip>
           <span *ngIf="userHeader !== null">{{user?.prenom}} {{user?.nom}}</span>
           <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image == null">
-            <img src="../../../../assets/guest.png" class="avatar avatar-mini chip-position" alt="">
+            <img src="../../../../assets/guest.png" class="avatar avatar-mini chip-position" alt="img-guest">
           </button>
           <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with heart icon" *ngIf="image">
-            <img [src]="image" class="avatar avatar-mini chip-position" alt="">
+            <img [src]="image" class="avatar avatar-mini chip-position" alt="img-guest">
           </button>
           <mat-menu #menu="matMenu">
             <button *ngIf="user?.isAdmin" mat-menu-item (click)="openDialog()">

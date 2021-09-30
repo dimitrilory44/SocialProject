@@ -9,10 +9,10 @@
                 <mat-card-header class="card__header header__spacing">
                     <div class="avatar--contenu">
                         <div mat-card-avatar *ngIf="image == null">
-                            <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40">
+                            <img class="avatar" src="../../../../assets/guest.png" alt="img-guest" width="40" height="40">
                         </div>
                         <div mat-card-avatar *ngIf="image">
-                            <img class="avatar" [src]="image" alt="" width="40" height="40">
+                            <img class="avatar" [src]="image" alt="img-guest" width="40" height="40">
                         </div>
                         <div class="form-search spacing">
                             <textarea name="contenu" placeholder="Contenu de votre post" formControlName="contenu"></textarea>
@@ -20,7 +20,7 @@
                     </div>
                 </mat-card-header>
                 <mat-card-content class="card__content" *ngIf="url != null">
-                    <img [src]="url" alt="" class="new-post__image">
+                    <img [src]="url" alt="img-new-post" class="new-post__image">
                 </mat-card-content>
                 <mat-divider></mat-divider>
                 <mat-card-actions class="card__actions">

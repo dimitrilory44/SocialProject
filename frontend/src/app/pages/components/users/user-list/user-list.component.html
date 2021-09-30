@@ -8,8 +8,8 @@
 <mat-divider></mat-divider>
 <mat-dialog-content style="position: relative;">
     <div *ngFor="let user of users" style="display: flex; align-items:center; margin-top: 20px">
-        <img class="avatar" [src]="user?.image" alt="" width="40" height="40" *ngIf="user?.image">
-        <img class="avatar" src="../../../../../assets/guest.png" alt="" width="40" height="40" *ngIf="user?.image === null">
+        <img class="avatar" [src]="user?.image" alt="img-guest" width="40" height="40" *ngIf="user?.image">
+        <img class="avatar" src="../../../../../assets/guest.png" alt="img-guest" width="40" height="40" *ngIf="user?.image === null">
         <div style="margin-left: 20px; display:flex; align-items:center; cursor:pointer">
             <a (click)="gotoprofil($event, user?.id)">
                 <span>{{user?.prenom}}</span> 

@@ -1,10 +1,10 @@
 <mat-card class="card">
   <mat-card-header class="card__header">
     <div mat-card-avatar *ngIf="post?.User?.image == null">
-      <img class="avatar" src="../../../../assets/guest.png" alt="" width="40" height="40">
+      <img class="avatar" src="../../../../assets/guest.png" alt="img-guest" width="40" height="40">
     </div>
     <div mat-card-avatar *ngIf="post?.User?.image">
-      <img class="avatar" [src]="post?.User?.image" alt="" width="40" height="40">
+      <img class="avatar" [src]="post?.User?.image" alt="img-guest" width="40" height="40">
     </div>
     <mat-card-title>
       <a (click)="showPost(post.id)">
