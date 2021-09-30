@@ -2,26 +2,31 @@
 
 <main>
     <error-serveur [error]="errorServeur" *ngIf="errorServeur"></error-serveur>
+    <div class="goBack">
+        <a href="javascript:history.back()" mat-icon-button>
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </a>
+    </div>
     <section class="container" style="margin-top: 20px;" *ngIf="data">
-        <div style="position: relative; display:flex; justify-content: center" class="image" *ngIf="image == null">
-            <img src="../../../../assets/guest.png" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
+        <div class="image-container" *ngIf="image == null">
+            <img src="../../../../assets/guest.png" class="avatar" alt="image-profil" width="200">
         </div>
-        <div style="position: relative; display:flex; justify-content: center" class="image" *ngIf="image">
+        <div class="image-container" *ngIf="image">
             <img [src]="image" class="avatar image-profil" style="margin: 0 auto;" alt="" width="200">
         </div>
-        <h1 style="margin-top: 30px; text-align:center; margin-bottom: 30px">{{prenom}} {{nom}}</h1>
+        <h1 class="nom-profil">{{prenom}} {{nom}}</h1>
         <div class="coordonnees">
-            <div style="margin-bottom: 20px">
+            <div class="mail">
                 <button mat-icon-button (click)="gotoMail()" class="icon-sent">
                     <mat-icon>email</mat-icon>
                 </button>
-                <span style="margin-left: 10px;">{{email}}</span>
+                <span class="mail-intitule">{{email}}</span>
             </div>
-            <div style="margin-bottom: 20px; position:relative" class="edit-tel">
+            <div class="telephone">
                 <button mat-icon-button (click)="gotoTel()">
                     <mat-icon>phone</mat-icon>
                 </button>
-                <span style="text-align:center">{{telephone}}</span>
+                <span class="telephone-intitule">{{telephone}}</span>
             </div>
         </div>
     </section>

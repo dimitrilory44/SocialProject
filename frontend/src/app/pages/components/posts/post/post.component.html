@@ -50,7 +50,7 @@
       </a>
     </div>
   </mat-card-content>
-  <div *ngIf="isPost" style="padding: 5px">
+  <div *ngIf="isPost" class="comments-bloc">
     <comment-list [postId]="post?.id" [comments]="commentsPost" [myUser]="userLink" *ngIf="post"></comment-list>
     <new-comment [data]="post.id" [findUser]="userLink" *ngIf="isComment"></new-comment>
   </div>

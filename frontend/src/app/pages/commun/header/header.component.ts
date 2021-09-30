@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   image :string = '';
   width :number;
   isSearch :boolean = true;
+  isClick :boolean = true;
 
   userSearch :FormGroup;
 
@@ -42,7 +43,8 @@ export class HeaderComponent implements OnInit {
     this.userHeader = JSON.parse(localStorage.getItem('currentUser'));
 
     if (this._routes.url.startsWith("/profil") || this._routes.url.startsWith("/posts")) {
-      this.isSearch = false;        
+      this.isSearch = false;
+      this.isClick = false;        
     }
 
     this.width = window.innerWidth;
