@@ -66,6 +66,7 @@
                     <div *ngIf="f.confirmPassword.errors.mustMatch"><strong>Passwords</strong> must match</div>
                 </mat-error>
             </mat-form-field>
+			<mat-checkbox formControlName="isAdmin" *ngIf="!checkAdmin">Administrateur</mat-checkbox>
             <div class="action_auth">
                 <button mat-raised-button class="button" type="submit">S'INSCRIRE</button>
                 <mat-divider></mat-divider>

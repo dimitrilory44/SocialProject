@@ -16,9 +16,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   hide = true;
   hide2 = true;
   registerSubscription$ :Subscription;
+  registerCheckAdmin$ :Subscription;
   registerForm :FormGroup;
   submitted = false;
   errorMessage = "";
+  isAdmin :boolean = false;
+  checkAdmin :boolean;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -28,12 +31,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+
+    this.registerCheckAdmin$ = this._authService.checkAdmin().subscribe({
+      next: result => {
+        this.checkAdmin = result.message;
+      },
+      error: error => {
+        console.log(error.error);
+      }
+    })
+
     this.registerForm = this._formBuilder.group({
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
+	  isAdmin: [this.isAdmin, Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
@@ -41,6 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.registerSubscription$?.unsubscribe();
+	this.registerCheckAdmin$?.unsubscribe();
   }
 
   // getter pour récupérer les accès des champs du formulaire

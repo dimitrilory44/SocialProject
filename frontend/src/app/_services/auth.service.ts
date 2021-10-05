@@ -21,6 +21,12 @@ export class AuthService {
       return true;
     }
   }
+  
+  checkAdmin() :Observable<any> {
+    return this.http.get<apiResponse>(Constants.BASE_URL + '/auth').pipe(map(result => {
+      return result;
+    }));
+  }
 
   register(user: any) :Observable<any> {
     return this.http.post<apiResponse>(Constants.BASE_URL + '/auth/signup', user).pipe(map(result => {

@@ -4,6 +4,21 @@ const { User } = db.sequelize.models;
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 
+exports.checkAdmin = (req, res) => {
+    User.findAll({
+        where: {
+            isAdmin: 1
+        }
+    })
+    .then(users => {
+        if(users.length > 0) {
+            return res.status(200).json({message: true})
+        }
+        return res.status(200).json({message: false})
+    })
+    .catch(error => res.status(400).json(error))
+}
+
 exports.signup = (req, res) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {

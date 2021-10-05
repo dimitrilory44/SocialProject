@@ -4,6 +4,9 @@ const max_auth = require('../middleware/limit-auth');
 
 const authCtrl = require('../controllers/auth');
 
+// check admin
+routes.get('/', authCtrl.checkAdmin);
+
 // signup d'un utilisateur
 routes.post('/signup', authCtrl.signup);
 
