@@ -4,8 +4,8 @@
         <img class="avatar" src="../../../../assets/guest.png" alt="img-guest" width="40" height="40" *ngIf="myUser?.image == null">
         <div class="comment__description">
             <div class="comment__decoration comment__opacity">
-                <div style="font-weight: bold; position: relative" class="comment__description">
-                    <mat-progress-bar mode="buffer" style="position: absolute; top: -5px"></mat-progress-bar>
+                <div class="comment__description position_bar">
+                    <mat-progress-bar mode="buffer" class="progress-bar"></mat-progress-bar>
                     {{commentTemp["prenom"]}}
                     {{commentTemp["nom"]}}
                 </div>

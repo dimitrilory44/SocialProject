@@ -1,5 +1,14 @@
 @import '../../../../sass/utils/variables';
 
+.progress-bar {
+    position: absolute; 
+    top: -5px;
+}
+
+.position_bar {
+    position: relative;
+}
+
 .comments {
     overflow-y: auto; 
     max-height: 200px; 

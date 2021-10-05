@@ -6,25 +6,29 @@
     max-width: 25px;
 }
 
+.icon-field {
+    color: $couleur-secondaire;
+}
+
 .icon {
-    color: red!important;
+    color: $couleur-primaire!important;
 }
 
 .icon-file {
-    color: red!important;
+    color: $couleur-primaire!important;
 }
 
 .icon-sent {
-    color: red!important;
+    color: $couleur-primaire!important;
 }
 
 .icon-delete {
-    color: red!important;
+    color: $couleur-primaire!important;
 }
 
 .icon-comment {
     margin-left: 10px;
-    color:grey!important;
+    color:$couleur-secondaire!important;
 }
 
 .icon-like {
@@ -42,5 +46,5 @@
 }
 
 .dislike {
-    color: grey;
+    color: $couleur-secondaire;
 }

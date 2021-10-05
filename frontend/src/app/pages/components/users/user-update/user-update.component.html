@@ -8,12 +8,12 @@
 <mat-divider></mat-divider>
 <mat-dialog-content class="mat-typography dialog-content">
     <form [formGroup]="updateUser" (ngSubmit)="onSubmitUser()">
-        <h4 class="message">Choisir une image avec l'exemple de dimension suivant : 1000x1000</h4>
+        <h4 class="message">Choisir une image avec l'exemple de dimension suivante : 1000x1000</h4>
         <div class="file-container">
             <div class="hint">Select your file</div>
             <button mat-button>
                 <input type="file" (change)="onSelectFile($event)" formControlName="image"/>
-                <mat-icon style="color:grey">add_a_photo</mat-icon>
+                <mat-icon class="icon-field">add_a_photo</mat-icon>
             </button>
         </div>
         <div class="image-preview" *ngIf="url">
