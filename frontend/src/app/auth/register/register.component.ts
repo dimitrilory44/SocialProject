@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       next: result => {
         console.log(result.message);
         this.openSnackBar(result.message, 'fermer');
-        this._router.navigate(['/login']);
+        location.reload();
       },
       error: error => {
         this.errorMessage = error.message;
