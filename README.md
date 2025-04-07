@@ -1,65 +1,27 @@
-## Back-end
+# Frontend
 
-Le back-end a été développé avec express JS, sequelize(ORM) et mySQL(base de donnée).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
 
-Cloner ce projet avec la commande suivante :
+## Development server
 
-    git clone https://github.com/dimitrilory44/DimitriLory_7_26082021.git
-    cd DimitriLory_7_26082021
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Changer vers la branche la plus optimisée :
+## Code scaffolding
 
-    git checkout frontend/angular
-    cd backend
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Installer les dépendances avec npm install.
+## Build
 
-Pour faire persister les données, créer un dossier `config` et un fichier `config.json` avec les informations suivantes :
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-    {
-        "development": {
-            "username": "root",
-            "password": "votre_mp_root",
-            "database": "votre_database_development",
-            "host": "127.0.0.1",
-            "dialect": "mysql"
-        },
-        "test": {
-            "username": "root",
-            "password": "votre_mp_root",
-            "database": "votre_database_test",
-            "host": "127.0.0.1",
-            "dialect": "mysql"
-        },
-        "production": {
-            "username": "root",
-            "password": "votre_mp_root",
-            "database": "votre_database_production",
-            "host": "127.0.0.1",
-            "dialect": "mysql"
-        }
-    }
+## Running unit tests
 
-N'oubliez pas de créer votre database directement sur mySQL. Ici changer la ligne `votre_database_development` par le nom de votre schéma et `votre_mp_root` par le mot de passe de votre `root`
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Effectuer la commande suivante afin de créer votre modèle de données :
+## Running end-to-end tests
 
-    sequelize db:migrate
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-Cette commande permettra de reconstituer la base de donnée dans votre schéma créé précedemment.
+## Further help
 
-Créer par la même occasion votre dossier `images`
-
-Créer votre dossier .env pour stocké votre clef secret à la racine et ajouter le contenu suivant :
-
-`TOKEN_SECRET=VOTRE_CLEF_SECRET`
-
-Démarrer enfin le serveur avec npm run serve.
-
-## Front-end
-
-Placez sur votre dossier frontend avec `cd frontend`
-
-Installer ensuite les dépendances avec `npm install`
-
-Démarrer le server avec `ng serve -o`
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
