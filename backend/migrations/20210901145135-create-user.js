@@ -26,13 +26,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       image: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      telephone: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: "XXXXXXXXXX"
+        defaultValue: "localhost:3000/images/guest.png"
+      },
+      description: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
       isAdmin: {
         allowNull: false,
