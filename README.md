@@ -9,7 +9,7 @@ Ce projet est une application de réseau social. Il permet de se connecter, des 
 
 ## 🌱 Branches principales
 
-- **[develop](https://github.com/dimitrilory44/SocialProject/tree/frontend/angular)** : branche principal qui réunit clien/serveur (Angular/ExpressJS)
+- **[develop](https://github.com/dimitrilory44/SocialProject/tree/develop)** : branche principal qui réunit clien/serveur (Angular/ExpressJS)
 - **[frontend/angular](https://github.com/dimitrilory44/SocialProject/tree/frontend/angular)** : Branche de l'application coté client (Angular 12)
 - **[backend/sequelize](https://github.com/dimitrilory44/SocialProject/tree/backend/sequelize)** : Branche de l'application coté serveur (ExpressJS)
 
